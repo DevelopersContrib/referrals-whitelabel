@@ -6,6 +6,6 @@ export default async function Home() {
   const domain = getDomain();
   const c = await Getwlsettings();
   return (
-    <Homepage logo={c.data.logo} domain={domain}/>
+    <Homepage logo={c.data.logo} domain={domain} banner={c.data.banner_image}/>
   );
 }

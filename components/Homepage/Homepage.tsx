@@ -3,7 +3,7 @@ import Header from "../Layout/Header";
 import BannerImg from "/public/img/banner-1.jpg";
 import Image from "next/image";
 
-const Homepage = ({ domain,logo }: { logo: string; domain: string }
+const Homepage = ({ domain,logo,banner }: { logo: string; domain: string, banner:string }
   ) => {
   return (
     <>
@@ -13,7 +13,7 @@ const Homepage = ({ domain,logo }: { logo: string; domain: string }
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
-                <Image src={BannerImg} alt="Banner" className="img-fluid" />
+                <Image src={banner}  width={1280} height={956} alt="Banner" className="img-fluid" />
               </div>
               <div className="col-lg-6">
                 <h1 className="tw-text-6xl tw-font-bold tw-mb-8">
