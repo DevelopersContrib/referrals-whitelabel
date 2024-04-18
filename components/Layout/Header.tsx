@@ -7,7 +7,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-const Header = () => {
+const Header = ({ domain,logo }: { logo: string; domain: string }) => {
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -15,7 +15,7 @@ const Header = () => {
           <Navbar.Brand href="#home">
             <Image
               loader={imageLoader}
-              src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
+              src={ logo }
               alt="referral"
               width={0}
               height={0}
@@ -25,11 +25,11 @@ const Header = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
             </Nav>
             <Nav className="ms-auto">
-              <Nav.Link href="#home">Register</Nav.Link>
-              <Nav.Link href="#link">Log in</Nav.Link>
+              <Nav.Link href="https://www.referrals.com/signup">Register</Nav.Link>
+              <Nav.Link href="https://www.referrals.com/signin">Log in</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

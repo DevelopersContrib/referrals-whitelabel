@@ -3,10 +3,11 @@ import Header from "../Layout/Header";
 import BannerImg from "/public/img/banner-1.jpg";
 import Image from "next/image";
 
-const Homepage = () => {
+const Homepage = ({ domain,logo }: { logo: string; domain: string }
+  ) => {
   return (
     <>
-      <Header />
+      <Header logo={logo} domain={domain}/>
       <main className="homepage tw-min-h-screen tw-bg-[#ddd]">
         <section className="tw-py-4 tw-bg-black tw-text-white">
           <div className="container">

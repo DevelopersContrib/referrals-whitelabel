@@ -1,7 +1,11 @@
 import Homepage from "@/components/Homepage/Homepage";
+import { getDomain, Getwlsettings } from "../data/data";
 
-export default function Home() {
+export default async function Home() {
+  // Assuming getDomain() returns a string
+  const domain = getDomain();
+  const c = await Getwlsettings();
   return (
-    <Homepage />
+    <Homepage logo={c.data.logo} domain={domain}/>
   );
 }
