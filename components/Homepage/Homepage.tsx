@@ -2,20 +2,34 @@ import React from "react";
 import Header from "../Layout/Header";
 import BannerImg from "/public/img/banner-1.jpg";
 import Image from "next/image";
+import Footer from "../Layout/Footer";
 
-const Homepage = ({ domain,logo,banner }: { logo: string; domain: string, banner:string }
-  ) => {
+const Homepage = ({
+  domain,
+  logo,
+  banner
+}: {
+  logo: string;
+  domain: string;
+  banner: string;
+}) => {
   return (
     <>
-      <Header logo={logo} domain={domain}/>
+      <Header logo={logo} domain={domain} />
       <main className="homepage tw-min-h-screen tw-bg-[#ddd]">
-        <section className="tw-py-4 tw-bg-black tw-text-white">
+        <section className="tw-py-4 tw-bg-white tw-text-black">
           <div className="container">
             <div className="row">
               <div className="col-lg-6">
-                <Image src={banner}  width={1280} height={956} alt="Banner" className="img-fluid" />
+                <Image
+                  src={banner}
+                  width={1280}
+                  height={956}
+                  alt="Banner"
+                  className="img-fluid"
+                />
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 tw-flex tw-justify-center tw-flex-col">
                 <h1 className="tw-text-6xl tw-font-bold tw-mb-8">
                   Get Instant Free Access
                 </h1>
@@ -132,6 +146,7 @@ const Homepage = ({ domain,logo,banner }: { logo: string; domain: string, banner
           </div>
         </section>
       </main>
+      <Footer domain={domain} />
     </>
   );
 };
