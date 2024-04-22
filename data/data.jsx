@@ -10,13 +10,27 @@ export function getDomain() {
 }
 
 export async function Getwlsettings() {
-    const domain = getDomain();
-    const url = 'https://api1.contrib.co/v2/referrals/Getwlsettings?key=5c1bde69a9e783c7edc2e603d8b25023' + `&domain=${domain}`;
-    const res = await fetch(url);
-  
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-  
-    return res.json();
+  const domain = getDomain();
+  const timestamp = Date.now(); // Get current timestamp
+  const url = `https://api1.contrib.co/v2/referrals/Getwlsettings?key=5c1bde69a9e783c7edc2e603d8b25023&domain=${domain}&timestamp=${timestamp}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+export async function Getcampaigns() {
+  const domain = getDomain();
+  const timestamp = Date.now(); // Get current timestamp
+  const url = `https://api1.contrib.co/v2/referrals/Getcampaigns?key=5c1bde69a9e783c7edc2e603d8b25023&domain=${domain}&limit=4&timestamp=${timestamp}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
 }

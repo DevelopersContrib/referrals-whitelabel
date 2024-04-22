@@ -4,14 +4,32 @@ import BannerImg from "/public/img/banner-1.jpg";
 import Image from "next/image";
 import Footer from "../Layout/Footer";
 
-const Homepage = ({
+interface Campaign {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  widget_details: {
+    id: string;
+    campaign_id: string;
+    background_image: string;
+    description:string
+    // Add more properties as needed
+  };
+}
+
+interface HomepageProps {
+  domain: string;
+  logo: string;
+  banner: string;
+  campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
+}
+
+const Homepage: React.FC<HomepageProps> = ({
   domain,
   logo,
-  banner
-}: {
-  logo: string;
-  domain: string;
-  banner: string;
+  banner,
+  campaignData
 }) => {
   return (
     <>
@@ -43,106 +61,35 @@ const Homepage = ({
         </section>
         <section className="tw-py-4">
           <div className="container tw-grid tw-grid-cols-4 tw-gap-4">
-            <a href="#" className="tw-shadow-md">
-              <div className="tw-flex tw-w-full tw-flex-col">
-                <div>
-                  <Image
-                    src={BannerImg}
-                    alt="Banner"
-                    className="img-fluid tw-max-h-[200px] tw-object-cover"
-                  />
-                </div>
-                <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white">
-                  <div>
-                    <h3 className="tw-capitalize tw-font-bold tw-mb-2">
-                      campaign #30 social rewards
-                    </h3>
+            {Array.isArray(campaignData) && campaignData.length > 0 ? (
+              campaignData.map((campaign) => (
+                <a href="#" key={campaign.id} className="tw-shadow-md">
+                  <div className="tw-flex tw-w-full tw-flex-col">
+                    <div>
+                      <Image
+                        src={campaign.widget_details.background_image}
+                        width={1280}
+                        height={956}
+                        alt="Banner"
+                        className="img-fluid tw-max-h-[200px] tw-object-cover"
+                      />
+                    </div>
+                    <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white">
+                      <div>
+                        <h3 className="tw-capitalize tw-font-bold tw-mb-2">
+                          {campaign.name}
+                        </h3>
+                      </div>
+                      <div className="tw-text-sm">
+                        <p>{campaign.widget_details.description}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="tw-text-sm">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="#" className="tw-shadow-md">
-              <div className="tw-flex tw-w-full tw-flex-col">
-                <div>
-                  <Image
-                    src={BannerImg}
-                    alt="Banner"
-                    className="img-fluid tw-max-h-[200px] tw-object-cover"
-                  />
-                </div>
-                <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white">
-                  <div>
-                    <h3 className="tw-capitalize tw-font-bold tw-mb-2">
-                      campaign #30 social rewards
-                    </h3>
-                  </div>
-                  <div className="tw-text-sm">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="#" className="tw-shadow-md">
-              <div className="tw-flex tw-w-full tw-flex-col">
-                <div>
-                  <Image
-                    src={BannerImg}
-                    alt="Banner"
-                    className="img-fluid tw-max-h-[200px] tw-object-cover"
-                  />
-                </div>
-                <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white">
-                  <div>
-                    <h3 className="tw-capitalize tw-font-bold tw-mb-2">
-                      campaign #30 social rewards
-                    </h3>
-                  </div>
-                  <div className="tw-text-sm">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a href="#" className="tw-shadow-md">
-              <div className="tw-flex tw-w-full tw-flex-col">
-                <div>
-                  <Image
-                    src={BannerImg}
-                    alt="Banner"
-                    className="img-fluid tw-max-h-[200px] tw-object-cover"
-                  />
-                </div>
-                <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white">
-                  <div>
-                    <h3 className="tw-capitalize tw-font-bold tw-mb-2">
-                      campaign #30 social rewards
-                    </h3>
-                  </div>
-                  <div className="tw-text-sm">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </a>
+                </a>
+              ))
+            ) : (
+              <p>No campaigns available</p> // Provide a fallback if campaignData is empty or not an array
+            )}
           </div>
         </section>
       </main>
