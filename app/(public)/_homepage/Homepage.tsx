@@ -1,8 +1,4 @@
-import React from "react";
-import Header from "../../(layout)/Header";
-import BannerImg from "/public/img/banner-1.jpg";
 import Image from "next/image";
-import Footer from "../../(layout)/Footer";
 
 interface Campaign {
   id: string;
@@ -25,15 +21,9 @@ interface HomepageProps {
   campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
 }
 
-const Homepage: React.FC<HomepageProps> = ({
-  domain,
-  logo,
-  banner,
-  campaignData
-}) => {
+const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
   return (
     <>
-      <Header logo={logo} domain={domain} />
       <main className="homepage tw-min-h-screen tw-bg-[#ddd]">
         <section className="tw-py-4 tw-bg-white tw-text-black">
           <div className="container">
@@ -97,7 +87,6 @@ const Homepage: React.FC<HomepageProps> = ({
           </div>
         </section>
       </main>
-      <Footer domain={domain} />
     </>
   );
 };

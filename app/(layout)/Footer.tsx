@@ -1,36 +1,11 @@
-import React from "react";
+import { getDomain } from "@/data/data";
+import FooterContent from "./_components/FooterContent";
 
-const Footer = ({ domain }: { domain: string }) => {
+const Footer = async () => {
+  const domain = getDomain();
   return (
     <>
-      <footer className="tw-py-4 tw-bg-black tw-text-white">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="tw-capitalize">{domain}</div>
-            </div>
-            <div className="col-lg-6 text-end">
-              <ul className="list-inline !tw-space-x-4">
-                <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
-                    about
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
-                    privacy policy
-                  </a>
-                </li>
-                <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
-                    terms and condition
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <FooterContent domain={domain} />
     </>
   );
 };
