@@ -51,10 +51,10 @@ const Header = ({ domain, logo }: { logo: string; domain: string }) => {
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">
-              <Nav.Link href="https://www.referrals.com/signup">
+              <Nav.Link href="/signup">
                 Register
               </Nav.Link>
-              <Nav.Link href="https://www.referrals.com/signin">
+              <Nav.Link href="/signin">
                 Log in
               </Nav.Link>
             </Nav>

@@ -63,7 +63,7 @@ const Homepage: React.FC<HomepageProps> = ({
           <div className="container tw-grid tw-grid-cols-4 tw-gap-4">
             {Array.isArray(campaignData) && campaignData.length > 0 ? (
               campaignData.map((campaign) => (
-                <a href="#" key={campaign.id} className="tw-shadow-md">
+                <a href="/signup" key={campaign.id} className="tw-shadow-md">
                   <div className="tw-flex tw-w-full tw-flex-col">
                     <div>
                       <Image
