@@ -7,7 +7,28 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-const Header = ({ domain, logo }: { logo: string; domain: string }) => {
+interface Campaign {
+  id: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  widget_details: {
+    id: string;
+    campaign_id: string;
+    background_image: string;
+    description: string;
+    // Add more properties as needed
+  };
+}
+
+interface HomepageProps {
+  domain: string;
+  logo: string;
+  banner: string;
+  campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
+}
+
+const NavbarMenu = ({ logo }: { logo: string }) => {
   return (
     <>
       <Navbar
@@ -51,12 +72,8 @@ const Header = ({ domain, logo }: { logo: string; domain: string }) => {
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">
-              <Nav.Link href="/signup">
-                Register
-              </Nav.Link>
-              <Nav.Link href="/signin">
-                Log in
-              </Nav.Link>
+              <Nav.Link href="/register">Register</Nav.Link>
+              <Nav.Link href="/login">Log in</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -65,4 +82,4 @@ const Header = ({ domain, logo }: { logo: string; domain: string }) => {
   );
 };
 
-export default Header;
+export default NavbarMenu;

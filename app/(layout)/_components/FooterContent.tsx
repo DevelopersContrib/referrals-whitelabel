@@ -1,6 +1,6 @@
 import React from "react";
 
-const Footer = ({ domain }: { domain: string }) => {
+const FooterContent = ({ domain }: { domain: string }) => {
   return (
     <>
       <footer className="tw-py-4 tw-bg-black tw-text-white">
@@ -35,4 +35,4 @@ const Footer = ({ domain }: { domain: string }) => {
   );
 };
 
-export default Footer;
+export default FooterContent;
