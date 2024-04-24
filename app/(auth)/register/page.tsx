@@ -1,7 +1,11 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
-const Register = () => {
+export default function Register(){
   return (
     <>
       <>
@@ -14,16 +18,20 @@ const Register = () => {
                 </h1>
                 <div className="tw-bg-[#eee] tw-p-8">
                   <div className="tw-mb-4">
-                    <label htmlFor="">Username</label>
-                    <input type="text" className="form-control" />
+                    <label htmlFor="">Your Email</label>
+                    <input type="text" name="userEmail" className="form-control" />
+                  </div>
+                  <div className="tw-mb-4">
+                    <label htmlFor="">Your Name</label>
+                    <input type="text" name="userName" className="form-control" />
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Password</label>
-                    <input type="password" className="form-control" />
+                    <input type="password" name="userPassword" className="form-control" />
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Confirm Password</label>
-                    <input type="password" className="form-control" />
+                    <input type="password" name="userPasswordConfirm" className="form-control" />
                   </div>
                   <div className="d-grid">
                     <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2">
@@ -43,4 +51,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+
