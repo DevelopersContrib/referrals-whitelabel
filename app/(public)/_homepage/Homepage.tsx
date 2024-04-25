@@ -54,7 +54,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
             {Array.isArray(campaignData) && campaignData.length > 0 ? (
               campaignData.map((campaign) => (
                 <a
-                  href="/signup"
+                  href="/register"
                   key={campaign.id}
                   className="tw-shadow-md tw-inline-flex"
                 >

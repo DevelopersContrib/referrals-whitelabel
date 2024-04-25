@@ -6,6 +6,60 @@ import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
 export default function Register(){
+  const routerQuery = useSearchParams();
+  const initialValues = {
+    email: "",
+    name: "",
+    password: "",
+    cpassword: ""
+  }
+
+  const initialErrors = {
+    validate: false,
+    emailError: "",
+    nameError: "",
+    passwordError: "",
+    cpasswordError: ""
+  }
+
+  const [data, setData] = useState(initialValues);
+  const [errors, setErrors] = useState(initialErrors);
+  useEffect(() => {
+    const validateErrors = () => {
+      let dataErrors;
+      dataErrors = {
+        validate: false, // Include validate property
+        emailError: (data.email ? "" : "Email is required") ||
+        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
+          ? ""
+          : "Invalid Email"),
+        nameError: data.name ? "" : "Name is required.",
+        passwordError: data.password ? "" : "Password is required.",
+        cpasswordError:
+            (data.cpassword ? "" : "Confirm password is required.") ||
+            (data.password !== data.cpassword
+              ? "Confirm password did not match."
+              : ""),
+      }
+      setErrors(dataErrors);
+    };
+    validateErrors();
+  },[data]);
+
+  const handleChange = (e:any) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (event:any) => {
+    event.preventDefault();
+    const isValid = !Object.values(errors).some((v) => v);
+    if(isValid) {
+
+    }else{
+      setErrors({ ...errors, ["validate"]: true });
+    }
+  }
+
   return (
     <>
       <>
@@ -19,22 +73,23 @@ export default function Register(){
                 <div className="tw-bg-[#eee] tw-p-8">
                   <div className="tw-mb-4">
                     <label htmlFor="">Your Email</label>
-                    <input type="text" name="userEmail" className="form-control" />
+                    <input type="text" name="userEmail" onChange={handleChange} value={data.email} className="form-control" />
+                    
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Your Name</label>
-                    <input type="text" name="userName" className="form-control" />
+                    <input type="text" name="userName" onChange={handleChange} value={data.name} className="form-control" />
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Password</label>
-                    <input type="password" name="userPassword" className="form-control" />
+                    <input type="password" name="userPassword" onChange={handleChange} value={data.password} className="form-control" />
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Confirm Password</label>
-                    <input type="password" name="userPasswordConfirm" className="form-control" />
+                    <input type="password" name="userPasswordConfirm" onChange={handleChange} value={data.cpassword} className="form-control" />
                   </div>
                   <div className="d-grid">
-                    <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2">
+                    <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2" onClick={handleSubmit}>
                       <span>
                         <FaUserEdit className="tw-w-4 tw-h-4" />
                       </span>
