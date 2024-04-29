@@ -26,8 +26,8 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
   return (
     <>
       <Layout>
-        <main className="homepage tw-min-h-screen tw-bg-[#ddd]">
-          <section className="tw-py-4 tw-bg-white tw-text-black">
+        <main className="homepage min-h-screen bg-[#ddd]">
+          <section className="py-4 bg-white text-black">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6">
@@ -39,8 +39,8 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                     className="img-fluid"
                   />
                 </div>
-                <div className="col-lg-6 tw-flex tw-justify-center tw-flex-col">
-                  <h1 className="tw-text-6xl tw-font-bold tw-mb-8">
+                <div className="col-lg-6 flex justify-center flex-col">
+                  <h1 className="text-6xl font-bold mb-8">
                     Get Instant Free Access
                   </h1>
                   <p className="">
@@ -51,32 +51,32 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
               </div>
             </div>
           </section>
-          <section className="tw-py-4">
-            <div className="container tw-grid tw-grid-cols-4 tw-gap-4">
+          <section className="py-4">
+            <div className="container grid grid-cols-4 gap-4">
               {Array.isArray(campaignData) && campaignData.length > 0 ? (
                 campaignData.map((campaign) => (
                   <a
                     href="/register"
                     key={campaign.id}
-                    className="tw-shadow-md tw-inline-flex"
+                    className="shadow-md inline-flex"
                   >
-                    <div className="tw-flex tw-w-full tw-flex-col tw-h-full">
+                    <div className="flex w-full flex-col h-full">
                       <div>
                         <Image
                           src={campaign.widget_details.background_image}
                           width={0}
                           height={0}
                           alt="Referral Campaign Image"
-                          className="img-fluid tw-h-[200px] tw-object-cover tw-w-full"
+                          className="img-fluid h-[200px] object-cover w-full"
                         />
                       </div>
-                      <div className="tw-flex tw-w-full tw-flex-col tw-p-4 tw-bg-white h-100">
+                      <div className="flex w-full flex-col p-4 bg-white h-100">
                         <div>
-                          <h3 className="tw-capitalize tw-font-bold tw-mb-2">
+                          <h3 className="capitalize font-bold mb-2">
                             {campaign.name}
                           </h3>
                         </div>
-                        <div className="tw-text-sm">
+                        <div className="text-sm">
                           <p>{campaign.widget_details.description}</p>
                         </div>
                       </div>

@@ -46,11 +46,11 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
                 alt="referral"
                 width={0}
                 height={0}
-                className="tw-w-full tw-max-w-full tw-h-[50px] tw-object-contain"
+                className="w-full max-w-full h-[50px] object-contain"
               />
             )}
             {/* {domain && (
-              <span className="tw-text-lg tw-font-bold tw-text-primary">
+              <span className="text-lg font-bold text-primary">
                 {domain}
               </span>
             )} */}
@@ -58,16 +58,16 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/" className="tw-capitalize">
+              <Nav.Link href="/" className="capitalize">
                 Home
               </Nav.Link>
-              <Nav.Link href="/" className="tw-capitalize">
+              <Nav.Link href="/" className="capitalize">
                 about
               </Nav.Link>
-              <Nav.Link href="/" className="tw-capitalize">
+              <Nav.Link href="/" className="capitalize">
                 privacy policy
               </Nav.Link>
-              <Nav.Link href="/" className="tw-capitalize">
+              <Nav.Link href="/" className="capitalize">
                 terms and condition
               </Nav.Link>
             </Nav>

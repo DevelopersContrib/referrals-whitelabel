@@ -4,26 +4,26 @@ import { SlLogin } from "react-icons/sl";
 const Login = () => {
   return (
     <>
-      <main className="tw-min-h-[calc(100vh-76px-56px)] py-8 tw-w-full tw-flex tw-justify-center tw-items-center">
+      <main className="min-h-[calc(100vh-76px-56px)] py-8 w-full flex justify-center items-center">
         <div className="container">
-          <div className="row tw-w-full tw-justify-center tw-items-center">
-            <div className="col-lg-4 tw-flex tw-flex-col">
-              <h1 className="tw-text-3xl tw-font-bold tw-mb-4 tw-text-center">
+          <div className="row w-full justify-center items-center">
+            <div className="col-lg-4 flex flex-col">
+              <h1 className="text-3xl font-bold mb-4 text-center">
                 Log in to your account
               </h1>
-              <div className="tw-bg-[#eee] tw-p-8">
-                <div className="tw-mb-4">
+              <div className="bg-[#eee] p-8">
+                <div className="mb-4">
                   <label htmlFor="">Username</label>
                   <input type="text" className="form-control" />
                 </div>
-                <div className="tw-mb-4">
+                <div className="mb-4">
                   <label htmlFor="">Password</label>
                   <input type="password" className="form-control" />
                 </div>
                 <div className="d-grid">
-                  <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2">
+                  <button className="btn btn-primary !flex items-center justify-center text-center w-full space-x-2">
                     <span>
-                      <SlLogin className="tw-w-4 tw-h-4" />
+                      <SlLogin className="w-4 h-4" />
                     </span>
                     <span>Log in</span>
                   </button>

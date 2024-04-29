@@ -7,6 +7,6 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   plugins: [],
-  prefix: 'tw-',
+  // prefix: 'tw-',
 };
 export default config;
