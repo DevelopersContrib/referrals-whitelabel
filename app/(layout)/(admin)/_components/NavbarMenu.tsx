@@ -59,7 +59,16 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
               <Nav.Link href="/dashboard" className="tw-capitalize">
-                Home
+                Dashboard
+              </Nav.Link>
+              <Nav.Link href="/dashboard" className="tw-capitalize">
+                Campaigns
+              </Nav.Link>
+              <Nav.Link href="/dashboard" className="tw-capitalize">
+                Dashboard
+              </Nav.Link>
+              <Nav.Link href="/dashboard" className="tw-capitalize">
+                Settings
               </Nav.Link>
             </Nav>
             <Nav className="ms-auto">
