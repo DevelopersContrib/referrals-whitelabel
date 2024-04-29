@@ -8,10 +8,10 @@ import { FaUserEdit } from "react-icons/fa";
 export default function Register(){
   const routerQuery = useSearchParams();
   const initialValues = {
-    email: "",
-    name: "",
-    password: "",
-    cpassword: ""
+    userEmail: "",
+    userName: "",
+    userPassword: "",
+    userPasswordConfirm: ""
   }
 
   const initialErrors = {
@@ -29,15 +29,15 @@ export default function Register(){
       let dataErrors;
       dataErrors = {
         validate: false, // Include validate property
-        emailError: (data.email ? "" : "Email is required") ||
-        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
+        emailError: (data.userEmail ? "" : "Email is required") ||
+        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.userEmail)
           ? ""
           : "Invalid Email"),
-        nameError: data.name ? "" : "Name is required.",
-        passwordError: data.password ? "" : "Password is required.",
+        nameError: data.userName ? "" : "Name is required.",
+        passwordError: data.userPassword ? "" : "Password is required.",
         cpasswordError:
-            (data.cpassword ? "" : "Confirm password is required.") ||
-            (data.password !== data.cpassword
+            (data.userPasswordConfirm ? "" : "Confirm password is required.") ||
+            (data.userPassword !== data.userPasswordConfirm
               ? "Confirm password did not match."
               : ""),
       }
@@ -73,20 +73,23 @@ export default function Register(){
                 <div className="tw-bg-[#eee] tw-p-8">
                   <div className="tw-mb-4">
                     <label htmlFor="">Your Email</label>
-                    <input type="text" name="userEmail" onChange={handleChange} value={data.email} className="form-control" />
-                    
+                    <input type="text" name="userEmail" onChange={handleChange} value={data.userEmail} className="form-control" />
+                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.emailError}</div> : null}
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Your Name</label>
-                    <input type="text" name="userName" onChange={handleChange} value={data.name} className="form-control" />
+                    <input type="text" name="userName" onChange={handleChange} value={data.userName} className="form-control" />
+                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.nameError}</div> : null}
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Password</label>
-                    <input type="password" name="userPassword" onChange={handleChange} value={data.password} className="form-control" />
+                    <input type="password" name="userPassword" onChange={handleChange} value={data.userPassword} className="form-control" />
+                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.passwordError}</div> : null}
                   </div>
                   <div className="tw-mb-4">
                     <label htmlFor="">Confirm Password</label>
-                    <input type="password" name="userPasswordConfirm" onChange={handleChange} value={data.cpassword} className="form-control" />
+                    <input type="password" name="userPasswordConfirm" onChange={handleChange} value={data.userPasswordConfirm} className="form-control" />
+                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.cpasswordError}</div> : null}
                   </div>
                   <div className="d-grid">
                     <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2" onClick={handleSubmit}>
