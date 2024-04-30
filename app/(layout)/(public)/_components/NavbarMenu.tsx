@@ -38,7 +38,7 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
         data-bs-theme="dark"
       >
         <Container>
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="/">
             {logo && (
               <Image
                 loader={imageLoader}

@@ -35,7 +35,12 @@ const Login = () => {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
-                <Input id="password" required type="password" />
+                <Input
+                  id="password"
+                  required
+                  type="password"
+                  placeholder="Password"
+                />
               </div>
               <Button className="w-full" type="submit">
                 Login
