@@ -19,7 +19,7 @@ import { Label } from "@/components/ui/label";
 export default function Register() {
   return (
     <>
-      <main className="min-h-[calc(100vh-76px-32px)] py-8 w-full flex justify-center items-center">
+      <main className="min-h-[calc(100vh-56px-32px)] py-8 w-full flex justify-center items-center">
         <Card className="mx-auto max-w-sm">
           <CardHeader>
             <CardTitle className="text-xl">Sign Up</CardTitle>
