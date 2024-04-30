@@ -1,9 +1,20 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import { FaUserEdit } from "react-icons/fa";
+
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function Register() {
   const routerQuery = useSearchParams();
@@ -62,92 +73,52 @@ export default function Register() {
 
   return (
     <>
-      <>
-        <main className="min-h-[calc(100vh-76px-56px)] py-8 w-full flex justify-center items-center">
-          <div className="container">
-            <div className="row w-full justify-center items-center">
-              <div className="col-lg-4 flex flex-col">
-                <h1 className="text-3xl font-bold mb-4 text-center">
-                  Register for an account
-                </h1>
-                <div className="bg-[#eee] p-8">
-                  <div className="mb-4">
-                    <label htmlFor="">Your Email</label>
-                    <input
-                      type="text"
-                      name="userEmail"
-                      onChange={handleChange}
-                      value={data.userEmail}
-                      className="form-control"
-                    />
-                    {errors.validate ? (
-                      <div className="d-block text-danger small mt-2">
-                        {errors.emailError}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="">Your Name</label>
-                    <input
-                      type="text"
-                      name="userName"
-                      onChange={handleChange}
-                      value={data.userName}
-                      className="form-control"
-                    />
-                    {errors.validate ? (
-                      <div className="d-block text-danger small mt-2">
-                        {errors.nameError}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="">Password</label>
-                    <input
-                      type="password"
-                      name="userPassword"
-                      onChange={handleChange}
-                      value={data.userPassword}
-                      className="form-control"
-                    />
-                    {errors.validate ? (
-                      <div className="d-block text-danger small mt-2">
-                        {errors.passwordError}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="">Confirm Password</label>
-                    <input
-                      type="password"
-                      name="userPasswordConfirm"
-                      onChange={handleChange}
-                      value={data.userPasswordConfirm}
-                      className="form-control"
-                    />
-                    {errors.validate ? (
-                      <div className="d-block text-danger small mt-2">
-                        {errors.cpasswordError}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className="d-grid">
-                    <button
-                      className="btn btn-primary !flex items-center justify-center text-center w-full space-x-2"
-                      onClick={handleSubmit}
-                    >
-                      <span>
-                        <FaUserEdit className="w-4 h-4" />
-                      </span>
-                      <span>Register</span>
-                    </button>
-                  </div>
+      <main className="min-h-[calc(100vh-76px-32px)] py-8 w-full flex justify-center items-center">
+        <Card className="mx-auto max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-xl">Sign Up</CardTitle>
+            <CardDescription>
+              Enter your information to create an account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="first-name">First name</Label>
+                  <Input id="first-name" placeholder="Max" required />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="last-name">Last name</Label>
+                  <Input id="last-name" placeholder="Robinson" required />
                 </div>
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" />
+              </div>
+              <Button type="submit" className="w-full">
+                Create an account
+              </Button>
             </div>
-          </div>
-        </main>
-      </>
+            <div className="mt-4 text-center text-sm">
+              Already have an account?{" "}
+              <Link href="#" className="underline">
+                Log in
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
     </>
   );
 }
