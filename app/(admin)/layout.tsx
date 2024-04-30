@@ -19,7 +19,7 @@ const AdminLayout = async ({
   return (
     <>
       <html lang="en">
-        <body className="bg-white">
+        <body className="bg-background">
           <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
             <SidebarMenu logo={c.data.logo} />
             <div className="flex flex-col">

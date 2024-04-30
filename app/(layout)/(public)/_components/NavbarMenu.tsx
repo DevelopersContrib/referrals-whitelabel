@@ -33,7 +33,7 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
     <>
       <Navbar
         expand="lg"
-        className="bg-body-tertiary"
+        className="bg-body-tertiary !bg-slate-900"
         bg="dark"
         data-bs-theme="dark"
       >
