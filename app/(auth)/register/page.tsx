@@ -5,13 +5,16 @@ import { useSearchParams } from "next/navigation";
 import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
+
 export default function Register(){
   const routerQuery = useSearchParams();
+  
   const initialValues = {
     userEmail: "",
     userName: "",
     userPassword: "",
-    userPasswordConfirm: ""
+    userPasswordConfirm: "",
+    domain: ""
   }
 
   const initialErrors = {
@@ -54,7 +57,16 @@ export default function Register(){
     event.preventDefault();
     const isValid = !Object.values(errors).some((v) => v);
     if(isValid) {
-
+      fetch("/api/register", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+        .then((response) => {
+          // Handle response here
+        })
+        .catch((error) => {
+          // Handle error here
+        });
     }else{
       setErrors({ ...errors, ["validate"]: true });
     }
