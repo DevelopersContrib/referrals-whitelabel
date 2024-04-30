@@ -3,26 +3,26 @@ import React from "react";
 const FooterContent = ({ domain }: { domain: string }) => {
   return (
     <>
-      <footer className="tw-py-4 tw-bg-black tw-text-white">
+      <footer className="py-2 bg-slate-900 text-white text-xs">
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
-              <div className="tw-capitalize">{domain}</div>
+              <div className="capitalize">{domain}</div>
             </div>
             <div className="col-lg-6 text-end">
-              <ul className="list-inline !tw-space-x-4">
+              <ul className="list-inline !space-x-4">
                 <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
+                  <a href="" className="no-underline capitalize">
                     about
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
+                  <a href="" className="no-underline capitalize">
                     privacy policy
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="" className="tw-no-underline tw-capitalize">
+                  <a href="" className="no-underline capitalize">
                     terms and condition
                   </a>
                 </li>

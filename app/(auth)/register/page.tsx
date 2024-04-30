@@ -1,124 +1,70 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import React from "react";
 import { FaUserEdit } from "react-icons/fa";
 
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
-export default function Register(){
-  const routerQuery = useSearchParams();
-  
-  const initialValues = {
-    userEmail: "",
-    userName: "",
-    userPassword: "",
-    userPasswordConfirm: "",
-    domain: ""
-  }
-
-  const initialErrors = {
-    validate: false,
-    emailError: "",
-    nameError: "",
-    passwordError: "",
-    cpasswordError: ""
-  }
-
-  const [data, setData] = useState(initialValues);
-  const [errors, setErrors] = useState(initialErrors);
-  useEffect(() => {
-    const validateErrors = () => {
-      let dataErrors;
-      dataErrors = {
-        validate: false, // Include validate property
-        emailError: (data.userEmail ? "" : "Email is required") ||
-        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.userEmail)
-          ? ""
-          : "Invalid Email"),
-        nameError: data.userName ? "" : "Name is required.",
-        passwordError: data.userPassword ? "" : "Password is required.",
-        cpasswordError:
-            (data.userPasswordConfirm ? "" : "Confirm password is required.") ||
-            (data.userPassword !== data.userPasswordConfirm
-              ? "Confirm password did not match."
-              : ""),
-      }
-      setErrors(dataErrors);
-    };
-    validateErrors();
-  },[data]);
-
-  const handleChange = (e:any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (event:any) => {
-    event.preventDefault();
-    const isValid = !Object.values(errors).some((v) => v);
-    if(isValid) {
-      fetch("/api/register", {
-        method: "POST",
-        body: JSON.stringify(data)
-      })
-        .then((response) => {
-          // Handle response here
-        })
-        .catch((error) => {
-          // Handle error here
-        });
-    }else{
-      setErrors({ ...errors, ["validate"]: true });
-    }
-  }
-
+export default function Register() {
   return (
     <>
-      <>
-        <main className="tw-min-h-[calc(100vh-76px-56px)] py-8 tw-w-full tw-flex tw-justify-center tw-items-center">
-          <div className="container">
-            <div className="row tw-w-full tw-justify-center tw-items-center">
-              <div className="col-lg-4 tw-flex tw-flex-col">
-                <h1 className="tw-text-3xl tw-font-bold tw-mb-4 tw-text-center">
-                  Register for an account
-                </h1>
-                <div className="tw-bg-[#eee] tw-p-8">
-                  <div className="tw-mb-4">
-                    <label htmlFor="">Your Email</label>
-                    <input type="text" name="userEmail" onChange={handleChange} value={data.userEmail} className="form-control" />
-                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.emailError}</div> : null}
-                  </div>
-                  <div className="tw-mb-4">
-                    <label htmlFor="">Your Name</label>
-                    <input type="text" name="userName" onChange={handleChange} value={data.userName} className="form-control" />
-                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.nameError}</div> : null}
-                  </div>
-                  <div className="tw-mb-4">
-                    <label htmlFor="">Password</label>
-                    <input type="password" name="userPassword" onChange={handleChange} value={data.userPassword} className="form-control" />
-                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.passwordError}</div> : null}
-                  </div>
-                  <div className="tw-mb-4">
-                    <label htmlFor="">Confirm Password</label>
-                    <input type="password" name="userPasswordConfirm" onChange={handleChange} value={data.userPasswordConfirm} className="form-control" />
-                    {errors.validate ? <div className="d-block text-danger small mt-2">{errors.cpasswordError}</div> : null}
-                  </div>
-                  <div className="d-grid">
-                    <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2" onClick={handleSubmit}>
-                      <span>
-                        <FaUserEdit className="tw-w-4 tw-h-4" />
-                      </span>
-                      <span>Register</span>
-                    </button>
-                  </div>
+      <main className="min-h-[calc(100vh-76px-32px)] py-8 w-full flex justify-center items-center">
+        <Card className="mx-auto max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-xl">Sign Up</CardTitle>
+            <CardDescription>
+              Enter your information to create an account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="first-name">First name</Label>
+                  <Input id="first-name" placeholder="First name" required />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="last-name">Last name</Label>
+                  <Input id="last-name" placeholder="Last name" required />
                 </div>
               </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Email address"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input id="password" type="password" placeholder="Password" />
+              </div>
+              <Button type="submit" className="w-full">
+                Create an account
+              </Button>
             </div>
-          </div>
-        </main>
-      </>
+            <div className="mt-4 text-center text-sm">
+              Already have an account?{" "}
+              <Link href="#" className="underline">
+                Log in
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+      </main>
     </>
   );
-};
-
-
+}

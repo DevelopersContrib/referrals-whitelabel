@@ -1,37 +1,53 @@
 import React from "react";
-import { SlLogin } from "react-icons/sl";
+
+import {
+  CardTitle,
+  CardDescription,
+  CardHeader,
+  CardContent,
+  Card
+} from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const Login = () => {
   return (
     <>
-      <main className="tw-min-h-[calc(100vh-76px-56px)] py-8 tw-w-full tw-flex tw-justify-center tw-items-center">
-        <div className="container">
-          <div className="row tw-w-full tw-justify-center tw-items-center">
-            <div className="col-lg-4 tw-flex tw-flex-col">
-              <h1 className="tw-text-3xl tw-font-bold tw-mb-4 tw-text-center">
-                Log in to your account
-              </h1>
-              <div className="tw-bg-[#eee] tw-p-8">
-                <div className="tw-mb-4">
-                  <label htmlFor="">Username</label>
-                  <input type="text" className="form-control" />
-                </div>
-                <div className="tw-mb-4">
-                  <label htmlFor="">Password</label>
-                  <input type="password" className="form-control" />
-                </div>
-                <div className="d-grid">
-                  <button className="btn btn-primary !tw-flex tw-items-center tw-justify-center tw-text-center tw-w-full tw-space-x-2">
-                    <span>
-                      <SlLogin className="tw-w-4 tw-h-4" />
-                    </span>
-                    <span>Log in</span>
-                  </button>
-                </div>
+      <main className="min-h-[calc(100vh-76px-32px)] py-8 w-full flex justify-center items-center">
+        <Card className="mx-auto max-w-sm">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-2xl font-bold">Login</CardTitle>
+            <CardDescription>
+              Enter your email and password to login to your account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  placeholder="Email address"
+                  required
+                  type="email"
+                />
               </div>
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  required
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+              <Button className="w-full" type="submit">
+                Login
+              </Button>
             </div>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </main>
     </>
   );
