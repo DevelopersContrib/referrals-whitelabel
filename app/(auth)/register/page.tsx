@@ -17,60 +17,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 export default function Register() {
-  const routerQuery = useSearchParams();
-  const initialValues = {
-    userEmail: "",
-    userName: "",
-    userPassword: "",
-    userPasswordConfirm: ""
-  };
-
-  const initialErrors = {
-    validate: false,
-    emailError: "",
-    nameError: "",
-    passwordError: "",
-    cpasswordError: ""
-  };
-
-  const [data, setData] = useState(initialValues);
-  const [errors, setErrors] = useState(initialErrors);
-  useEffect(() => {
-    const validateErrors = () => {
-      let dataErrors;
-      dataErrors = {
-        validate: false, // Include validate property
-        emailError:
-          (data.userEmail ? "" : "Email is required") ||
-          (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.userEmail)
-            ? ""
-            : "Invalid Email"),
-        nameError: data.userName ? "" : "Name is required.",
-        passwordError: data.userPassword ? "" : "Password is required.",
-        cpasswordError:
-          (data.userPasswordConfirm ? "" : "Confirm password is required.") ||
-          (data.userPassword !== data.userPasswordConfirm
-            ? "Confirm password did not match."
-            : "")
-      };
-      setErrors(dataErrors);
-    };
-    validateErrors();
-  }, [data]);
-
-  const handleChange = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    const isValid = !Object.values(errors).some((v) => v);
-    if (isValid) {
-    } else {
-      setErrors({ ...errors, ["validate"]: true });
-    }
-  };
-
   return (
     <>
       <main className="min-h-[calc(100vh-76px-32px)] py-8 w-full flex justify-center items-center">
