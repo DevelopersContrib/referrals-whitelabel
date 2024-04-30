@@ -42,32 +42,20 @@ const SidebarMenu = ({ logo }: { logo: string }) => {
             </Button> */}
           </div>
           <div className="flex-1">
-            <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
+            <nav className="grid items-start px-2 text-sm font-medium lg:px-4 sidebar">
+              <Link href="#" className="sidebar-link active">
                 <LineChart className="h-4 w-4" />
                 Dashboard
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
+              <Link href="#" className="sidebar-link">
                 <Layers className="h-4 w-4" />
                 Campaigns
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
+              <Link href="#" className="sidebar-link">
                 <Gift className="h-4 w-4" />
                 Rewards
               </Link>
-              <Link
-                href="#"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-              >
+              <Link href="#" className="sidebar-link">
                 <Cog className="h-4 w-4" />
                 Settings
               </Link>

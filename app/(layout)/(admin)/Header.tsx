@@ -38,7 +38,7 @@ import { Badge } from "react-bootstrap";
 const Header = ({ logo }: { logo: string }) => {
   return (
     <>
-      <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6 bg-gray-100/50">
+      <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6 bg-background">
         <Sheet>
           <SheetTrigger asChild>
             <Button
@@ -137,7 +137,6 @@ const Header = ({ logo }: { logo: string }) => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Settings</DropdownMenuItem>
-            <DropdownMenuItem>Support</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Logout</DropdownMenuItem>
           </DropdownMenuContent>
