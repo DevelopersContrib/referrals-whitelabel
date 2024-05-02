@@ -19,16 +19,33 @@ export async function generateMetadata() {
 
 
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const c = await Getwlsettings();
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        {c.header_script && (
+          <script dangerouslySetInnerHTML={{ __html: c.header_script }} />
+        )}
+      </head>
+      <body className={inter.className}>
+        <header>
+          {c.header_script ? null : c.header_script}
+        </header>
+        {children}
+       
+          {c.footer_script && c.footer_script !== '' && (
+            <script dangerouslySetInnerHTML={{ __html: c.footer_script }} />
+          )}
+      
+      </body>
     </html>
   );
 }
+
 
 
