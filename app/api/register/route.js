@@ -10,7 +10,7 @@ export const POST = async (request) => {
         params.append('userName', data.userName);
         params.append('password', data.userPassword);
          
-		const saveRes = await axios.post('https://api1.contrib.co/v2/referrals/Wladduser?key=5c1bde69a9e783c7edc2e603d8b25023', params);
+		const saveRes = await axios.post('https://api1.contrib.co/wl/user/add?key=5c1bde69a9e783c7edc2e603d8b25023', params);
 		
 	
 	} catch (error) {
