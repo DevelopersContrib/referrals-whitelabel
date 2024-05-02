@@ -43,40 +43,24 @@ const SidebarMenu = ({ logo }: { logo: string }) => {
           </div>
           <div className="flex-1">
             <nav className="grid items-start px-2 text-sm font-medium lg:px-4 sidebar">
-              <Link href="#" className="sidebar-link active">
+              <Link href="/dashboard" className="sidebar-link active">
                 <LineChart className="h-4 w-4" />
                 Dashboard
               </Link>
-              <Link href="#" className="sidebar-link">
+              <Link href="/campaigns" className="sidebar-link">
                 <Layers className="h-4 w-4" />
                 Campaigns
               </Link>
-              <Link href="#" className="sidebar-link">
+              <Link href="/rewards" className="sidebar-link">
                 <Gift className="h-4 w-4" />
                 Rewards
               </Link>
-              <Link href="#" className="sidebar-link">
+              <Link href="/settings" className="sidebar-link">
                 <Cog className="h-4 w-4" />
                 Settings
               </Link>
             </nav>
           </div>
-          {/* <div className="mt-auto p-4">
-                <Card x-chunk="dashboard-02-chunk-0">
-                  <CardHeader className="p-2 pt-0 md:p-4">
-                    <CardTitle>Upgrade to Pro</CardTitle>
-                    <CardDescription>
-                      Unlock all features and get unlimited access to our
-                      support team.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="p-2 pt-0 md:p-4 md:pt-0">
-                    <Button size="sm" className="w-full">
-                      Upgrade
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div> */}
         </div>
       </div>
     </>
