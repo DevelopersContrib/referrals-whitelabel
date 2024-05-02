@@ -46,7 +46,7 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
                 alt="referral"
                 width={0}
                 height={0}
-                className="w-full max-w-full h-[50px] object-contain"
+                className="w-full max-w-full h-[30px] object-contain"
               />
             )}
             {/* {domain && (

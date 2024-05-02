@@ -34,26 +34,9 @@ const Dashboard = () => {
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
         <div className="flex items-center">
-          {/* <h1 className="text-lg font-semibold md:text-2xl">Dashboard</h1> */}
-          <Breadcrumb className="hidden md:flex">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Dashboard</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              {/* <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="#">Products</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Edit Product</BreadcrumbPage>
-              </BreadcrumbItem> */}
-            </BreadcrumbList>
-          </Breadcrumb>
+          <h1 className="text-lg font-semibold md:text-2xl capitalize">
+            Dashboard
+          </h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-4">
