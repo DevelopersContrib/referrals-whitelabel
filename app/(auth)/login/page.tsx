@@ -1,3 +1,5 @@
+"use client";
+import { useState, useEffect } from "react";
 import React from "react";
 
 import {
@@ -11,7 +13,51 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const Login = () => {
+export default function Login() {
+  const initialValues = {
+    userEmail: "",
+    userPassword: "",
+  }
+
+  const initialErrors = {
+    validate: false,
+    emailError: "",
+    passwordError: ""
+  }
+
+  const [data, setData] = useState(initialValues);
+  const [errors, setErrors] = useState(initialErrors);
+
+  useEffect(() => {
+    const validateErrors = () => {
+      let dataErrors;
+      dataErrors = {
+        validate: false, // Include validate property
+        emailError: (data.userEmail ? "" : "Email is required") ||
+        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.userEmail)
+          ? ""
+          : "Invalid Email"),
+        passwordError: data.userPassword ? "" : "Password is required.",
+      }
+      setErrors(dataErrors);
+    };
+    validateErrors();
+  },[data]);
+
+  const handleChange = (e:any) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (event:any) => {
+    event.preventDefault();
+    const isValid = !Object.values(errors).some((v) => v);
+    if(isValid) {
+      
+    }else{
+      setErrors({ ...errors, ["validate"]: true });
+    }
+  }
+
   return (
     <>
       <main className="min-h-[calc(100vh-56px-32px)] py-8 w-full flex justify-center items-center">
@@ -31,7 +77,10 @@ const Login = () => {
                   placeholder="Email address"
                   required
                   type="email"
+                  name="userEmail"
+                  onChange={handleChange} value={data.userEmail}
                 />
+                {errors.validate ? <div className="d-block text-danger small mt-2">{errors.emailError}</div> : null}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
@@ -39,10 +88,13 @@ const Login = () => {
                   id="password"
                   required
                   type="password"
+                  name="userPassword"
                   placeholder="Password"
+                  onChange={handleChange} value={data.userPassword}
                 />
+                {errors.validate ? <div className="d-block text-danger small mt-2">{errors.passwordError}</div> : null}
               </div>
-              <Button className="w-full" type="submit">
+              <Button className="w-full" onClick={handleSubmit}>
                 Login
               </Button>
             </div>
@@ -52,5 +104,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;
