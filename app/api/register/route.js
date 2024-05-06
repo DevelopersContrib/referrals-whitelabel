@@ -11,16 +11,9 @@ export const POST = async (request) => {
         params.append('password', data.userPassword);
          
         const saveRes = await axios.post('https://api1.contrib.co/wl/user/add?key=5c1bde69a9e783c7edc2e603d8b25023', params);
-        //console.log(params);
-		//console.log(sevRes);
+        
         return new Response(JSON.stringify({status: true}), { status: 201 });
-        // Check if the response status is OK (2xx)
-        //if (saveRes.status >= 200 && saveRes.status < 300) {
-          //  return new Response(JSON.stringify({status: true}), { status: 201 });
-        //} else {
-          //  console.error("Request failed with status code", saveRes.status);
-           // return new Response("Failed to save data", { status: saveRes.status });
-       // }
+       
     } catch (error) {
         // Handle AxiosError
         if (axios.isAxiosError(error)) {
