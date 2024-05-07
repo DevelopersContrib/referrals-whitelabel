@@ -31,13 +31,25 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-6">
-                  <Image
-                    src={banner}
-                    width={1280}
-                    height={956}
-                    alt="Banner"
-                    className="img-fluid"
-                  />
+                  {banner ? (
+                    <Image
+                      src={banner}
+                      width={1280}
+                      height={956}
+                      alt="Banner"
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                      }
+                      width={1280}
+                      height={956}
+                      alt="Banner"
+                      className="img-fluid"
+                    />
+                  )}
                 </div>
                 <div className="col-lg-6 flex justify-center flex-col">
                   <h1 className="text-6xl font-bold mb-8">
@@ -53,7 +65,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
           </section>
           <section className="py-4">
             <div className="container grid grid-cols-4 gap-4">
-              {Array.isArray(campaignData) && campaignData.length < 0 ? (
+              {Array.isArray(campaignData) && campaignData.length > 0 ? (
                 campaignData.map((campaign) => (
                   <a
                     href="/register"
