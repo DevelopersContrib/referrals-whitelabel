@@ -53,7 +53,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
           </section>
           <section className="py-4">
             <div className="container grid grid-cols-4 gap-4">
-              {Array.isArray(campaignData) && campaignData.length > 0 ? (
+              {Array.isArray(campaignData) && campaignData.length < 0 ? (
                 campaignData.map((campaign) => (
                   <a
                     href="/register"
@@ -68,6 +68,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                           height={0}
                           alt="Referral Campaign Image"
                           className="img-fluid h-[200px] object-cover w-full"
+                          sizes="100vw"
                         />
                       </div>
                       <div className="flex w-full flex-col p-4 bg-white h-100">
@@ -84,7 +85,11 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                   </a>
                 ))
               ) : (
-                <p>No campaigns available</p> // Provide a fallback if campaignData is empty or not an array
+                <div className="col-span-4 w-full flex items-center justify-center min-h-[30vh]">
+                  <div className="text-3xl text-black/30">
+                    No campaigns available
+                  </div>
+                </div> // Provide a fallback if campaignData is empty or not an array
               )}
             </div>
           </section>
