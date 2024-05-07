@@ -31,13 +31,27 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
             <div className="container">
               <div className="row">
                 <div className="col-lg-6">
-                  <Image
-                    src={banner}
-                    width={1280}
-                    height={956}
-                    alt="Banner"
-                    className="img-fluid"
-                  />
+                  {banner ? (
+                    <Image
+                      src={banner}
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-contain"
+                      sizes="100vw"
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                      }
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-cover"
+                      sizes="100vw"
+                    />
+                  )}
                 </div>
                 <div className="col-lg-6 flex justify-center flex-col">
                   <h1 className="text-6xl font-bold mb-8">
@@ -68,6 +82,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                           height={0}
                           alt="Referral Campaign Image"
                           className="img-fluid h-[200px] object-cover w-full"
+                          sizes="100vw"
                         />
                       </div>
                       <div className="flex w-full flex-col p-4 bg-white h-100">
@@ -84,7 +99,11 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                   </a>
                 ))
               ) : (
-                <p>No campaigns available</p> // Provide a fallback if campaignData is empty or not an array
+                <div className="col-span-4 w-full flex items-center justify-center min-h-[30vh]">
+                  <div className="text-3xl text-black/30">
+                    No campaigns available
+                  </div>
+                </div> // Provide a fallback if campaignData is empty or not an array
               )}
             </div>
           </section>

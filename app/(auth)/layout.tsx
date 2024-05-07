@@ -16,7 +16,7 @@ const AdminLayout = async ({
   return (
     <>
       <html lang="en">
-        <body className="bg-background">
+        <body>
           <Header />
           {children}
           <Footer />
