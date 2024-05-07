@@ -34,20 +34,22 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                   {banner ? (
                     <Image
                       src={banner}
-                      width={1280}
-                      height={956}
-                      alt="Banner"
-                      className="img-fluid"
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-contain"
+                      sizes="100vw"
                     />
                   ) : (
                     <Image
                       src={
                         "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
                       }
-                      width={1280}
-                      height={956}
-                      alt="Banner"
-                      className="img-fluid"
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-cover"
+                      sizes="100vw"
                     />
                   )}
                 </div>
