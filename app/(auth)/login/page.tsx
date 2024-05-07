@@ -17,6 +17,7 @@ export default function Login() {
   const initialValues = {
     userEmail: "",
     userPassword: "",
+    domain: "whitelabel.referrals.com"
   }
 
   const initialErrors = {
@@ -27,6 +28,7 @@ export default function Login() {
 
   const [data, setData] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const validateErrors = () => {
@@ -52,7 +54,23 @@ export default function Login() {
     event.preventDefault();
     const isValid = !Object.values(errors).some((v) => v);
     if(isValid) {
-      
+      const response = await fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify(data)
+      })
+        .then((response) => {
+          // Handle response here
+          setSuccess(true);
+          console.log(response);
+          if(response.ok){
+            window.location.href = response.url;
+          }
+          //window.location.href = response.url;
+          
+        })
+        .catch((error) => {
+          // Handle error here
+        });
     }else{
       setErrors({ ...errors, ["validate"]: true });
     }
