@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
 
+/**
+ * @param {Request} request - The request object.
+ * @returns {Promise<Response>} A promise resolving to a Response object.
+ */
 export const POST = async (request) => {
   try {
     const data = await request.json();
@@ -18,12 +22,11 @@ export const POST = async (request) => {
       response.cookies.set('token', result.token);
   
       return NextResponse.redirect(new URL('/dashboard', request.url));
-    }else{
+    } else {
       return new Response("Login error", { status: 500 });
     }
    
-   
   } catch (error) {
-    return error;
+    return new Response("Error occurred", { status: 500 }); // You can customize the error response as needed
   }
 };
