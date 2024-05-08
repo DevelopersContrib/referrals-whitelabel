@@ -1,0 +1,17 @@
+.filter-list-item {
+  border-bottom: 1px solid hsl(0 0% 0%/0.05);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .title-filter:after {
+    position: absolute;
+    content: "";
+    bottom: -8px;
+    left: 0;
+    width: 42px;
+    height: 1px;
+    background: #80007f;
+  }
+}
