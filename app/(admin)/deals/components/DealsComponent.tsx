@@ -12,7 +12,7 @@ const DealsComponent = () => {
           <div className="col-span-7 grid grid-cols-1 lg:grid-cols-3 gap-4">
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -53,7 +53,7 @@ const DealsComponent = () => {
             </a>
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -94,7 +94,7 @@ const DealsComponent = () => {
             </a>
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -135,7 +135,7 @@ const DealsComponent = () => {
             </a>
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -176,7 +176,7 @@ const DealsComponent = () => {
             </a>
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -217,7 +217,7 @@ const DealsComponent = () => {
             </a>
             <a
               href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-[0.3s] hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
+              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-[0.2s]"
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
