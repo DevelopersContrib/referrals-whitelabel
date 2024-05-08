@@ -12,6 +12,7 @@ import {
   Package,
   Package2,
   ShoppingCart,
+  Star,
   Users
 } from "lucide-react";
 import Image from "next/image";
@@ -46,6 +47,10 @@ const SidebarMenu = ({ logo }: { logo: string }) => {
               <Link href="/dashboard" className="sidebar-link active">
                 <LineChart className="h-4 w-4" />
                 Dashboard
+              </Link>
+              <Link href="/deals" className="sidebar-link">
+                <Star className="h-4 w-4" />
+                Deals
               </Link>
               <Link href="/campaigns" className="sidebar-link">
                 <Layers className="h-4 w-4" />
