@@ -7,28 +7,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-interface Campaign {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  widget_details: {
-    id: string;
-    campaign_id: string;
-    background_image: string;
-    description: string;
-    // Add more properties as needed
-  };
-}
 
-interface HomepageProps {
+
+interface NavMenuProps {
   domain: string;
   logo: string;
-  banner: string;
-  campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
 }
 
-const NavbarMenu = ({ logo }: { logo: string }) => {
+const NavbarMenu: React.FC<NavMenuProps> = ({ logo, domain }) => {
   return (
     <>
       <Navbar
@@ -39,7 +25,7 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
       >
         <Container>
           <Navbar.Brand href="/">
-            {logo && (
+            {logo ? (
               <Image
                 loader={imageLoader}
                 src={logo}
@@ -48,12 +34,15 @@ const NavbarMenu = ({ logo }: { logo: string }) => {
                 height={0}
                 className="w-full max-w-full h-[30px] object-contain"
               />
-            )}
-            {/* {domain && (
+            ) : (
               <span className="text-lg font-bold text-primary">
                 {domain}
               </span>
-            )} */}
+
+            )}
+            
+             
+            
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
