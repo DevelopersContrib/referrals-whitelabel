@@ -18,8 +18,11 @@ export const POST = async (request) => {
     const result = res.data;
     console.log(result);
     if(result.success){
+
+     
       let response = NextResponse.next();
       response.cookies.set('token', result.token);
+      response.cookies.set('userid', result.userid);
   
       return NextResponse.redirect(new URL('/dashboard', request.url));
     } else {
@@ -27,6 +30,7 @@ export const POST = async (request) => {
     }
    
   } catch (error) {
+    console.error("An error occurred:", error);
     return new Response("Error occurred", { status: 500 }); // You can customize the error response as needed
   }
 };
