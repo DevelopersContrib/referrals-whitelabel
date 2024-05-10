@@ -73,6 +73,8 @@ export default function Register() {
         body: JSON.stringify(data)
       })
         .then((response) => {
+          console.log('myresponse')
+          console.log(response)
           setIsSubmit(false);
           // Handle response here
           setSuccess(true);
@@ -81,6 +83,8 @@ export default function Register() {
               if (prev === 1) {
                 clearInterval(counterInterval);
                 window.location.href = "/login";
+               //console.log('response:')
+               //console.log(response)
               }
 
               return prev - 1;

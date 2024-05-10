@@ -1,4 +1,6 @@
+import { NextResponse } from 'next/server';
 import axios from 'axios';
+
 
 export const POST = async (request) => {
     const data = await request.json();
@@ -10,9 +12,11 @@ export const POST = async (request) => {
         params.append('name', data.userName);
         params.append('password', data.userPassword);
          
-        const saveRes = await axios.post('https://api1.contrib.co/wl/user/add?key=5c1bde69a9e783c7edc2e603d8b25023', params);
+        const res = await axios.post(process.env.API_URL+'user/add?key='+process.env.API_KEY, params);
         
-        return new Response(JSON.stringify({status: true}), { status: 201 });
+         const result = res.data;
+  
+         return NextResponse.json(result.data);
        
     } catch (error) {
         // Handle AxiosError
