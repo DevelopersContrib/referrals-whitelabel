@@ -8,7 +8,7 @@ import axios from 'axios';
 export const POST = async (request) => {
   try {
     const data = await request.json();
-    const apiUrl = "https://api1.contrib.co/wl/user/login?key=5c1bde69a9e783c7edc2e603d8b25023";
+    const apiUrl = process.env.API_URL+`user/login?key=`+process.env.API_KEY;
     const params = new URLSearchParams();
     params.append('email', data.userEmail);
     params.append('password', data.userPassword);

@@ -1,18 +1,26 @@
-"use client";
 import Image from "next/image";
 import { IoDiamondSharp } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { Checkbox } from "@/components/ui/checkbox";
+import { GetDeals } from "../../../../data/data";
 
-const DealsComponent = () => {
+
+export default async function DealsComponent() {
+  const deals = await GetDeals();
+  const dealsData = deals.data;
+  console.log(dealsData.length);
+  console.log(dealsData);
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
         <div className="grid grid-cols-1 md:grid-cols-9 md:gap-4 gap-y-4">
           <div className="col-span-7 grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {Array.isArray(dealsData) && dealsData.length > 0 ? (
+          dealsData.map((deals) => (
             <a
-              href="#"
+              href={deals.url}
               className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
+              key={deals.id}
             >
               <div className="text-right">
                 <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
@@ -24,7 +32,7 @@ const DealsComponent = () => {
               </div>
               <div>
                 <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
+                  src={deals.banner}
                   width={0}
                   height={0}
                   alt=""
@@ -34,11 +42,11 @@ const DealsComponent = () => {
               </div>
               <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
                 <div className="">
-                  <h3>Deal Name</h3>
+                  <h3>{deals.title}</h3>
                 </div>
                 <div className="text-sm text-muted">
                   <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
+                    {deals.description}
                   </p>
                 </div>
                 <div>
@@ -51,211 +59,14 @@ const DealsComponent = () => {
                 </div>
               </div>
             </a>
-            <a
-              href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
-            >
-              <div className="text-right">
-                <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
-                  <div>
-                    <IoDiamondSharp />
-                  </div>
-                  <div>Featured</div>
-                </div>
+          ))
+        ) : (
+            <div className="col-span-4 w-full flex items-center justify-center min-h-[30vh]">
+              <div className="text-3xl text-black/30">
+                No Deals available
               </div>
-              <div>
-                <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
-                  width={0}
-                  height={0}
-                  alt=""
-                  className="img-fluid h-[70px] object-contain w-full"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
-                <div className="">
-                  <h3>Deal Name</h3>
-                </div>
-                <div className="text-sm text-muted">
-                  <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-                <div>
-                  <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
-                    <div className="mr-1">
-                      <IoIosSearch className="h-6 w-6" />
-                    </div>
-                    <div>view deal</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
-            >
-              <div className="text-right">
-                <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
-                  <div>
-                    <IoDiamondSharp />
-                  </div>
-                  <div>Featured</div>
-                </div>
-              </div>
-              <div>
-                <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
-                  width={0}
-                  height={0}
-                  alt=""
-                  className="img-fluid h-[70px] object-contain w-full"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
-                <div className="">
-                  <h3>Deal Name</h3>
-                </div>
-                <div className="text-sm text-muted">
-                  <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-                <div>
-                  <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
-                    <div className="mr-1">
-                      <IoIosSearch className="h-6 w-6" />
-                    </div>
-                    <div>view deal</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
-            >
-              <div className="text-right">
-                <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
-                  <div>
-                    <IoDiamondSharp />
-                  </div>
-                  <div>Featured</div>
-                </div>
-              </div>
-              <div>
-                <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
-                  width={0}
-                  height={0}
-                  alt=""
-                  className="img-fluid h-[70px] object-contain w-full"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
-                <div className="">
-                  <h3>Deal Name</h3>
-                </div>
-                <div className="text-sm text-muted">
-                  <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-                <div>
-                  <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
-                    <div className="mr-1">
-                      <IoIosSearch className="h-6 w-6" />
-                    </div>
-                    <div>view deal</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
-            >
-              <div className="text-right">
-                <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
-                  <div>
-                    <IoDiamondSharp />
-                  </div>
-                  <div>Featured</div>
-                </div>
-              </div>
-              <div>
-                <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
-                  width={0}
-                  height={0}
-                  alt=""
-                  className="img-fluid h-[70px] object-contain w-full"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
-                <div className="">
-                  <h3>Deal Name</h3>
-                </div>
-                <div className="text-sm text-muted">
-                  <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-                <div>
-                  <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
-                    <div className="mr-1">
-                      <IoIosSearch className="h-6 w-6" />
-                    </div>
-                    <div>view deal</div>
-                  </div>
-                </div>
-              </div>
-            </a>
-            <a
-              href="#"
-              className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
-            >
-              <div className="text-right">
-                <div className="inline-flex bg-[#ffd50033] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
-                  <div>
-                    <IoDiamondSharp />
-                  </div>
-                  <div>Featured</div>
-                </div>
-              </div>
-              <div>
-                <Image
-                  src="https://d1p6j71028fbjm.cloudfront.net/logos/logo-new-referral-1.png"
-                  width={0}
-                  height={0}
-                  alt=""
-                  className="img-fluid h-[70px] object-contain w-full"
-                  sizes="100vw"
-                />
-              </div>
-              <div className="bg-[#f2f2ff7a] p-4 rounded-lg flex flex-col gap-y-4">
-                <div className="">
-                  <h3>Deal Name</h3>
-                </div>
-                <div className="text-sm text-muted">
-                  <p>
-                    Deal Description Lorem ipsum dolor sit amet consectetur.
-                  </p>
-                </div>
-                <div>
-                  <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
-                    <div className="mr-1">
-                      <IoIosSearch className="h-6 w-6" />
-                    </div>
-                    <div>view deal</div>
-                  </div>
-                </div>
-              </div>
-            </a>
+            </div> // Provide a fallback if campaignData is empty or not an array
+          )}
           </div>
           <div className="col-span-2">
             <div className="border border-solid border-[hsl(0_0%_0%/0.05)!important] rounded-lg w-full">
@@ -349,4 +160,3 @@ const DealsComponent = () => {
   );
 };
 
-export default DealsComponent;

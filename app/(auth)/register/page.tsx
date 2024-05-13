@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { FaUserCheck } from "react-icons/fa6";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +33,7 @@ export default function Register() {
   const [data, setData] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [success, setSuccess] = useState(false);
+  const [emailExists, setemailExists] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [counter, setCounter] = useState<number>(5);
 
@@ -73,25 +74,35 @@ export default function Register() {
         body: JSON.stringify(data)
       })
         .then((response) => {
-          console.log('myresponse')
-          console.log(response)
-          setIsSubmit(false);
-          // Handle response here
-          setSuccess(true);
-          const counterInterval = setInterval(() => {
-            setCounter((prev) => {
-              if (prev === 1) {
-                clearInterval(counterInterval);
-                window.location.href = "/login";
-               //console.log('response:')
-               //console.log(response)
-              }
+          console.log(response.ok);
+          if(response.ok){
 
-              return prev - 1;
-            });
-          }, 1000);
+            console.log('myresponse')
+            console.log(response)
+            setIsSubmit(false);
+            setemailExists(false);
+            // Handle response here
+            setSuccess(true);
+            const counterInterval = setInterval(() => {
+              setCounter((prev) => {
+                if (prev === 1) {
+                  clearInterval(counterInterval);
+                  window.location.href = "/login";
+                //console.log('response:')
+                //console.log(response)
+                }
 
-          return () => clearInterval(counterInterval);
+                return prev - 1;
+              });
+            }, 1000);
+
+            return () => clearInterval(counterInterval);
+
+          }else{
+            console.log('email does exists');
+            setemailExists(true);
+            setIsSubmit(false);
+          }
         })
         .catch((error) => {
           setIsSubmit(false);
@@ -118,6 +129,11 @@ export default function Register() {
 
               <CardContent>
                 <form>
+                  {emailExists ? (
+                        <div className="d-block text-danger small">
+                          Email already Exists
+                        </div>
+                  ) : null}
                   <div className="grid gap-4">
                     <div className="grid gap-2">
                       <Label htmlFor="first-name">First name</Label>
@@ -209,7 +225,7 @@ export default function Register() {
               <CardHeader>
                 <CardTitle className="text-xl text-primary flex items-center">
                   <span className="mr-2">
-                    <FaUserCheck />
+                   
                   </span>{" "}
                   <span>Success!</span>
                 </CardTitle>

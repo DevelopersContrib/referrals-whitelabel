@@ -14,9 +14,18 @@ export const POST = async (request) => {
          
         const res = await axios.post(process.env.API_URL+'user/add?key='+process.env.API_KEY, params);
         
-         const result = res.data;
-  
-         return NextResponse.json(result.data);
+        const result = res.data;
+
+        
+        
+        if(result.success){
+            console.log(result)
+            return NextResponse.json(result);
+            
+        }else{
+            return new Response("Email Exists", { status: 500 });
+        }
+        
        
     } catch (error) {
         // Handle AxiosError
