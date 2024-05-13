@@ -27,6 +27,7 @@ import {
 } from "react-icons/fa";
 import Image from "next/image";
 import WaysToShareComponent from "./WaysToShareComponent";
+import InviteListComponent from "./InviteListComponent";
 
 const CampaignDetails = () => {
   return (
@@ -238,18 +239,7 @@ const CampaignDetails = () => {
                     </Card>
                   </TabsContent>
                   <TabsContent value="inviteList">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Password</CardTitle>
-                        <CardDescription>
-                          Change your password here. After saving, you&apos;ll
-                          be logged out.
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent className="space-y-2">
-                        content here 2
-                      </CardContent>
-                    </Card>
+                    <InviteListComponent />
                   </TabsContent>
                 </div>
               </Tabs>
