@@ -24,6 +24,7 @@ import {
   FaPinterestSquare,
   FaTwitterSquare
 } from "react-icons/fa";
+import Image from "next/image";
 
 const CampaignDetails = () => {
   return (
@@ -86,6 +87,29 @@ const CampaignDetails = () => {
                         </div>
                         <div className="font-bold text-5xl">40 for $195</div>
                       </div>
+                    </div>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-4 w-full mb-8">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Campaign Description</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="mb-4">
+                            <Image
+                              src={`https://www.referrals.com/assets/uploads/widget/1571967803.jpg`}
+                              width={0}
+                              height={0}
+                              alt=""
+                              sizes="100vw"
+                              className="img-fluid w-full h-auto object-contain"
+                              loading="lazy"
+                            />
+                          </div>
+                          <div className="mb-4">
+                            WANNA BE PART OF OUR GROWING TEAM?
+                          </div>
+                        </CardContent>
+                      </Card>
                     </div>
                     <Card>
                       <CardHeader>

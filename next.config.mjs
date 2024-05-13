@@ -12,6 +12,10 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "referrals.com"
+      },
+      {
+        protocol: "https",
         hostname: "**.cdn.vnoc.com"
       },
       {
