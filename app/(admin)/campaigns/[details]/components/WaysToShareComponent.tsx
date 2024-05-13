@@ -108,7 +108,8 @@ const WaysToShareComponent = () => {
                 directory
               </p>
               <p>
-                4. Activate the plugin through the 'Plugins' menu in WordPress
+                4. Activate the plugin through the &apos;Plugins&apos; menu in
+                WordPress
               </p>
             </div>
           </TabsContent>
