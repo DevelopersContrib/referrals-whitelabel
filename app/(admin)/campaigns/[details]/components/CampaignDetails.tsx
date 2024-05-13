@@ -18,13 +18,15 @@ import {
 } from "@/components/ui/card";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { FaEnvelope, FaLinkedin } from "react-icons/fa6";
+import { FaCheck, FaEnvelope, FaLinkedin } from "react-icons/fa6";
 import {
   FaFacebookSquare,
   FaPinterestSquare,
+  FaShareAlt,
   FaTwitterSquare
 } from "react-icons/fa";
 import Image from "next/image";
+import WaysToShareComponent from "./WaysToShareComponent";
 
 const CampaignDetails = () => {
   return (
@@ -105,8 +107,95 @@ const CampaignDetails = () => {
                               loading="lazy"
                             />
                           </div>
-                          <div className="mb-4">
-                            WANNA BE PART OF OUR GROWING TEAM?
+                          <div className="mb-8">
+                            <h2 className="text-xl mb-4">
+                              WANNA BE PART OF OUR GROWING TEAM?
+                            </h2>
+                            <p className="text-sm mb-4">
+                              Contribute by completing tasks, earning tokens,
+                              submitting content or joining the team!
+                            </p>
+                          </div>
+                          <div className="w-full flex items-center">
+                            <div className="flex mr-2">
+                              <Image
+                                src={`https://www.referrals.com/assets/uploads/2a72c1044d2e219c8a937a86a27229e0.png`}
+                                width={0}
+                                height={0}
+                                alt=""
+                                sizes="100vw"
+                                className="img-fluid w-full h-auto object-contain"
+                                loading="lazy"
+                              />
+                            </div>
+                            <div className="flex-grow">
+                              <p className="text-sm">
+                                There are many ways to contribute! You can
+                                complete tasks, buy tokens, join the staff and
+                                help us build top premium domains today!
+                              </p>
+                              <br />
+                              <p className="text-sm">
+                                <strong>GET 50 CTB TOKENS</strong> just for
+                                sharing <strong>Contrib</strong> to your
+                                followers!
+                              </p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Campaign Details</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          <div className="mb-8">
+                            <h3 className="uppercase text-xl mb-1">REWARD:</h3>
+                            <div className="mb-4 flex items-center text-sm">
+                              <FaCheck className="h-4 w-4 mr-2" />
+                              <span className="font-light">TOKENS</span>
+                            </div>
+                          </div>
+                          <div className="mb-8">
+                            <h3 className="uppercase text-xl mb-1">INFO:</h3>
+                            <div className="mb-4 flex items-top text-sm">
+                              <FaCheck className="h-4 w-4 mr-2" />
+                              <span className="font-light">
+                                YOU WILL BE SENT A REWARD NOTIFICATION VIA EMAIL
+                                AND YOU CAN CHECK YOUR REWARDS HERE [{" "}
+                                <a href="#" className="text-blue-600">
+                                  LINK REWARD PAGE
+                                </a>{" "}
+                                ]
+                              </span>
+                            </div>
+                          </div>
+                          <div className="mb-8">
+                            <h3 className="uppercase text-xl mb-1">
+                              HOW TO GET REWARD:
+                            </h3>
+                            <div className="mb-4 flex items-center text-sm">
+                              <FaCheck className="h-4 w-4 mr-2" />
+                              <span className="font-light">
+                                REFER TO [{" "}
+                                <a href="#" className="uppercase text-blue-600">
+                                  CONTRIB.COM
+                                </a>{" "}
+                                ]
+                              </span>
+                            </div>
+                          </div>
+                          <div className="mb-8">
+                            <h3 className="uppercase text-xl mb-4 flex items-center">
+                              <span className="inline-flex mr-1">
+                                <FaShareAlt />
+                              </span>
+                              WAYS TO SHARE TO YOUR FRIENDS:
+                            </h3>
+                            <div className="mb-4 w-full">
+                              <WaysToShareComponent />
+                            </div>
                           </div>
                         </CardContent>
                       </Card>
@@ -119,30 +208,7 @@ const CampaignDetails = () => {
                         <Table>
                           <TableHeader>
                             <TableRow>
-                              <TableHead>Campaign</TableHead>
-                              <TableHead className="table-cell">
-                                Email <br /> Clicks
-                              </TableHead>
-                              <TableHead className="table-cell">
-                                FB <br />
-                                Clicks
-                              </TableHead>
-                              <TableHead className="table-cell">
-                                Google <br />
-                                Clicks
-                              </TableHead>
-                              <TableHead className="table-cell">
-                                Linkedin <br />
-                                Clicks
-                              </TableHead>
-                              <TableHead className="table-cell">
-                                Twitter <br />
-                                Clicks
-                              </TableHead>
-                              <TableHead className="table-cell">
-                                Pinterest <br />
-                                Clicks
-                              </TableHead>
+                              <TableHead>Contests</TableHead>
                             </TableRow>
                           </TableHeader>
                           <TableBody>
@@ -152,15 +218,9 @@ const CampaignDetails = () => {
                                   href="#"
                                   className="text-sm text-blue-600 inline-block"
                                 >
-                                  Contrib Partner Blog Banner
+                                  Top sharer
                                 </a>
                               </TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
                             </TableRow>
                             <TableRow>
                               <TableCell>
@@ -168,15 +228,9 @@ const CampaignDetails = () => {
                                   href="#"
                                   className="text-sm text-blue-600 inline-block"
                                 >
-                                  Contrib Partner Blog Banner
+                                  Top sharer
                                 </a>
                               </TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
-                              <TableCell>0</TableCell>
                             </TableRow>
                           </TableBody>
                         </Table>
