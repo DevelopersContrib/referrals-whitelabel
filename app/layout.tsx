@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./globals.scss";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./globals.scss";
 import { Getwlsettings } from "../data/data";
 
 export async function generateMetadata() {
