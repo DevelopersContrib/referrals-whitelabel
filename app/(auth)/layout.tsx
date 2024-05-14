@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "../globals.scss";
 import Header from "../(layout)/(public)/Header";
 import Footer from "../(layout)/(public)/Footer";
