@@ -6,7 +6,7 @@ import AuthProvider from '@/app/context/AuthProvider';
 
 export async function generateMetadata() {
   const c = await Getwlsettings();
-  console.log(c.data);
+  
   return {
     title: c.data.meta_title,
     description: c.data.meta_desc,

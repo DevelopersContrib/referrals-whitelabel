@@ -12,6 +12,7 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 
 export default function Login() {
   const initialValues = {
@@ -50,7 +51,8 @@ export default function Login() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (event:any) => {
+  const handleSubmit = async (event:any) => { 
+  
     event.preventDefault();
     const isValid = !Object.values(errors).some((v) => v);
     if(isValid) {
@@ -61,9 +63,13 @@ export default function Login() {
         .then((response) => {
           // Handle response here
           setSuccess(true);
-          console.log(response);
+          // console.log(response);
           if(response.ok){
-            window.location.href = response.url;
+            //window.location.href = response.url;
+            signIn('credentials', {redirect: false, email:data.userEmail,password:data.userPassword,domain:data.domain}).then((result) => {
+              //window.location.href = response.url;
+              window.location.replace("/dashboard")
+        })
           }
           //window.location.href = response.url;
           
