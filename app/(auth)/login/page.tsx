@@ -30,6 +30,7 @@ export default function Login() {
   const [data, setData] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [success, setSuccess] = useState(false);
+  const [loginError, setLoginError] = useState(false);
 
   useEffect(() => {
     const validateErrors = () => {
@@ -62,11 +63,16 @@ export default function Login() {
       })
         .then((response) => {
           setSuccess(true);
+          console.log(response);
           if(response.ok){
             signIn('credentials', {redirect: false, email:data.userEmail,password:data.userPassword,domain:data.domain}).then((result) => {
             
               window.location.replace("/dashboard")
         })
+          }else{
+            console.log('login error');
+            setLoginError(true);
+           
           }
           
         })
@@ -89,6 +95,11 @@ export default function Login() {
             </CardDescription>
           </CardHeader>
           <CardContent>
+          {loginError ? (
+                        <div className="d-block text-danger small">
+                         Invalid Login
+                        </div>
+                  ) : null}
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>

@@ -16,7 +16,15 @@ export const POST = async (request) => {
         
          const result = res.data;
   
-         return NextResponse.json(result.data);
+         //return NextResponse.json(result.data);
+
+         if(result.success){
+            console.log(result)
+            return NextResponse.json(result);
+
+        }else{
+            return new Response("Email Exists", { status: 500 });
+        }
        
     } catch (error) {
         // Handle AxiosError

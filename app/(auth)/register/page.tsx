@@ -35,6 +35,7 @@ export default function Register() {
   const [success, setSuccess] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
   const [counter, setCounter] = useState<number>(5);
+  const [emailExists, setemailExists] = useState(false);
 
   useEffect(() => {
     const validateErrors = () => {
@@ -73,25 +74,32 @@ export default function Register() {
         body: JSON.stringify(data)
       })
         .then((response) => {
-          console.log('myresponse')
-          console.log(response)
-          setIsSubmit(false);
-          // Handle response here
-          setSuccess(true);
-          const counterInterval = setInterval(() => {
-            setCounter((prev) => {
-              if (prev === 1) {
-                clearInterval(counterInterval);
-                window.location.href = "/login";
-               //console.log('response:')
-               //console.log(response)
-              }
+          console.log(response);
+          if(response.ok){
+            console.log('myresponse')
+            console.log(response)
+            setIsSubmit(false);
+            // Handle response here
+            setSuccess(true);
+            const counterInterval = setInterval(() => {
+              setCounter((prev) => {
+                if (prev === 1) {
+                  clearInterval(counterInterval);
+                  window.location.href = "/login";
+                //console.log('response:')
+                //console.log(response)
+                }
 
-              return prev - 1;
-            });
-          }, 1000);
+                return prev - 1;
+              });
+            }, 1000);
 
-          return () => clearInterval(counterInterval);
+            return () => clearInterval(counterInterval);
+          }else{
+            console.log('email does exists');
+            setemailExists(true);
+            setIsSubmit(false);
+          }
         })
         .catch((error) => {
           setIsSubmit(false);
@@ -117,6 +125,11 @@ export default function Register() {
               </CardHeader>
 
               <CardContent>
+              {emailExists ? (
+                        <div className="d-block text-danger small">
+                          Email already Exists
+                        </div>
+                  ) : null}
                 <form>
                   <div className="grid gap-4">
                     <div className="grid gap-2">
