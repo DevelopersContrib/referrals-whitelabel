@@ -18,8 +18,8 @@ export default withAuth(/*req => {
     }  
 },*/{
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/login",
   },
 });
 
-export const config = { matcher: ["/","/dashboard"] }
+export const config = { matcher: ["/dashboard"] }

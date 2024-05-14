@@ -14,7 +14,8 @@ interface User {
 
 export const options: NextAuthOptions = {
   pages: {
-    signIn: '/auth/signin',
+    signIn: '/login',
+    //signIn: '/auth/signin',
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
     // verifyRequest: '/auth/verify-request', // (used for check email message)
@@ -53,27 +54,11 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      if (account?.provider !== 'credentials') {
-        const Newuser: User = {
-          firstName: profile?.name?.split(' ')[0],
-          lastName: profile?.name?.split(' ')[1],
-          email: profile?.email,
-          password: profile?.email,
-          token: user.token,
-          id: user.id,
-        };
- 
-        const u = await authorizeUser(Newuser);
-        //console.log('authorizeUser',u)
-        user.id = u?.id;
-        user.email = u?.email;
-        user.name = u?.name;
-        user.token = u?.token;
-      }
       //return 'https://whitelabel.referrals.com/dashboard'
       return true;
     },
     async redirect({ url, baseUrl }) {
+      console.log('baseUrl',baseUrl)
       return baseUrl;
     },
     async session({ session, user, token }) {
