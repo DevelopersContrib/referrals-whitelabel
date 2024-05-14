@@ -60,3 +60,15 @@ export async function GetDeals() {
   }
   return res.json();
 }
+
+export async function GetCategories() {
+  const domain = getDomain();
+  const timestamp = Date.now(); // Get current timestamp
+  const url = process.env.API_URL+`category/get?key=`+process.env.API_KEY+`&domain=${domain}&timestamp=${timestamp}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}

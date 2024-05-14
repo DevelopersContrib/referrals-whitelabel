@@ -3,13 +3,14 @@ import { IoDiamondSharp } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { CiBadgeDollar } from "react-icons/ci";
 import { Checkbox } from "@/components/ui/checkbox";
-import { GetDeals } from "../../../../data/data";
+import { GetDeals, GetCategories } from "../../../../data/data";
 
 export default async function DealsComponent() {
   const deals = await GetDeals();
+  const categories = await GetCategories();
   const dealsData = deals.data;
-  console.log(dealsData.length);
-  console.log(dealsData);
+  const categoryData = categories.data;
+  
   const dealUrl = 'https://www.referrals.com/deals/details/'
 
   return (
@@ -89,7 +90,9 @@ export default async function DealsComponent() {
                       categories
                     </h6>
                     <div className="flex flex-col w-full gap-2">
-                      <div className="items-center flex space-x-2">
+                    {Array.isArray(categoryData) && categoryData.length > 0 ? (
+                      categoryData.map((categories) => (
+                        <div className="items-center flex space-x-2">
                         <Checkbox
                           className="border-black shadow-none rounded-[2px] custom-checkbox"
                           id="terms1"
@@ -99,70 +102,26 @@ export default async function DealsComponent() {
                             htmlFor="terms1"
                             className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
                           >
-                            Tech treats
+                            {categories.category_name}
                           </label>
                         </div>
                       </div>
-                      <div className="items-center flex space-x-2">
-                        <Checkbox
-                          className="border-black shadow-none rounded-[2px] custom-checkbox"
-                          id="terms2"
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms2"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
-                          >
-                            fashion finds
-                          </label>
-                        </div>
-                      </div>
+
+                      ))
+                    ) : (
+                      <div className="col-span-8 w-full flex items-center justify-center min-h-[30vh]">
+                        <div className="text-3xl text-black/30">No Deals available</div>
+                      </div> // Provide a fallback if campaignData is empty or not an array
+                    )}
+                      
+                      
+                      
                     </div>
                   </div>
                 </div>
               </div>
               {/* End::List of Filter */}
-              {/* Start::List of Filter */}
-              <div className="filter-list-item">
-                <div className="border-l border-r border-solid rounded-lg border-[hsl(0_0%_0%/0.05)!important] w-full">
-                  <div className="p-6 flex flex-col gap-5">
-                    <h6 className="font-bold text-xl relative title-filter capitalize">
-                      categories
-                    </h6>
-                    <div className="flex flex-col w-full gap-2">
-                      <div className="items-center flex space-x-2">
-                        <Checkbox
-                          className="border-black shadow-none rounded-[2px] custom-checkbox"
-                          id="terms3"
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms3"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
-                          >
-                            Tech treats
-                          </label>
-                        </div>
-                      </div>
-                      <div className="items-center flex space-x-2">
-                        <Checkbox
-                          className="border-black shadow-none rounded-[2px] custom-checkbox"
-                          id="terms4"
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms4"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
-                          >
-                            fashion finds
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* End::List of Filter */}
+              
             </div>
           </div>
         </div>
