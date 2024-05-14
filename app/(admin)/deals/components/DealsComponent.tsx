@@ -10,6 +10,7 @@ export default async function DealsComponent() {
   const dealsData = deals.data;
   console.log(dealsData.length);
   console.log(dealsData);
+  const dealUrl = 'https://www.referrals.com/deals/details/'
 
   return (
     <>
@@ -19,7 +20,7 @@ export default async function DealsComponent() {
             {Array.isArray(dealsData) && dealsData.length > 0 ? (
               dealsData.map((deals) => (
                 <a
-                  href={deals.url}
+                  href={dealUrl+deals.id}
                   className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
                   key={deals.id}
                 >
@@ -42,13 +43,13 @@ export default async function DealsComponent() {
                           <div>
                             <IoDiamondSharp />
                           </div>
-                          <div className="capitalize">category</div>
+                          <div className="capitalize">{deals.category_name}</div>
                         </div>
                         <div className="inline-flex text-white bg-[#FF6067] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
                           <div>
                             <CiBadgeDollar className="h-6 w-6" />
                           </div>
-                          <div className="capitalize">19.00</div>
+                          <div className="capitalize">{deals.price}</div>
                         </div>
                       </div>
 
