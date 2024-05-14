@@ -2,6 +2,7 @@ import { User } from "@/types/user";
 import axios, { AxiosError } from "axios";
 import { options } from "@/lib/options";
 import { getServerSession } from "next-auth/next";
+import { getDomain } from "../data/data";
 interface Error {
   message: string[];
   statusCode: number;
@@ -80,10 +81,12 @@ export const authorizeUser = async (credentials: User) => {
       const params = new URLSearchParams();
       params.append('email', credentials.email  as string);
       params.append('password', credentials.password  as string);
-      params.append('domain', credentials.domain);
+      params.append('domain', getDomain());
   
       const res = await axios.post(apiUrl, params);
       const result = res.data;
+
+      
       
       return {
         id: result.data.userid,
