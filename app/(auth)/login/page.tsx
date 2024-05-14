@@ -61,17 +61,13 @@ export default function Login() {
         body: JSON.stringify(data)
       })
         .then((response) => {
-          // Handle response here
           setSuccess(true);
-          // console.log(response);
           if(response.ok){
-            //window.location.href = response.url;
             signIn('credentials', {redirect: false, email:data.userEmail,password:data.userPassword,domain:data.domain}).then((result) => {
-              //window.location.href = response.url;
+            
               window.location.replace("/dashboard")
         })
           }
-          //window.location.href = response.url;
           
         })
         .catch((error) => {
