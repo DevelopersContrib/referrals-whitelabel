@@ -22,4 +22,4 @@ export default withAuth(/*req => {
   },
 });
 
-export const config = { matcher: ["/dashboard"] }
+export const config = { matcher: ["/dashboard","/settings","/deals","/campaigns"] }
