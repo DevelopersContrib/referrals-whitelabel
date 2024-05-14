@@ -8,7 +8,7 @@ import axios from 'axios';
 export const POST = async (request) => {
   try {
     const data = await request.json();
-    const apiUrl = process.env.API_URL+`user/login?key=`+process.env.API_KEY;
+    const apiUrl = "https://api1.contrib.co/wl/user/login?key=5c1bde69a9e783c7edc2e603d8b25023";
     const params = new URLSearchParams();
     params.append('email', data.userEmail);
     params.append('password', data.userPassword);
@@ -16,7 +16,7 @@ export const POST = async (request) => {
 
     const res = await axios.post(apiUrl, params);
     const result = res.data;
-    console.log(result);
+    //console.log(result);
     if(result.success){
 
      

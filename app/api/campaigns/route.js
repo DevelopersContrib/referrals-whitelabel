@@ -10,7 +10,7 @@ export const POST = async (request) => {
       const data = await request.json();
     
       const token = request.cookies.get('token');
-      const apiUrl = process.env.API_URL+'user/campaigns?key='+process.env.API_KEY+'&domain='+data.domain+'&token='+token;
+      const apiUrl ='https://api1.contrib.co/wl/user/campaigns?key=5c1bde69a9e783c7edc2e603d8b25023&domain='+data.domain+'&token='+token;
       
       const res = await axios.get(apiUrl, config);
   

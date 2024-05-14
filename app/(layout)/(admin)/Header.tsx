@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+
 import {
   Card,
   CardContent,
@@ -34,8 +35,10 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Badge } from "react-bootstrap";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = ({ logo }: { logo: string }) => {
+  const { data: session } = useSession();
   return (
     <>
       <header className="flex h-14 items-center gap-4 border-b px-4 lg:h-[60px] lg:px-6 bg-background">
@@ -130,7 +133,7 @@ const Header = ({ logo }: { logo: string }) => {
           <DropdownMenuTrigger asChild>
             <Button variant="secondary">
               <CircleUser className="h-5 w-5 mr-1" />
-              <span className="capitalize">john doe</span>
+              <span className="capitalize">{session?.user?.name}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -138,7 +141,9 @@ const Header = ({ logo }: { logo: string }) => {
             <DropdownMenuSeparator />
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {
+            signOut();
+          }}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
