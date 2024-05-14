@@ -18,17 +18,13 @@ const AdminLayout = async ({
   const c = await Getwlsettings();
   return (
     <>
-      <html lang="en">
-        <body className="bg-background">
-          <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-            <SidebarMenu logo={c.data.logo} />
-            <div className="flex flex-col">
-              <Header logo={c.data.logo} />
-              {children}
-            </div>
-          </div>
-        </body>
-      </html>
+      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
+        <SidebarMenu logo={c.data.logo} />
+        <div className="flex flex-col">
+          <Header logo={c.data.logo} />
+          {children}
+        </div>
+      </div>
     </>
   );
 };
