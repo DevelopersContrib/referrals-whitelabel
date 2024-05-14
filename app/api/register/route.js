@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
+import {getDomain} from '../../../data/data';
 
 
 export const POST = async (request) => {
@@ -8,7 +9,7 @@ export const POST = async (request) => {
     try {
         const params = new URLSearchParams();
         params.append('email', data.userEmail);
-        params.append('domain', data.domain);
+        params.append('domain', getDomain());
         params.append('name', data.userName);
         params.append('password', data.userPassword);
          

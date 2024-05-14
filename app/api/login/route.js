@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-
+import {getDomain} from '../../../data/data';
 /**
  * @param {Request} request - The request object.
  * @returns {Promise<Response>} A promise resolving to a Response object.
@@ -12,7 +12,7 @@ export const POST = async (request) => {
     const params = new URLSearchParams();
     params.append('email', data.userEmail);
     params.append('password', data.userPassword);
-    params.append('domain', data.domain);
+    params.append('domain', getDomain());
 
     const res = await axios.post(apiUrl, params);
     const result = res.data;

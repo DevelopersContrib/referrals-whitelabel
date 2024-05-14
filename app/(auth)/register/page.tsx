@@ -19,7 +19,7 @@ export default function Register() {
     userName: "",
     userPassword: "",
     userPasswordConfirm: "",
-    domain: "whitelabel.referrals.com"
+    domain: ""
   };
 
   const initialErrors = {
@@ -133,13 +133,13 @@ export default function Register() {
                 <form>
                   <div className="grid gap-4">
                     <div className="grid gap-2">
-                      <Label htmlFor="first-name">First name</Label>
+                      <Label htmlFor="first-name">Name</Label>
                       <Input
                         id="first-name"
                         name="userName"
                         onChange={handleChange}
                         value={data.userName}
-                        placeholder="First name"
+                        placeholder="Name"
                         required
                       />
                       {errors.validate ? (

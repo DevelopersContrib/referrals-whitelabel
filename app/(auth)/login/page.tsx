@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 
+
 import {
   CardTitle,
   CardDescription,
@@ -18,7 +19,7 @@ export default function Login() {
   const initialValues = {
     userEmail: "",
     userPassword: "",
-    domain: "whitelabel.referrals.com"
+    domain: ""
   }
 
   const initialErrors = {
