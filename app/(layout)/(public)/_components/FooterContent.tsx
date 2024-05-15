@@ -12,17 +12,17 @@ const FooterContent = ({ domain }: { domain: string }) => {
             <div className="col-lg-6 text-end">
               <ul className="list-inline !space-x-4">
                 <li className="list-inline-item">
-                  <a href="" className="no-underline capitalize">
+                  <a href="/about" className="no-underline capitalize">
                     about
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="" className="no-underline capitalize">
+                  <a href="/privacy" className="no-underline capitalize">
                     privacy policy
                   </a>
                 </li>
                 <li className="list-inline-item">
-                  <a href="" className="no-underline capitalize">
+                  <a href="/terms" className="no-underline capitalize">
                     terms and condition
                   </a>
                 </li>
