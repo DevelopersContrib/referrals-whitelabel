@@ -49,10 +49,10 @@ export async function GetcampaignsAll() {
 }
 
 
-export async function GetDeals() {
+export async function GetDeals($category_id='') {
   const domain = getDomain();
   const timestamp = Date.now(); // Get current timestamp
-  const url = process.env.API_URL+`deals/get?key=`+process.env.API_KEY+`&domain=${domain}&timestamp=${timestamp}`;
+  const url = process.env.API_URL+`deals/get?key=`+process.env.API_KEY+`&domain=${domain}&category_id=${$category_id}&timestamp=${timestamp}`;
   const res = await fetch(url);
 
   if (!res.ok) {

@@ -92,7 +92,7 @@ export default async function DealsComponent() {
                     <div className="flex flex-col w-full gap-2">
                     {Array.isArray(categoryData) && categoryData.length > 0 ? (
                       categoryData.map((categories) => (
-                        <div className="items-center flex space-x-2">
+                        <div key={categories.category_id} className="items-center flex space-x-2">
                         <Checkbox
                           className="border-black shadow-none rounded-[2px] custom-checkbox"
                           id="terms1"
