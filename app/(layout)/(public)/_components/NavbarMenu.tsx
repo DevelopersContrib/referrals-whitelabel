@@ -7,8 +7,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-
-
 interface NavMenuProps {
   domain: string;
   logo: string;
@@ -35,14 +33,8 @@ const NavbarMenu: React.FC<NavMenuProps> = ({ logo, domain }) => {
                 className="w-full max-w-full h-[30px] object-contain"
               />
             ) : (
-              <span className="text-lg font-bold text-primary">
-                {domain}
-              </span>
-
+              <span className="text-lg font-bold text-primary">{domain}</span>
             )}
-            
-             
-            
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -50,13 +42,13 @@ const NavbarMenu: React.FC<NavMenuProps> = ({ logo, domain }) => {
               <Nav.Link href="/" className="capitalize">
                 Home
               </Nav.Link>
-              <Nav.Link href="/" className="capitalize">
+              <Nav.Link href="/about" className="capitalize">
                 about
               </Nav.Link>
-              <Nav.Link href="/" className="capitalize">
+              <Nav.Link href="/privacy" className="capitalize">
                 privacy policy
               </Nav.Link>
-              <Nav.Link href="/" className="capitalize">
+              <Nav.Link href="/terms" className="capitalize">
                 terms and condition
               </Nav.Link>
             </Nav>
