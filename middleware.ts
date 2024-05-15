@@ -8,6 +8,8 @@ export { default } from "next-auth/middleware"
 export const config = { matcher: ["/extra","/dashboard"] }
 */
 
+
+
 import { withAuth } from "next-auth/middleware";
 import { NextResponse } from 'next/server';
 export default withAuth(/*req => {
