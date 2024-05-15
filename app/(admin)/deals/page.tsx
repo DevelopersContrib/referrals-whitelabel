@@ -1,10 +1,16 @@
-import React from "react";
-import DealsComponent from "./components/DealsComponent";
+import React, { useState } from 'react'
+import DealsComponent from "@/components/Deals/DealsComponent";
+import { GetDeals, GetCategories } from "../../../data/data";
+const Deals = async() => {
+  
+  const categories = await GetCategories();
+  const deals = await GetDeals();
+  const categoryData = categories.data;
+  const dealsData = deals.data;
 
-const Deals = () => {
   return (
     <>
-      <DealsComponent />
+      <DealsComponent dealsData={dealsData} categoryData={categoryData} />
     </>
   );
 };

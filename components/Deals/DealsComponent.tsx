@@ -1,16 +1,14 @@
+'use client';
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import { IoDiamondSharp } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { CiBadgeDollar } from "react-icons/ci";
 import { Checkbox } from "@/components/ui/checkbox";
-import { GetDeals, GetCategories } from "../../../../data/data";
 
-export default async function DealsComponent() {
-  const deals = await GetDeals();
-  const categories = await GetCategories();
-  const dealsData = deals.data;
-  const categoryData = categories.data;
-  
+
+const DealsComponent = ({dealsData,categoryData}: any) => {
+ 
   const dealUrl = 'https://www.referrals.com/deals/details/'
 
   return (
@@ -96,6 +94,7 @@ export default async function DealsComponent() {
                         <Checkbox
                           className="border-black shadow-none rounded-[2px] custom-checkbox"
                           id="terms1"
+                          value={categories.category_id}
                         />
                         <div className="grid gap-1.5 leading-none">
                           <label
@@ -129,3 +128,4 @@ export default async function DealsComponent() {
     </>
   );
 }
+export default DealsComponent;
