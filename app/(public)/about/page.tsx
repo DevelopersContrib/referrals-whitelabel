@@ -10,11 +10,11 @@ const About = () => {
             <div className="col-lg-12">
               <h1 className="capitalize font-bold text-2xl mb-4">ABOUT US</h1>
               <p className="mb-4">
-                Referrals.com is in the alpha stage, and we're working hard
+                Referrals.com is in the alpha stage, and we&apos;re working hard
                 behind the scenes to build the ultimate referrals platform.
                 Thanks for taking the time to check us out and stay tuned for
-                more robust features to help you generate business. We're part
-                of the Referral Ventures network.
+                more robust features to help you generate business. We&apos;re
+                part of the Referral Ventures network.
               </p>
               <h1 className="capitalize font-bold text-2xl mb-4">TEAM</h1>
             </div>

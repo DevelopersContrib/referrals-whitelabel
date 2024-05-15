@@ -155,12 +155,12 @@ const page = () => {
                 </h2>
                 <p className="mb-4 text-muted">
                   Information, including information collected in the European
-                  Economic Area ("EEA") may be transferred, stored and processed
-                  by Us and Our services providers in the United States and
-                  other countries whose data protection laws may be different
-                  than the laws of Your country. We will protect Your Personal
-                  Data in accordance with this Privacy Notice wherever it is
-                  processed and take appropriate steps to protect the
+                  Economic Area (&quot;EEA&quot;) may be transferred, stored and
+                  processed by Us and Our services providers in the United
+                  States and other countries whose data protection laws may be
+                  different than the laws of Your country. We will protect Your
+                  Personal Data in accordance with this Privacy Notice wherever
+                  it is processed and take appropriate steps to protect the
                   information in accordance with applicable laws. These steps
                   include obligations to both referrals and You and available on
                   referrals.com. You may also request an executable version of
@@ -499,11 +499,11 @@ const page = () => {
                   You may use Our address book and contacts importer to upload
                   Your contacts from other services into referrals. When You
                   import Your contacts, We may indefinitely store the contact
-                  information in Our database, including Your contacts' names,
-                  e-mails, phone numbers, locations, and relationships to You,
-                  subject to applicable law. We do not store any passwords You
-                  provide as part of the contact import process. After We import
-                  Your contacts, We will use this information to help Us
+                  information in Our database, including Your contacts&apos;
+                  names, e-mails, phone numbers, locations, and relationships to
+                  You, subject to applicable law. We do not store any passwords
+                  You provide as part of the contact import process. After We
+                  import Your contacts, We will use this information to help Us
                   establish networks of contacts, document relationships,
                   facilitate referrals, and improve Our Site and Service. We may
                   also use this information to show You and other users that You
