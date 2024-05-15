@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { IoDiamondSharp } from "react-icons/io5";
@@ -6,53 +6,42 @@ import { IoIosSearch } from "react-icons/io";
 import { CiBadgeDollar } from "react-icons/ci";
 import { Checkbox } from "@/components/ui/checkbox";
 
-
-
-export default function DealsComponent({dealsData,categoryData}: any)  {  
+export default function DealsComponent({ dealsData, categoryData }: any) {
   const [checkedState, setCheckedState] = useState(
     new Array(categoryData.length).fill(false)
   );
-  
+
   const [filter, setFilter] = useState("");
   const [dealsDataArray, setDealsData] = useState(dealsData);
-  
-  const dealUrl = 'https://www.referrals.com/deals/details/'
 
+  const dealUrl = "https://www.referrals.com/deals/details/";
 
   const updateFilter = (checkboxValues: boolean[]) => {
     let f: any = [];
     checkboxValues.map((item, index) =>
-      
-      item === true ? f.push(categoryData[index].category_id) : f.push(0))
-      return f;
-
-      
-    
+      item === true ? f.push(categoryData[index].category_id) : f.push(0)
+    );
+    return f;
   };
 
   const handleOnChange = async (position: number) => {
-    
     const updatedCheckedState = checkedState.map((item, index) =>
       index === position ? !item : item
     );
-   
+
     setCheckedState(updatedCheckedState);
-    const filter = updateFilter(updatedCheckedState).join(',')
-    setFilter(filter)
+    const filter = updateFilter(updatedCheckedState).join(",");
+    setFilter(filter);
 
-    const updated = await fetch('/api/deals', {
-      method: 'POST',
-      body: JSON.stringify({ category_id:filter}),
-      });
-  
-      const deals = await updated.json();
-      const dealsData = deals.data;
-      setDealsData(dealsData)
-  }
+    const updated = await fetch("/api/deals", {
+      method: "POST",
+      body: JSON.stringify({ category_id: filter })
+    });
 
-  useEffect(() => {
-    console.log(checkedState)
-  }, []);
+    const deals = await updated.json();
+    const dealsData = deals.data;
+    setDealsData(dealsData);
+  };
 
   return (
     <>
@@ -62,7 +51,7 @@ export default function DealsComponent({dealsData,categoryData}: any)  {
             {Array.isArray(dealsDataArray) && dealsDataArray.length > 0 ? (
               dealsDataArray.map((deals) => (
                 <a
-                  href={dealUrl+deals.id}
+                  href={dealUrl + deals.id}
                   className="border border-solid border-[hsl(0_0%_0%/0.05)!important] p-4 rounded-xl flex flex-col gap-y-4 hover:translate-y-[-5px] hover:transition-all hover:duration-300 hover:scale-[1.02] hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] transition-all duration-200"
                   key={deals.id}
                 >
@@ -85,7 +74,9 @@ export default function DealsComponent({dealsData,categoryData}: any)  {
                           <div>
                             <IoDiamondSharp />
                           </div>
-                          <div className="capitalize">{deals.category_name}</div>
+                          <div className="capitalize">
+                            {deals.category_name}
+                          </div>
                         </div>
                         <div className="inline-flex text-white bg-[#FF6067] items-center justify-center p-[4px_7px] gap-x-2 rounded-lg text-md">
                           <div>
@@ -131,45 +122,46 @@ export default function DealsComponent({dealsData,categoryData}: any)  {
                       categories
                     </h6>
                     <div className="flex flex-col w-full gap-2">
-                    {Array.isArray(categoryData) && categoryData.length > 0 ? (
-                      categoryData.map((categories, index) => (
-                        <div key={categories.category_id} className="items-center flex space-x-2">
-                        <Checkbox
-                          className="border-black shadow-none rounded-[2px] custom-checkbox"
-                          id="terms1"
-                          value={categories.category_id}
-                          checked={checkedState[index]}
-                          onClick={() => handleOnChange(index)}
-                        />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms1"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
+                      {Array.isArray(categoryData) &&
+                      categoryData.length > 0 ? (
+                        categoryData.map((categories, index) => (
+                          <div
+                            key={categories.category_id}
+                            className="items-center flex space-x-2"
                           >
-                            {categories.category_name}
-                          </label>
-                        </div>
-                      </div>
-
-                      ))
-                    ) : (
-                      <div className="col-span-8 w-full flex items-center justify-center min-h-[30vh]">
-                        <div className="text-3xl text-black/30">No Deals available</div>
-                      </div> // Provide a fallback if campaignData is empty or not an array
-                    )}
-                      
-                      
-                      
+                            <Checkbox
+                              className="border-black shadow-none rounded-[2px] custom-checkbox"
+                              id="terms1"
+                              value={categories.category_id}
+                              checked={checkedState[index]}
+                              onClick={() => handleOnChange(index)}
+                            />
+                            <div className="grid gap-1.5 leading-none">
+                              <label
+                                htmlFor="terms1"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 capitalize cursor-pointer"
+                              >
+                                {categories.category_name}
+                              </label>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="col-span-8 w-full flex items-center justify-center min-h-[30vh]">
+                          <div className="text-3xl text-black/30">
+                            No Deals available
+                          </div>
+                        </div> // Provide a fallback if campaignData is empty or not an array
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
               {/* End::List of Filter */}
-              
             </div>
           </div>
         </div>
       </main>
     </>
-  )
+  );
 }
