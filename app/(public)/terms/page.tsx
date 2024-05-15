@@ -19,7 +19,7 @@ const page = () => {
                   with these terms of use. Referrals.com also has a privacy
                   policy outlined here: Privacy and by using and accessing the
                   Referrals.com site you are signifying your acknowledgement and
-                  agreement to Referrals.com‘s privacy policy.
+                  agreement to Referrals.com&apos;s privacy policy.
                 </p>
                 <h2 className="uppercase font-bold text-xl mb-4">
                   Disclaimer and No Warranty
@@ -97,13 +97,14 @@ const page = () => {
                   services. Referrals.com has no control over the content or
                   actions of such sites and/or vendors is not responsible nor
                   does it represent or imply that it endorses such website or
-                  vendor. You‘re solely responsible for protecting yourself and
-                  technology devices and computers from viruses, worms, Trojan
-                  horses, and other harmful or destructive content or privacy
-                  violating, or otherwise malicious encounters resulting from
-                  such sites as well as any transactions or interaction of any
-                  kind. Referrals.com disclaims any responsibility for any harm
-                  resulting from your use of non Referrals.com sites and pages.{" "}
+                  vendor. You&apos;re solely responsible for protecting yourself
+                  and technology devices and computers from viruses, worms,
+                  Trojan horses, and other harmful or destructive content or
+                  privacy violating, or otherwise malicious encounters resulting
+                  from such sites as well as any transactions or interaction of
+                  any kind. Referrals.com disclaims any responsibility for any
+                  harm resulting from your use of non Referrals.com sites and
+                  pages.{" "}
                 </p>
                 <p className="mb-4 text-muted">
                   {" "}
@@ -195,7 +196,7 @@ const page = () => {
                 <p className="mb-4 text-muted">
                   {" "}
                   Referrals.com has the right to delete any profile or content
-                  at it‘s sole discretion any time. .{" "}
+                  at it&apos;s sole discretion any time. .{" "}
                 </p>
                 <p className="mb-4 text-muted">
                   {" "}
