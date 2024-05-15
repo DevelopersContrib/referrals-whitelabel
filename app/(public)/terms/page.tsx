@@ -56,14 +56,14 @@ const page = () => {
                   indemnify, defend, and hold harmless Referrals.com and any of
                   its content contributors from and against any and all
                   liability and costs, including, without limitation, regulatory
-                  penalties, attorneys’ fees, and costs incurred in connection
-                  with any claim arising our of your use of the site or any
-                  breach by you of these Terms of Use. Referrals.com shall not
-                  be liable for any direct, indirect, incidental, special, or
-                  consequential damages arising out of the use or inability to
-                  use the site. Referrals.com does not warrant that the site
-                  will be uninterrupted, error free, or virus free; nor does
-                  Referrals.com make any warranty as to the results to be
+                  penalties, attorneys&apos; fees, and costs incurred in
+                  connection with any claim arising our of your use of the site
+                  or any breach by you of these Terms of Use. Referrals.com
+                  shall not be liable for any direct, indirect, incidental,
+                  special, or consequential damages arising out of the use or
+                  inability to use the site. Referrals.com does not warrant that
+                  the site will be uninterrupted, error free, or virus free; nor
+                  does Referrals.com make any warranty as to the results to be
                   obtained from use of the site or its Content. In some states
                   jurisdictions limitations of liability are not permitted. In
                   such jurisdictions, some of the foregoing limitations may not
@@ -125,9 +125,9 @@ const page = () => {
                   usage, individual identities or users. You may not use any
                   robot, spider, other automatic software or device, or manual
                   process to monitor or copy our Web Site or the Content without
-                  Provider’s prior written permission. You may not use this Web
-                  Site to transmit any false, misleading, fraudulent or illegal
-                  communications. You may not copy, modify, reproduce,
+                  Provider&apos;s prior written permission. You may not use this
+                  Web Site to transmit any false, misleading, fraudulent or
+                  illegal communications. You may not copy, modify, reproduce,
                   republish, distribute, display, or transmit for commercial,
                   non-profit or public purposes all or any portion of this Web
                   Site, except to the extent permitted above. You may not use or
@@ -152,8 +152,8 @@ const page = () => {
                   material submitted for inclusion on this Web Site is accurate
                   and complies with applicable laws. Referrals.com is not be
                   responsible for the illegality of or any error or inaccuracy
-                  in advertisers’ or sponsors’ materials or for the acts or
-                  omissions of advertisers and sponsors.{" "}
+                  in advertisers&apos; or sponsors&apos; materials or for the
+                  acts or omissions of advertisers and sponsors.{" "}
                 </p>
                 <h2 className="uppercase font-bold text-xl mb-4">
                   DISCLAIMER.
@@ -185,7 +185,7 @@ const page = () => {
                   THIS WEB SITE OR ITS CONTENT. PROVIDER SHALL NOT BE LIABLE FOR
                   ANY SPECIAL, DIRECT, INDIRECT, INCIDENTAL, PUNITIVE OR
                   CONSEQUENTIAL DAMAGES OF ANY KIND WHATSOEVER (INCLUDING,
-                  WITHOUT LIMITATION, ATTORNEYS’ FEES) IN ANY WAY DUE TO,
+                  WITHOUT LIMITATION, ATTORNEYS&apos; FEES) IN ANY WAY DUE TO,
                   RESULTING FROM, OR ARISING IN CONNECTION WITH THE USE OF OR
                   INABILITY TO USE THIS WEB SITE. We do not endorse any of the
                   profiles or businesses on Referrals.com and use the site at
@@ -200,12 +200,12 @@ const page = () => {
                 </p>
                 <p className="mb-4 text-muted">
                   {" "}
-                  You agree to indemnify, defend and hold Referrals.com and it’s
-                  employees and/or contractors and any third party information
-                  providers to this Web Site harmless from and against all
-                  claims, losses, expenses, damages and costs, including
-                  reasonable attorneys’ fees, resulting from any violation of
-                  these Terms of Use by you.{" "}
+                  You agree to indemnify, defend and hold Referrals.com and
+                  it&apos;s employees and/or contractors and any third party
+                  information providers to this Web Site harmless from and
+                  against all claims, losses, expenses, damages and costs,
+                  including reasonable attorneys&apos; fees, resulting from any
+                  violation of these Terms of Use by you.{" "}
                 </p>
                 <p className="mb-4 text-muted">
                   {" "}
