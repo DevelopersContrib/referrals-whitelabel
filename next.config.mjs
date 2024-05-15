@@ -12,11 +12,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "**.cdn.vnoc.com"
-      },
-      {
-        protocol: "https",
-        hostname: "cdn.vnoc.com"
+        hostname: "**.vnoc.com"
       },
       {
         protocol: "https",
