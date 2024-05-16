@@ -1,5 +1,6 @@
 import axios from "axios";
 import { headers } from "next/headers";
+import { getServerSession } from "next-auth/next";
 
 export function getDomain() {
   let DOMAIN = process.env.NEXT_PUBLIC_VERCEL_URL;
@@ -72,3 +73,25 @@ export async function GetCategories() {
   }
   return res.json();
 }
+
+export const getUser = async () => {
+  try {
+    const session = await getServerSession(options);
+
+    const config = {
+      headers: { Authorization: "Bearer " + session?.token },
+    };
+    const apiUrl =
+      process.env.API_URL +
+      "user/details?id=" +
+      session?.id +
+      "&key=" +
+      process.env.API_KEY+
+      "&domain=" +getDomain();
+    const res = await axios.get(apiUrl, config);
+    console.log(apiUrl);
+    return res.data;
+  } catch (error) {
+    console.log("Error", error);
+  }
+};

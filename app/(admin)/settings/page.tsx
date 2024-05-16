@@ -23,7 +23,13 @@ import {
   AlertDialogTrigger
 } from "@/components/ui/alert-dialog";
 
-const Settings = () => {
+import Account from "@/components/Settings/Account";
+import { getUser } from "../../../data/data";
+const Settings  = async() => {
+
+  const userData = await getUser();
+  
+  
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="">
@@ -38,28 +44,7 @@ const Settings = () => {
           </div>
           <div className="w-full lg:w-1/2">
             <TabsContent value="account">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Account</CardTitle>
-                  <CardDescription>
-                    Make changes to your account here. Click save when
-                    you&apos;re done.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  <div className="space-y-1">
-                    <Label htmlFor="name">Full Name</Label>
-                    <Input id="name" defaultValue="John Doe" />
-                  </div>
-                  <div className="space-y-1">
-                    <Label htmlFor="username">Email Address</Label>
-                    <Input id="username" defaultValue="johndoe@example.com" />
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button>Save changes</Button>
-                </CardFooter>
-              </Card>
+              <Account />
             </TabsContent>
             <TabsContent value="password">
               <Card>
