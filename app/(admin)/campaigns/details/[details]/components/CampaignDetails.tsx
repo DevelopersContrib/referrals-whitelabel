@@ -28,14 +28,20 @@ import {
 import Image from "next/image";
 import WaysToShareComponent from "./WaysToShareComponent";
 import InviteListComponent from "./InviteListComponent";
+import { campaign } from "@/types/campaign";
 
-const CampaignDetails = () => {
+interface props {
+  detail: campaign;
+}
+
+const CampaignDetails = ({ detail }: props) => {
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaign-details-page">
         <div className="flex items-center">
           <h1 className="text-lg font-semibold md:text-2xl capitalize">
-            Campaigns Title {/* E.g Social Reward Game */}
+             { /* E.g Social Reward Game */}
+             {detail.name }
           </h1>
         </div>
         <div className="flex flex-col w-full">

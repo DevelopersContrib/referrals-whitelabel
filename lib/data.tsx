@@ -8,6 +8,18 @@ interface Error {
   statusCode: number;
 }
 
+export async function Getcampaigns(id: string = "") {
+  const domain = getDomain();
+  const timestamp = Date.now(); // Get current timestamp
+  const url = process.env.API_URL+`campaigns/get?key=`+process.env.API_KEY+`&id=${id}&domain=${domain}&limit=4&timestamp=${timestamp}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 export const checkEmail = async (email: string) => {
   try {
