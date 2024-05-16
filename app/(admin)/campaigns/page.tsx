@@ -7,9 +7,9 @@ import { GiTrophy } from "react-icons/gi";
 export default async function Page() {
   const campaign = await GetcampaignsAll();
   const campaignData = campaign.data;
-  console.log(campaignData.length);
-  console.log(campaignData);
-  console.log(campaignData.widget_details);
+  // console.log(campaignData.length);
+  // console.log(campaignData);
+  // console.log(campaignData.widget_details);
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaigns">
