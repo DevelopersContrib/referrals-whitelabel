@@ -29,6 +29,7 @@ import {
   Package,
   Package2,
   ShoppingCart,
+  Star,
   Users
 } from "lucide-react";
 import Image from "next/image";
@@ -55,8 +56,8 @@ const Header = ({ logo }: { logo: string }) => {
           </SheetTrigger>
           <SheetContent side="left" className="flex flex-col">
             <nav className="grid gap-2 text-lg font-medium">
-              <Link
-                href="#"
+              <a
+                href="/"
                 className="flex items-center gap-2 text-lg font-semibold"
               >
                 <span>
@@ -69,35 +70,42 @@ const Header = ({ logo }: { logo: string }) => {
                     className="w-full max-w-full h-[30px] object-contain"
                   />
                 </span>
-              </Link>
-              <Link
-                href="#"
+              </a>
+              <a
+                href="/dashboard"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <LineChart className="h-5 w-5" />
                 Dashboard
-              </Link>
-              <Link
-                href="#"
+              </a>
+              <a
+                href="/deals"
+                className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
+              >
+                <Star className="h-4 w-4" />
+                Deals
+              </a>
+              <a
+                href="/campaigns"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground"
               >
                 <Layers className="h-5 w-5" />
                 Campaigns
-              </Link>
-              <Link
-                href="#"
+              </a>
+              <a
+                href="/rewards"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <Gift className="h-5 w-5" />
                 Rewards
-              </Link>
-              <Link
-                href="#"
+              </a>
+              <a
+                href="/settings"
                 className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground"
               >
                 <Cog className="h-5 w-5" />
                 Settings
-              </Link>
+              </a>
             </nav>
             {/* <div className="mt-auto">
               <Card>
@@ -141,9 +149,13 @@ const Header = ({ logo }: { logo: string }) => {
             <DropdownMenuSeparator />
             <DropdownMenuItem>Settings</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => {
-            signOut();
-          }}>Logout</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                signOut();
+              }}
+            >
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </header>
