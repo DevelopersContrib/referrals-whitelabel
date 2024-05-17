@@ -21,14 +21,14 @@ export default async function Page() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:lg:grid-cols-3 2xl:grid-cols-4 gap-y-4 lg:gap-4">
         {Array.isArray(campaignData) && campaignData.length > 0 ? (
           campaignData.map((campaign) => (
-            <div className="flex flex-col w-full" key={campaign.id}>
+            <div className="flex flex-col w-full h-full" key={campaign.id}>
               <a
                 href={`/campaigns/details/${campaign.id}`}
-                className="flex flex-col shadow-[0_0.5rem_1rem_rgba(0,0,0,0.15)] bg-white"
+                className="flex flex-col border border-solid border-[hsl(0_0%_0%/0.05)!important] rounded-lg bg-white h-full transition-all hover:scale-[1.02] hover:duration-300 hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] overflow-hidden"
               >
-                <span className="px-4 pt-4 pb-3 flex flex-col text-center">
+                <span className="px-4 pt-4 pb-3 flex flex-col text-center h-full">
                   <span className="capitalize mb-2">{campaign.name}</span>
-                  <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4">
+                  <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
                     <strong>{campaign.participants_rewarded}</strong>{" "}
                     participants rewarded
                   </span>
