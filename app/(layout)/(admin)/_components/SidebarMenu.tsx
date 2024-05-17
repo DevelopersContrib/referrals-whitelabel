@@ -34,6 +34,7 @@ const SidebarMenu = ({ logo }: { logo: string }) => {
                   width={0}
                   height={0}
                   className="w-full max-w-full h-[30px] object-contain"
+                  loading="lazy"
                 />
               </span>
             </Link>
