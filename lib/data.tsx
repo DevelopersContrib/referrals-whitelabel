@@ -9,16 +9,26 @@ interface Error {
 }
 
 export async function Getcampaigns(id: string = "") {
-  const domain = getDomain();
-  const timestamp = Date.now(); // Get current timestamp
-  const url = process.env.API_URL+`campaigns/get?key=`+process.env.API_KEY+`&id=${id}&domain=${domain}&limit=4&timestamp=${timestamp}`;
-  const res = await fetch(url);
+  try{
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`campaigns/get?key=`+process.env.API_KEY+`&id=${id}&domain=${domain}&limit=4&timestamp=${timestamp}`;
+  
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    // const text = await res.text();
+    // if(text==""){
+    //   return {'error':true}
+    // }
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
 }
 
 export const checkEmail = async (email: string) => {

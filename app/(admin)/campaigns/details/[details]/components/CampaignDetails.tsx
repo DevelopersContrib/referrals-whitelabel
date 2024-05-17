@@ -47,7 +47,7 @@ const CampaignDetails = ({ detail }: props) => {
         <div className="flex flex-col w-full">
           <Card className="flex flex-col">
             <CardHeader className="px-7">
-              <CardTitle>WANNA BE PART OF OUR GROWING TEAM?</CardTitle>
+              <CardTitle>{detail.widget_details.header_title}</CardTitle>
             </CardHeader>
             <CardContent>
               <Tabs defaultValue="invite">
@@ -105,7 +105,7 @@ const CampaignDetails = ({ detail }: props) => {
                         <CardContent>
                           <div className="mb-4">
                             <Image
-                              src={`https://www.referrals.com/assets/uploads/widget/1571967803.jpg`}
+                              src={detail.widget_details.background_image}
                               width={0}
                               height={0}
                               alt=""
@@ -116,11 +116,10 @@ const CampaignDetails = ({ detail }: props) => {
                           </div>
                           <div className="mb-8">
                             <h2 className="text-xl mb-4">
-                              WANNA BE PART OF OUR GROWING TEAM?
+                            {detail.widget_details.header_title}
                             </h2>
                             <p className="text-sm mb-4">
-                              Contribute by completing tasks, earning tokens,
-                              submitting content or joining the team!
+                            {detail.widget_details.description}
                             </p>
                           </div>
                           <div className="w-full flex items-center">
@@ -137,9 +136,7 @@ const CampaignDetails = ({ detail }: props) => {
                             </div>
                             <div className="flex-grow">
                               <p className="text-sm">
-                                There are many ways to contribute! You can
-                                complete tasks, buy tokens, join the staff and
-                                help us build top premium domains today!
+                              {detail.widget_details.body_text}
                               </p>
                               <br />
                               <p className="text-sm">
