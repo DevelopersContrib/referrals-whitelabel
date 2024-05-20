@@ -31,6 +31,46 @@ export async function Getcampaigns(id: string = "") {
   }  
 }
 
+export async function GetSocialClick(id: number = 0, campaign_id: string="") {
+  try{
+    const session = await getServerSession(options);
+    const user_id = session?.id;
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`campaigns/getclicks?key=`+process.env.API_KEY+`&social_id=${id}&domain=${domain}&campaign_id=${campaign_id}&userid=${user_id}&timestamp=${timestamp}`;
+ 
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
+export async function GetRewardText(id: number = 0) {
+  try{
+    const session = await getServerSession(options);
+    const user_id = session?.id;
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`campaigns/Rewardtext?key=`+process.env.API_KEY+`&campaign_id=${id}&domain=${domain}&timestamp=${timestamp}`;
+    
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
 export const checkEmail = async (email: string) => {
   try {
     const urlCheck =

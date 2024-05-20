@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import React from "react";
-
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 import {
   CardTitle,
@@ -27,7 +27,7 @@ export default function Login() {
     emailError: "",
     passwordError: ""
   }
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [success, setSuccess] = useState(false);
@@ -53,24 +53,24 @@ export default function Login() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (event:any) => { 
-  
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
     const isValid = !Object.values(errors).some((v) => v);
     if(isValid) {
+      setIsLoading(true);
       const response = await fetch("/api/login", {
         method: "POST",
         body: JSON.stringify(data)
       })
         .then((response) => {
           setSuccess(true);
-          console.log(response);
           if(response.ok){
             signIn('credentials', {redirect: false, email:data.userEmail,password:data.userPassword,domain:data.domain}).then((result) => {
-            
+              setIsLoading(false);
               window.location.replace("/dashboard")
         })
           }else{
+            setIsLoading(false);
             console.log('login error');
             setLoginError(true);
            
@@ -79,6 +79,7 @@ export default function Login() {
         })
         .catch((error) => {
           // Handle error here
+          setIsLoading(false);
         });
     }else{
       setErrors({ ...errors, ["validate"]: true });
@@ -127,7 +128,7 @@ export default function Login() {
                 {errors.validate ? <div className="d-block text-danger small mt-2">{errors.passwordError}</div> : null}
               </div>
               <Button className="w-full" onClick={handleSubmit}>
-                Login
+              {isLoading && <ReloadIcon className="h-4 w-4 mr-1 animate-spin" />} Login
               </Button>
             </div>
           </CardContent>
