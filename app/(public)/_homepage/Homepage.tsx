@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Layout from "@/app/(public)/layout";
+import bannerImage from "@/public/img/referral-banner-default.png";
+import { FaCheck } from "react-icons/fa6";
 
 interface Campaign {
   id: string;
@@ -26,12 +28,56 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
   return (
     <>
       <Layout>
-        <main className="homepage min-h-screen bg-[#ddd]">
-          <section className="py-4 bg-white text-black">
+        <main className="homepage min-h-screen bg-[#fafafa]">
+          <section className="py-20 bg-white text-black">
             <div className="container">
               <div className="row">
+                <div className="col-lg-6 flex flex-col">
+                  <h1 className="text-6xl font-bold mb-4">
+                    Refer [MyCompany] and Earn Rewards!
+                  </h1>
+                  <p className="mb-4 text-xl font-medium">
+                    Join our exciting referral program and start earning amazing
+                    rewards and prizes! Share the love for [MyCompany] with your
+                    friends and family, and get rewarded for every successful
+                    referral.
+                  </p>
+                  <ul className="list-unstyled mb-4 font-light">
+                    <li className="">
+                      <span className="inline-flex mr-2">
+                        <FaCheck className="h-4 w-4 " />
+                      </span>
+                      <span className="text-sm">
+                        Easy Sharing: Share your unique referral link on social
+                        media, email, or directly with friends.
+                      </span>
+                    </li>
+                    <li className="">
+                      <span className="inline-flex mr-2">
+                        <FaCheck className="h-4 w-4 " />
+                      </span>
+                      <span className="text-sm">
+                        Great Rewards: Earn discounts, exclusive access, and
+                        special prizes for each referral.
+                      </span>
+                    </li>
+                    <li className="">
+                      <span className="inline-flex mr-2">
+                        <FaCheck className="h-4 w-4 " />
+                      </span>
+                      <span className="text-sm">
+                        Track Your Success: Use our intuitive dashboard to
+                        monitor your referrals and rewards.
+                      </span>
+                    </li>
+                  </ul>
+                  <p className="text-sm">
+                    Start referring [MyCompany] today and enjoy the benefits of
+                    being a brand ambassador!
+                  </p>
+                </div>
                 <div className="col-lg-6">
-                  {banner ? (
+                  {!banner ? (
                     <Image
                       src={banner}
                       width={0}
@@ -42,31 +88,17 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                     />
                   ) : (
                     <Image
-                      src={
-                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
-                      }
-                      width={0}
-                      height={0}
+                      src={bannerImage}
                       alt=""
                       className="img-fluid w-full h-auto object-cover"
-                      sizes="100vw"
                     />
                   )}
-                </div>
-                <div className="col-lg-6 flex justify-center flex-col">
-                  <h1 className="text-6xl font-bold mb-8">
-                    Get Instant Free Access
-                  </h1>
-                  <p className="">
-                    FREE Referral Platform for your Business. Get viral, fast
-                    and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN FOR
-                  </p>
                 </div>
               </div>
             </div>
           </section>
-          <section className="py-4">
-            <div className="container grid grid-cols-4 gap-4">
+          <section className="py-20">
+            <div className="container grid grid-cols-1 lg:grid-cols-4 gap-4">
               {Array.isArray(campaignData) && campaignData.length > 0 ? (
                 campaignData.map((campaign) => (
                   <a
