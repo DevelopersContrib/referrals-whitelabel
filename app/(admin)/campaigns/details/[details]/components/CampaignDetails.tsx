@@ -29,12 +29,14 @@ import Image from "next/image";
 import WaysToShareComponent from "./WaysToShareComponent";
 import InviteListComponent from "./InviteListComponent";
 import { campaign } from "@/types/campaign";
-
+import { SocialClicks } from "@/types/socialClicks";
 interface props {
   detail: campaign;
+  socialClicks: SocialClicks;
+  reward:string
 }
 
-const CampaignDetails = ({ detail }: props) => {
+const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaign-details-page">
@@ -64,37 +66,37 @@ const CampaignDetails = ({ detail }: props) => {
                         <div className="mb-1">
                           <FaEnvelope className="h-8 w-8" />
                         </div>
-                        <div className="font-bold text-2xl">0</div>
+                        <div className="font-bold text-2xl">{socialClicks.email}</div>
                       </div>
                       <div className="flex flex-col w-full items-center text-center justify-center">
                         <div className="mb-1">
                           <FaFacebookSquare className="h-8 w-8" />
                         </div>
-                        <div className="font-bold text-2xl">0</div>
+                        <div className="font-bold text-2xl">{socialClicks.facebook}</div>
                       </div>
                       <div className="flex flex-col w-full items-center text-center justify-center">
                         <div className="mb-1">
                           <FaLinkedin className="h-8 w-8" />
                         </div>
-                        <div className="font-bold text-2xl">0</div>
+                        <div className="font-bold text-2xl">{socialClicks.linkedin}</div>
                       </div>
                       <div className="flex flex-col w-full items-center text-center justify-center">
                         <div className="mb-1">
                           <FaTwitterSquare className="h-8 w-8" />
                         </div>
-                        <div className="font-bold text-2xl">0</div>
+                        <div className="font-bold text-2xl">{socialClicks.twitter}</div>
                       </div>
                       <div className="flex flex-col w-full items-center text-center justify-center">
                         <div className="mb-1">
                           <FaPinterestSquare className="h-8 w-8" />
                         </div>
-                        <div className="font-bold text-2xl">0</div>
+                        <div className="font-bold text-2xl">{socialClicks.pinterest}</div>
                       </div>
                       <div className="flex flex-col w-full items-center text-center justify-center">
                         <div className="mb-1 text-base font-semibold">
                           Rewarded Participants/Value
                         </div>
-                        <div className="font-bold text-5xl">40 for $195</div>
+                        <div className="font-bold text-5xl">{reward}</div>
                       </div>
                     </div>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-4 w-full mb-8">
@@ -139,11 +141,11 @@ const CampaignDetails = ({ detail }: props) => {
                               {detail.widget_details.body_text}
                               </p>
                               <br />
-                              <p className="text-sm">
+                              {/* <p className="text-sm">
                                 <strong>GET 50 CTB TOKENS</strong> just for
                                 sharing <strong>Contrib</strong> to your
                                 followers!
-                              </p>
+                              </p> */}
                             </div>
                           </div>
                         </CardContent>
