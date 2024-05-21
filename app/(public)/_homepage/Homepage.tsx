@@ -97,6 +97,44 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
               </div>
             </div>
           </section>
+          <section className="py-20 bg-white text-black">
+            <div className="container">
+              <div className="row">
+                <div className="col-lg-6">
+                  {banner ? (
+                    <Image
+                      src={banner}
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-contain"
+                      sizes="100vw"
+                    />
+                  ) : (
+                    <Image
+                      src={
+                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                      }
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-cover"
+                      sizes="100vw"
+                    />
+                  )}
+                </div>
+                <div className="col-lg-6 flex justify-center flex-col">
+                  <h1 className="text-6xl font-bold mb-8">
+                    Get Instant Free Access
+                  </h1>
+                  <p className="">
+                    FREE Referral Platform for your Business. Get viral, fast
+                    and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN FOR
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
           <section className="py-20">
             <div className="container grid grid-cols-1 lg:grid-cols-4 gap-4">
               {Array.isArray(campaignData) && campaignData.length > 0 ? (
