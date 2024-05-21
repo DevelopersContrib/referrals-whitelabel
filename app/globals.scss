@@ -52,13 +52,19 @@
 /*
  * Public Pages Custom CSS
  */
-@import "../public/scss/pages/homepage";
+@import "../public/scss/pages/homepage", "../public/scss/pages/publicHeaderMenu";
 
 /*
  * Admin Pages Custom CSS
  */
 @import "../public/scss/admin/sidebar", "../public/scss/admin/campaign",
   "../public/scss/admin/deals";
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  @apply pt-[78px];
+}
 
 /*
  * Custom Checkbox
