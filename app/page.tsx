@@ -11,6 +11,7 @@ export default async function Home() {
       logo={c.data.logo}
       domain={domain}
       banner={c.data.banner_image}
+      brand = {c.data.brand_name}
       campaignData={campaign.data}
     />
   );

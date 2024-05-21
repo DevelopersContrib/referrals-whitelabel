@@ -19,12 +19,13 @@ interface Campaign {
 
 interface HomepageProps {
   domain: string;
+  brand : string;
   logo: string;
   banner: string;
   campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
 }
 
-const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
+const Homepage: React.FC<HomepageProps> = ({ banner, campaignData, brand }) => {
   return (
     <>
       <Layout>
@@ -34,11 +35,11 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
               <div className="row">
                 <div className="col-lg-6 flex flex-col">
                   <h1 className="text-6xl font-bold mb-4">
-                    Refer [MyCompany] and Earn Rewards!
+                    Refer {brand} and Earn Rewards!
                   </h1>
                   <p className="mb-4 text-xl font-medium">
                     Join our exciting referral program and start earning amazing
-                    rewards and prizes! Share the love for [MyCompany] with your
+                    rewards and prizes! Share the love for {brand} with your
                     friends and family, and get rewarded for every successful
                     referral.
                   </p>
@@ -72,7 +73,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                     </li>
                   </ul>
                   <p className="text-sm">
-                    Start referring [MyCompany] today and enjoy the benefits of
+                    Start referring {brand} today and enjoy the benefits of
                     being a brand ambassador!
                   </p>
                 </div>
