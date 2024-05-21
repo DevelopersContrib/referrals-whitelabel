@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/card";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { WIDGET_TYPE } from "../../../../../../lib/constants";
 import { FaCheck, FaEnvelope, FaLinkedin } from "react-icons/fa6";
 import {
   FaFacebookSquare,
@@ -28,6 +29,9 @@ import {
 import Image from "next/image";
 import WaysToShareComponent from "./WaysToShareComponent";
 import InviteListComponent from "./InviteListComponent";
+import dynamic from "next/dynamic";
+const DynamicContent = dynamic(() => import('./../../../../../../components/DynamicContent'), { ssr: false })
+
 import { campaign } from "@/types/campaign";
 import { SocialClicks } from "@/types/socialClicks";
 interface props {
@@ -106,7 +110,8 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                         </CardHeader>
                         <CardContent>
                           <div className="mb-4">
-                            <Image
+                          {
+                              (detail.widget_details.widget_type==WIDGET_TYPE.WIDGET) ?<Image
                               src={detail.widget_details.background_image}
                               width={0}
                               height={0}
@@ -114,7 +119,16 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                               sizes="100vw"
                               className="img-fluid w-full h-auto object-contain"
                               loading="lazy"
+                            />:<Image
+                              src={detail.widget_details.banner_image_url}
+                              width={0}
+                              height={0}
+                              alt=""
+                              sizes="100vw"
+                              className="img-fluid w-full h-auto object-contain"
+                              loading="lazy"
                             />
+                            }
                           </div>
                           <div className="mb-8">
                             <h2 className="text-xl mb-4">
@@ -125,7 +139,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                             </p>
                           </div>
                           <div className="w-full flex items-center">
-                            <div className="flex mr-2">
+                             <div className="flex mr-2">
                               <Image
                                 src={`https://www.referrals.com/assets/uploads/2a72c1044d2e219c8a937a86a27229e0.png`}
                                 width={0}
@@ -138,15 +152,14 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                             </div>
                             <div className="flex-grow">
                               <p className="text-sm">
-                              {detail.widget_details.body_text}
                               </p>
                               <br />
-                              {/* <p className="text-sm">
-                                <strong>GET 50 CTB TOKENS</strong> just for
-                                sharing <strong>Contrib</strong> to your
-                                followers!
-                              </p> */}
-                            </div>
+                              <p className="text-sm">
+                              {/* <div dangerouslySetInnerHTML={{ __html: detail.widget_details.body_text }} /> */}
+                              <DynamicContent html={detail.widget_details.body_text} />
+                              </p>
+                            </div> 
+                            
                           </div>
                         </CardContent>
                       </Card>
@@ -160,7 +173,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                             <h3 className="uppercase text-xl mb-1">REWARD:</h3>
                             <div className="mb-4 flex items-center text-sm">
                               <FaCheck className="h-4 w-4 mr-2" />
-                              <span className="font-light">TOKENS</span>
+                              <span className="font-light">{detail.reward_type_name}</span>
                             </div>
                           </div>
                           <div className="mb-8">
@@ -170,7 +183,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                               <span className="font-light">
                                 YOU WILL BE SENT A REWARD NOTIFICATION VIA EMAIL
                                 AND YOU CAN CHECK YOUR REWARDS HERE [{" "}
-                                <a href="#" className="text-blue-600">
+                                <a href="/rewards" className="text-blue-600">
                                   LINK REWARD PAGE
                                 </a>{" "}
                                 ]
@@ -184,11 +197,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                             <div className="mb-4 flex items-center text-sm">
                               <FaCheck className="h-4 w-4 mr-2" />
                               <span className="font-light">
-                                REFER TO [{" "}
-                                <a href="#" className="uppercase text-blue-600">
-                                  CONTRIB.COM
-                                </a>{" "}
-                                ]
+                                <DynamicContent html={detail.how_to_get_reward} />
                               </span>
                             </div>
                           </div>
@@ -200,7 +209,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                               WAYS TO SHARE TO YOUR FRIENDS:
                             </h3>
                             <div className="mb-4 w-full">
-                              <WaysToShareComponent />
+                              <WaysToShareComponent detail={detail} />
                             </div>
                           </div>
                         </CardContent>
