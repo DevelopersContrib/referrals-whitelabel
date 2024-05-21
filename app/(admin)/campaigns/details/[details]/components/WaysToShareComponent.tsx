@@ -10,8 +10,12 @@ import {
 } from "react-icons/fa";
 
 import { Textarea } from "@/components/ui/textarea";
-
-const WaysToShareComponent = () => {
+import { campaign } from "@/types/campaign";
+interface props {
+  detail: campaign;
+}
+const WaysToShareComponent = ({ detail }: props) => {
+  const val=`<script id="referral-script" src="https://www.referrals.com/extension/widget.js?key=${detail.id}" type="text/javascript"></script>`
   return (
     <>
       <Tabs defaultValue="viaEmail">
@@ -91,7 +95,10 @@ const WaysToShareComponent = () => {
               referrals
             </p>
             <div className="w-full mb-4">
-              <Textarea />
+             
+              <Textarea name="w_embed_code_ac" id="w_embed_code_ac" className="form-control m-input">
+              {val}
+              </Textarea>
             </div>
             <h4 className="font-bold mb-2">Wordpress Plugin</h4>
             <div className="p-4 bg-[#f7f8fa]">

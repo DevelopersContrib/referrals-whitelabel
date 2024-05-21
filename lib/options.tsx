@@ -58,7 +58,7 @@ export const options: NextAuthOptions = {
       return true;
     },
     async redirect({ url, baseUrl }) {
-      console.log('baseUrl',baseUrl)
+      
       return baseUrl;
     },
     async session({ session, user, token }) {
