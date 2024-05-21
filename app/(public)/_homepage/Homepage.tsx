@@ -118,7 +118,7 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData }) => {
                       width={0}
                       height={0}
                       alt=""
-                      className="img-fluid w-full h-auto object-cover"
+                      className="img-fluid w-full h-auto object-contain"
                       sizes="100vw"
                     />
                   )}

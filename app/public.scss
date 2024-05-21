@@ -50,16 +50,12 @@
 }
 
 /*
- * Admin Pages Custom CSS
+ * Public Pages Custom CSS
  */
-@import "../public/scss/admin/sidebar", "../public/scss/admin/campaign",
-  "../public/scss/admin/deals";
+@import "../public/scss/pages/homepage", "../public/scss/pages/publicHeaderMenu";
 
-/*
- * Custom Checkbox
- */
-.custom-checkbox {
-  &.data-\[state\=checked\]\:bg-primary[data-state="checked"] {
-    background-color: #000;
-  }
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  @apply pt-[78px];
 }
