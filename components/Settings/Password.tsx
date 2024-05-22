@@ -1,7 +1,7 @@
 "use client";
 import Swal from "sweetalert2";
-import React, { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import React, { useState } from "react";
+import { useSession } from "next-auth/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -26,21 +26,26 @@ export default function Account() {
 
   const schema = Yup.object().shape({
     password: Yup.string().required("Enter your password."),
-    rePassword: Yup.string().required("Please confirm your password."),
+    rePassword: Yup.string()
+      .oneOf([Yup.ref('password')], "Passwords must match")
+      .required("Please confirm your password."),
   });
 
   const handleClick = async (values: any) => {
-    setError((prev) => "");
+    setError("");
     setUpdating(true);
 
-    const updated = await fetch("/api/user/updatepassword", {
+    const response = await fetch("/api/user/updatepassword", {
       method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         password: values.password,
       })
     });
 
-    const result = await updated.json();
+    const result = await response.json();
 
     console.log(result);
     if (!result.success) {
@@ -77,65 +82,65 @@ export default function Account() {
 
   if (session) {
     return (
-      <>
-        <Card>
-          <CardHeader>
-            <CardTitle>Password</CardTitle>
-            <CardDescription>Change your password here.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Formik
-              initialValues={{
-                password: '',
-                repassword: ''
-              }}
-              validationSchema={schema}
-              onSubmit={(values: any) => {
-                setTimeout(() => {
-                  handleClick(values);
-                }, 500);
-              }}
-            >
-              {(formik) => (
-                <Form>
-                  <div className="mb-4">
-                    <Label htmlFor="name">Password</Label>
-                    <Field id="password" as={InputPassword} name="password" />
-                    <ErrorMessage
-                      component="small"
-                      className="text-[rgb(220,53,69)]"
-                      name="password"
-                    />
-                  </div>
+      <Card>
+        <CardHeader>
+          <CardTitle>Password</CardTitle>
+          <CardDescription>Change your password here.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Formik
+            initialValues={{
+              password: '',
+              rePassword: ''
+            }}
+            validationSchema={schema}
+            onSubmit={(values: any) => {
+              setTimeout(() => {
+                handleClick(values);
+              }, 500);
+            }}
+          >
+            {(formik) => (
+              <Form>
+                <div className="mb-4">
+                  <Label htmlFor="password">Password</Label>
+                  <Field id="password" as={InputPassword} name="password" />
+                  <ErrorMessage
+                    component="small"
+                    className="text-[rgb(220,53,69)]"
+                    name="password"
+                  />
+                </div>
 
-                  <div className="mb-4">
-                    <Label htmlFor="email">Re Type Password</Label>
-                    <Field id="repassword" as={InputRepassword} name="repassword" />
-                    <ErrorMessage
-                      component="small"
-                      className="text-[rgb(220,53,69)]"
-                      name="rePassword"
-                    />
-                  </div>
-                  <Button type="submit" disabled={updating}>
-                    {updating ? (
-                      <>
-                        <ReloadIcon className="h-4 w-4 mr-1 animate-spin" />
-                        Updating...
-                      </>
-                    ) : (
-                      <>
-                        <FaCheck className="h-4 w-4 mr-1" />
-                        Save Changes
-                      </>
-                    )}
-                  </Button>
-                </Form>
-              )}
-            </Formik>
-          </CardContent>
-        </Card>
-      </>
+                <div className="mb-4">
+                  <Label htmlFor="rePassword">Re Type Password</Label>
+                  <Field id="rePassword" as={InputRepassword} name="rePassword" />
+                  <ErrorMessage
+                    component="small"
+                    className="text-[rgb(220,53,69)]"
+                    name="rePassword"
+                  />
+                </div>
+                <Button type="submit" disabled={updating}>
+                  {updating ? (
+                    <>
+                      <ReloadIcon className="h-4 w-4 mr-1 animate-spin" />
+                      Updating...
+                    </>
+                  ) : (
+                    <>
+                      <FaCheck className="h-4 w-4 mr-1" />
+                      Save Changes
+                    </>
+                  )}
+                </Button>
+              </Form>
+            )}
+          </Formik>
+        </CardContent>
+      </Card>
     );
   }
+
+  return null; // Handle the case when there is no session
 }
