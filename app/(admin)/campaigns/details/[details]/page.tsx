@@ -4,9 +4,10 @@ import { Getcampaigns, GetSocialClick, GetRewardText } from "../../../../../lib/
 import { campaign } from "@/types/campaign";
 import { SocialClicks } from "@/types/socialClicks";
 import { SOCIAL_TYPES } from "../../../../../lib/constants";
-
+import { getDomain } from "@/data/data";
 
 const CampaignDetailsPage = async({ params }: { params: { details: string} }) => {
+  const domain = getDomain();
   const id = params.details
 
   const result = await Getcampaigns(id);
@@ -36,7 +37,7 @@ const CampaignDetailsPage = async({ params }: { params: { details: string} }) =>
 
   return (
     <>
-      <CampaignDetails reward={reward.reward} socialClicks={socialClicks} detail={campaignDetails} />
+      <CampaignDetails domain={domain} reward={reward.reward} socialClicks={socialClicks} detail={campaignDetails} />
     </>
   );
 };

@@ -136,6 +136,18 @@ export const saveUser = async (values: User) => {
   }
 };
 
+export const invite = async () => {
+  try {
+    const res = await fetch('/api/deals', {
+      method: 'POST',
+      body: JSON.stringify({ domains: 'domains.com' })
+    });
+    return res.json();
+  } catch (error) {
+    return error;
+  }
+};
+
 export const authorizeUser = async (credentials: User) => {
  
     try {
