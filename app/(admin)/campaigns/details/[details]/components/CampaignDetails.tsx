@@ -37,10 +37,11 @@ import { SocialClicks } from "@/types/socialClicks";
 interface props {
   detail: campaign;
   socialClicks: SocialClicks;
-  reward:string
+  reward:string,
+  domain:string
 }
 
-const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
+const CampaignDetails = ({ detail,socialClicks,reward,domain }: props) => {
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaign-details-page">
@@ -139,7 +140,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                             </p>
                           </div>
                           <div className="w-full flex items-center">
-                             <div className="flex mr-2">
+                             {/* <div className="flex mr-2">
                               <Image
                                 src={`https://www.referrals.com/assets/uploads/2a72c1044d2e219c8a937a86a27229e0.png`}
                                 width={0}
@@ -149,15 +150,12 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                                 className="img-fluid w-full h-auto object-contain"
                                 loading="lazy"
                               />
-                            </div>
+                            </div> */}
                             <div className="flex-grow">
-                              <p className="text-sm">
-                              </p>
-                              <br />
-                              <p className="text-sm">
+                             
                               {/* <div dangerouslySetInnerHTML={{ __html: detail.widget_details.body_text }} /> */}
                               <DynamicContent html={detail.widget_details.body_text} />
-                              </p>
+                             
                             </div> 
                             
                           </div>
@@ -209,7 +207,7 @@ const CampaignDetails = ({ detail,socialClicks,reward }: props) => {
                               WAYS TO SHARE TO YOUR FRIENDS:
                             </h3>
                             <div className="mb-4 w-full">
-                              <WaysToShareComponent detail={detail} />
+                              <WaysToShareComponent domain={domain} detail={detail} />
                             </div>
                           </div>
                         </CardContent>
