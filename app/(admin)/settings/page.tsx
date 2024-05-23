@@ -7,10 +7,10 @@ import Account from "@/components/Settings/Account";
 import Password from "@/components/Settings/Password";
 import Wallet from "@/components/Settings/Wallet";
 import Deleteaccount from "@/components/Settings/Deleteaccount";
-import { getUser } from "../../../data/data";
+
 const Settings  = async() => {
 
-  const userData = await getUser();
+  
   
   
   return (

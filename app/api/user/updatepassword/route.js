@@ -13,7 +13,7 @@ export const POST = async (request) => {
       headers: { Authorization: 'Bearer ' + session?.token },
     };
 
-    const apiUrl = process.env.API_URL + 'user/update?key=' + process.env.API_KEY+'&domain='+getDomain()+'&token='+session?.token+'&password='+data.name;  
+    const apiUrl = process.env.API_URL + 'user/update?key=' + process.env.API_KEY+'&domain='+getDomain()+'&token='+session?.token+'&password='+data.password;  
     const params = new URLSearchParams();
     params.append('password', data.password);
 
