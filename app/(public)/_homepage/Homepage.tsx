@@ -23,10 +23,23 @@ interface HomepageProps {
   brand: string;
   logo: string;
   banner: string;
+  description: string;
+  featCampaignName: string;
+  featCampaigDescription: string;
+  featCampaigImage: string;
+  featCampaignId: string;
   campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
 }
 
-const Homepage: React.FC<HomepageProps> = ({ banner, campaignData, brand }) => {
+const Homepage: React.FC<HomepageProps> = ({ 
+  banner, 
+  campaignData, 
+  brand, 
+  description,
+  featCampaignName,
+  featCampaigDescription,
+  featCampaigImage,
+  featCampaignId }) => {
   return (
     <>
       <Layout>
@@ -36,21 +49,29 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData, brand }) => {
               <div className="row">
                 <div className="col-lg-6 flex flex-col">
                   <h1 className="text-6xl font-bold mb-4">
-                    Refer {brand} and Earn Rewards!
+                    Refer {brand} and Earn Rewards! 
                   </h1>
+                 {description ? (
                   <p className="mb-4 text-xl font-medium">
-                    Join our exciting referral program and start earning amazing
-                    rewards and prizes! Share the love for {brand} with your
-                    friends and family, and get rewarded for every successful
-                    referral.
+                      {description}
                   </p>
-                  <p className="text-sm">
-                    Start referring {brand} today and enjoy the benefits of
-                    being a brand ambassador!
-                  </p>
+                  ) : (
+                  <>
+                    <p className="mb-4 text-xl font-medium">
+                      Join our exciting referral program and start earning amazing
+                      rewards and prizes! Share the love for {brand} with your
+                      friends and family, and get rewarded for every successful
+                      referral.
+                    </p>
+                    <p className="text-sm">
+                      Start referring {brand} today and enjoy the benefits of
+                      being a brand ambassador!
+                    </p>
+                  </>
+                   )}
                 </div>
                 <div className="col-lg-6">
-                  {!banner ? (
+                {banner ? (
                     <Image
                       src={banner}
                       width={0}
@@ -62,8 +83,11 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData, brand }) => {
                   ) : (
                     <Image
                       src={bannerImage}
+                      width={0}
+                      height={0}
                       alt=""
-                      className="img-fluid w-full h-auto object-cover"
+                      className="img-fluid w-full h-auto object-contain"
+                      sizes="100vw"
                     />
                   )}
                 </div>
@@ -125,44 +149,60 @@ const Homepage: React.FC<HomepageProps> = ({ banner, campaignData, brand }) => {
               </div>
             </div>
           </section>
-          <section className="py-20 bg-white text-black">
+          {featCampaignId ? (
+            <section className="py-20 bg-white text-black">
             <div className="container">
               <div className="row">
                 <div className="col-lg-6">
-                  {banner ? (
                     <Image
-                      src={banner}
+                      src={ featCampaigImage }
                       width={0}
                       height={0}
                       alt=""
                       className="img-fluid w-full h-auto object-contain"
                       sizes="100vw"
                     />
-                  ) : (
-                    <Image
-                      src={
-                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
-                      }
-                      width={0}
-                      height={0}
-                      alt=""
-                      className="img-fluid w-full h-auto object-contain"
-                      sizes="100vw"
-                    />
-                  )}
                 </div>
                 <div className="col-lg-6 flex justify-center flex-col">
                   <h1 className="text-6xl font-bold mb-8">
-                    Get Instant Free Access
+                    {featCampaignName}
                   </h1>
                   <p className="">
-                    FREE Referral Platform for your Business. Get viral, fast
-                    and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN FOR
+                    {featCampaigDescription}
                   </p>
                 </div>
               </div>
             </div>
-          </section>
+            </section>
+           ) : (
+            <section className="py-20 bg-white text-black">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-6">
+                      <Image
+                        src={
+                          "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                        }
+                        width={0}
+                        height={0}
+                        alt=""
+                        className="img-fluid w-full h-auto object-contain"
+                        sizes="100vw"
+                      />
+                  </div>
+                  <div className="col-lg-6 flex justify-center flex-col">
+                    <h1 className="text-6xl font-bold mb-8">
+                      Get Instant Free Access
+                    </h1>
+                    <p className="">
+                      FREE Referral Platform for your Business. Get viral, fast
+                      and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN FOR
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+          )}
           <section className="py-20">
             <div className="container grid grid-cols-1 lg:grid-cols-4 gap-4">
               {Array.isArray(campaignData) && campaignData.length > 0 ? (
