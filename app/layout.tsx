@@ -19,7 +19,8 @@ const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   display: "swap",
-  style: "normal"
+  style: "normal",
+  variable: "--font-poppins"
 });
 
 export default async function RootLayout({
@@ -40,7 +41,7 @@ export default async function RootLayout({
           rel="stylesheet"
         /> */}
       </head>
-      <body className={poppins.className}>
+      <body className={`${poppins.variable} font-sans`}>
         <AuthProvider>
           <header>{c.header_script ? null : c.header_script}</header>
           {children}
