@@ -11,6 +11,7 @@ export const POST = async (req: Request) => {
     };
 
   const apiUrl = process.env.API_URL + 'campaigns/join?key=' + process.env.API_KEY+'&domain='+data.domain+'&campaign_id='+data.campaign_id+'&userid='+session?.id;
+  
   const res = await axios.get(apiUrl, config);
   
   if(res.data.success){

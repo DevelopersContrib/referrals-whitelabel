@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/card";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { WIDGET_TYPE } from "../../../../../../lib/constants";
+import { WIDGET_TYPE } from "@/lib/constants";
 import { FaCheck, FaEnvelope, FaLinkedin } from "react-icons/fa6";
 import {
   FaFacebookSquare,
@@ -30,18 +30,22 @@ import Image from "next/image";
 import WaysToShareComponent from "./WaysToShareComponent";
 import InviteListComponent from "./InviteListComponent";
 import dynamic from "next/dynamic";
-const DynamicContent = dynamic(() => import('./../../../../../../components/DynamicContent'), { ssr: false })
 
+import { socialUrls } from "@/types/socialUrls";
 import { campaign } from "@/types/campaign";
 import { SocialClicks } from "@/types/socialClicks";
+
 interface props {
   detail: campaign;
   socialClicks: SocialClicks;
+  socialUrls:socialUrls,
   reward:string,
   domain:string
 }
 
-const CampaignDetails = ({ detail,socialClicks,reward,domain }: props) => {
+const DynamicContent = dynamic(() => import('@/components/DynamicContent'), { ssr: false })
+
+const CampaignDetails = ({ socialUrls,detail,socialClicks,reward,domain }: props) => {
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaign-details-page">
@@ -207,13 +211,13 @@ const CampaignDetails = ({ detail,socialClicks,reward,domain }: props) => {
                               WAYS TO SHARE TO YOUR FRIENDS:
                             </h3>
                             <div className="mb-4 w-full">
-                              <WaysToShareComponent domain={domain} detail={detail} />
+                              <WaysToShareComponent socialUrls={socialUrls} domain={domain} detail={detail} />
                             </div>
                           </div>
                         </CardContent>
                       </Card>
                     </div>
-                    <Card>
+                    {/*<Card>
                       <CardHeader>
                         <CardTitle>Contest</CardTitle>
                       </CardHeader>
@@ -248,7 +252,7 @@ const CampaignDetails = ({ detail,socialClicks,reward,domain }: props) => {
                           </TableBody>
                         </Table>
                       </CardContent>
-                    </Card>
+                    </Card>*/}
                   </TabsContent>
                   <TabsContent value="inviteList">
                     <InviteListComponent />
