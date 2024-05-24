@@ -1,15 +1,17 @@
 import React from "react";
 import CampaignDetails from "./components/CampaignDetails";
-import { Getcampaigns, GetSocialClick, GetRewardText } from "../../../../../lib/data";
+import { Getcampaigns, GetSocialClick, GetRewardText, Getsocialurls } from "@/lib/data";
 import { campaign } from "@/types/campaign";
 import { SocialClicks } from "@/types/socialClicks";
-import { SOCIAL_TYPES } from "../../../../../lib/constants";
+import { socialUrls } from "@/types/socialUrls";
+import { SOCIAL_TYPES } from "@/lib/constants";
 import { getDomain } from "@/data/data";
 
 const CampaignDetailsPage = async({ params }: { params: { details: string} }) => {
   const domain = getDomain();
   const id = params.details
 
+  const urls = await Getsocialurls(id);
   const result = await Getcampaigns(id);
   const campaignData = result.data[0];
 
@@ -31,13 +33,15 @@ const CampaignDetailsPage = async({ params }: { params: { details: string} }) =>
     messenger: messengerData.data.clicks,
 };
 
+  const sUrl = urls.data.social_media_urls;
+  const socialUrl = sUrl as socialUrls;
   const campaignDetails = campaignData as campaign;
   const rewardText = await GetRewardText(parseInt(id));
   const reward = rewardText.data as {reward:string}
 
   return (
     <>
-      <CampaignDetails domain={domain} reward={reward.reward} socialClicks={socialClicks} detail={campaignDetails} />
+      <CampaignDetails socialUrls={socialUrl} domain={domain} reward={reward.reward} socialClicks={socialClicks} detail={campaignDetails} />
     </>
   );
 };

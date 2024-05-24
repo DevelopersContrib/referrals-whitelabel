@@ -1,6 +1,7 @@
 'use client';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import Link from 'next/link'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaLinkedin, FaUsers } from "react-icons/fa6";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -13,13 +14,15 @@ import {
 
 import { Textarea } from "@/components/ui/textarea";
 import { campaign } from "@/types/campaign";
+import { socialUrls } from "@/types/socialUrls";
 import { useState, useEffect } from "react";
 
 interface props {
   detail: campaign;
+  socialUrls:socialUrls;
   domain: string;
 }
-const WaysToShareComponent = ({ detail, domain }: props) => {
+const WaysToShareComponent = ({ socialUrls, detail, domain }: props) => {
   const initialValues = {
     email: "",
     name: "",
@@ -122,44 +125,44 @@ const WaysToShareComponent = ({ detail, domain }: props) => {
           <TabsContent value="viaSocial">
             <ul className="list-none p-0 m-0 space-x-2">
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+              <a target="_blank" href={socialUrls.google_plus}>
                   <span className="mr-2">
                     <FaGooglePlusSquare />
                   </span>
                   Sign in with Google
-                </Button>
+               </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+              <a target="_blank" href={socialUrls.facebook}>
                   <span className="mr-2">
                     <FaFacebookSquare />
                   </span>
                   Facebook
-                </Button>
+              </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+              <a target="_blank" href={socialUrls.linkedin}>
                   <span className="mr-2">
                     <FaLinkedin />
                   </span>
                   Linkedin
-                </Button>
+              </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+              <a target="_blank" href={socialUrls.twitter}>
                   <span className="mr-2">
                     <FaTwitterSquare />
                   </span>
                   Twitter
-                </Button>
+              </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+              <a target="_blank" href={socialUrls.facebook}>
                   <span className="mr-2">
                     <FaPinterestSquare />
                   </span>
                   Pinterest
-                </Button>
+              </a>
               </li>
             </ul>
           </TabsContent>

@@ -31,6 +31,24 @@ export async function Getcampaigns(id: string = "") {
   }  
 }
 
+export async function Getsocialurls(id: string = "") {
+  try{
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`campaigns/Getsocialurls?key=`+process.env.API_KEY+`&campaign_id=${id}&domain=${domain}&timestamp=${timestamp}`;
+  
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
 export async function GetSocialClick(id: number = 0, campaign_id: string="") {
   try{
     const session = await getServerSession(options);
@@ -173,88 +191,4 @@ export const authorizeUser = async (credentials: User) => {
       console.log("error", error);
     }
 
-/*
-   try {
-    const apiUrl =
-      process.env.API_URL +
-      "/user/check?api_key=" +
-      process.env.API_KEY +
-      "&email=" +
-      credentials.email;
-
-    const res = await axios.get(apiUrl, { timeout: 4000 });
-    const result = res.data;
-
-    if (result.data.success && result.data.error === "") {
-      try {
-        const apiUrl =
-          process.env.API_URL + "/auth/login?api_key=" + process.env.API_KEY;
-        const params = new URLSearchParams();
-
-        params.append("email", credentials.email as string);
-        params.append("password", credentials.password as string);
-
-        const res = await axios.post(apiUrl, params);
-
-        if (res.data.token) {
-          return {
-            id: result.data.data.id,
-            email: credentials.email,
-            name: result.data.data.first_name,
-            token: res.data.token,
-          };
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-
-      // return user;
-    } else {
-      console.log("not found");
-      try {
-        const apiUrl =
-          process.env.API_URL + "/user/save?api_key=" + process.env.API_KEY;
-        const params = new URLSearchParams();
-        params.append("first_name", credentials.firstName as string);
-        params.append("last_name", credentials.lastName as string);
-        params.append("email", credentials.email as string);
-        params.append("password", credentials.password as string);
-
-        const res = await axios.post(apiUrl, params);
-        const result = res.data;
-
-        if (result.success) {
-          return {
-            id: result.user.id,
-            email: result.user.email,
-            name: result.user.first_name,
-            token: result.token,
-          };
-          // const userId = result.data.user.id;
-          // const apiUrl = process.env.API_URL + '/auth/login?api_key=' + process.env.API_KEY;
-          // const params = new URLSearchParams();
-
-          // params.append('email', credentials.email as string);
-          // params.append('password', credentials.password as string);
-
-          // const res = await axios.post(apiUrl, params);
-
-          // if (res.data.token) {
-          //   return {
-          //     id: userId,
-          //     email: credentials.email,
-          //     name: credentials.firstName,
-          //     token: res.data.token,
-          //   };
-          // }
-        }
-      } catch (error) {
-        console.log("error", error);
-      }
-    }
-    
-  } catch (error) {
-    console.log("error", error);
-  }
-  */
 };
