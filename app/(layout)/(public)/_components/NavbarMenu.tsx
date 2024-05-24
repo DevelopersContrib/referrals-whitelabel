@@ -56,20 +56,7 @@ const NavbarMenu: React.FC<NavMenuProps> = ({ logo, domain }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/" className="capitalize">
-                Home
-              </Nav.Link>
-              <Nav.Link href="/about" className="capitalize">
-                about
-              </Nav.Link>
-              <Nav.Link href="/privacy" className="capitalize">
-                privacy policy
-              </Nav.Link>
-              <Nav.Link href="/terms" className="capitalize">
-                terms and condition
-              </Nav.Link>
-
-              <Nav.Link href="/login" className="ms-4">
+              <Nav.Link href="/login" className="mr-4">
                 Log in
               </Nav.Link>
               <Nav.Link
