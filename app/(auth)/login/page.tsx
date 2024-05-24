@@ -96,7 +96,7 @@ export default function Login() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-56px-32px)] py-8 w-full flex justify-center items-center">
+    <main className="min-h-[calc(100vh-78px-48px)] py-8 w-full flex justify-center items-center">
       <Card className="mx-auto max-w-sm">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Login</CardTitle>
