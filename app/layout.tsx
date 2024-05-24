@@ -17,7 +17,9 @@ export async function generateMetadata() {
 
 const poppins = Poppins({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"]
+  subsets: ["latin"],
+  display: "swap",
+  style: "normal"
 });
 
 export default async function RootLayout({
