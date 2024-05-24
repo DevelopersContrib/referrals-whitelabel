@@ -17,8 +17,8 @@ const CampaignPictureDetails = () => {
         Vote for the best picture
       </h3>
       <p className="text-center mb-4">
-        Hello and welcome to linked.com's referral program! We are so excited to
-        have you onboard!
+        {`Hello and welcome to linked.com's referral program! We are so excited to
+        have you onboard!`}
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:lg:grid-cols-4 2xl:grid-cols-5 gap-y-4 lg:gap-4 mb-8">
@@ -253,8 +253,8 @@ const CampaignPictureDetails = () => {
       </div>
       <div className="mb-4">
         <h3 className="font-semibold text-xl 2xl:text-2xl text-center pb-4 border-b border-[#ddd]">
-          Hello and welcome to linked.com's referral program! we are so excited
-          to have you onboard!
+          {`Hello and welcome to linked.com's referral program! we are so excited
+          to have you onboard!`}
         </h3>
       </div>
 
