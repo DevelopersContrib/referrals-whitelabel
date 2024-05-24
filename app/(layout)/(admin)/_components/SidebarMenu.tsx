@@ -1,24 +1,9 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { imageLoader } from "@/helpers/image-helper";
-import {
-  Bell,
-  Cog,
-  Gift,
-  Home,
-  Layers,
-  LineChart,
-  Package,
-  Package2,
-  ShoppingCart,
-  Star,
-  Users
-} from "lucide-react";
+import { Cog, Gift, Layers, LineChart, Star } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation"; // Updated hook to use
+import { usePathname } from "next/navigation";
 
 const SidebarMenu = ({ logo }: { logo: string }) => {
   const pathname = usePathname();
