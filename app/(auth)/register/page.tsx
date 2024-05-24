@@ -75,9 +75,9 @@ export default function Register() {
       })
         .then((response) => {
           console.log(response);
-          if(response.ok){
-            console.log('myresponse')
-            console.log(response)
+          if (response.ok) {
+            console.log("myresponse");
+            console.log(response);
             setIsSubmit(false);
             // Handle response here
             setSuccess(true);
@@ -86,8 +86,8 @@ export default function Register() {
                 if (prev === 1) {
                   clearInterval(counterInterval);
                   window.location.href = "/login";
-                //console.log('response:')
-                //console.log(response)
+                  //console.log('response:')
+                  //console.log(response)
                 }
 
                 return prev - 1;
@@ -95,8 +95,8 @@ export default function Register() {
             }, 1000);
 
             return () => clearInterval(counterInterval);
-          }else{
-            console.log('email does exists');
+          } else {
+            console.log("email does exists");
             setemailExists(true);
             setIsSubmit(false);
           }
@@ -113,7 +113,7 @@ export default function Register() {
 
   return (
     <>
-      <main className="min-h-[calc(100vh-56px-32px)] py-8 w-full flex justify-center items-center">
+      <main className="min-h-[calc(100vh-78px-48px)] py-8 w-full flex justify-center items-center">
         <Card className="mx-auto max-w-sm">
           {!success ? (
             <>
@@ -125,11 +125,11 @@ export default function Register() {
               </CardHeader>
 
               <CardContent>
-              {emailExists ? (
-                        <div className="d-block text-danger small">
-                          Email already Exists
-                        </div>
-                  ) : null}
+                {emailExists ? (
+                  <div className="d-block text-danger small">
+                    Email already Exists
+                  </div>
+                ) : null}
                 <form>
                   <div className="grid gap-4">
                     <div className="grid gap-2">
