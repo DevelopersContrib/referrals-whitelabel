@@ -2,17 +2,12 @@ import React from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+import Account from "@/app/(admin)/settings/components/Account";
+import Password from "@/app/(admin)/settings/components/Password";
+import Wallet from "@/app/(admin)/settings/components/Wallet";
+import Deleteaccount from "@/app/(admin)/settings/components/Deleteaccount";
 
-import Account from "@/components/Settings/Account";
-import Password from "@/components/Settings/Password";
-import Wallet from "@/components/Settings/Wallet";
-import Deleteaccount from "@/components/Settings/Deleteaccount";
-
-const Settings  = async() => {
-
-  
-  
-  
+const Settings = async () => {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="">

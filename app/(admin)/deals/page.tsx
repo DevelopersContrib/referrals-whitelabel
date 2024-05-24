@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
-import DealsComponent from "@/components/Deals/DealsComponent";
+import React, { useState } from "react";
+import DealsComponent from "@/app/(admin)/deals/components/DealsComponent";
 import { GetDeals, GetCategories } from "../../../data/data";
-const Deals = async() => {
-  
+const Deals = async () => {
   const categories = await GetCategories();
   const deals = await GetDeals();
   const categoryData = categories.data;
