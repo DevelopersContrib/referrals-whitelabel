@@ -16,9 +16,8 @@ import {
   Users
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { usePathname } from "next/navigation"; // Updated hook to use
+import { usePathname } from "next/navigation";
 
 const SidebarMenu = ({ logo }: { logo: string }) => {
   const pathname = usePathname();
