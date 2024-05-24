@@ -1,6 +1,7 @@
-'use client';
+"use client";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaLinkedin, FaUsers } from "react-icons/fa6";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -13,80 +14,81 @@ import {
 
 import { Textarea } from "@/components/ui/textarea";
 import { campaign } from "@/types/campaign";
+import { socialUrls } from "@/types/socialUrls";
 import { useState, useEffect } from "react";
 
 interface props {
   detail: campaign;
+  socialUrls: socialUrls;
   domain: string;
 }
-const WaysToShareComponent = ({ detail, domain }: props) => {
+const WaysToShareComponent = ({ socialUrls, detail, domain }: props) => {
   const initialValues = {
     email: "",
     name: "",
     domain: domain,
     campaign_id: detail.id
-  }
+  };
 
   const initialErrors = {
     validate: false,
     emailError: "",
     nameError: ""
-  }
+  };
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [success, setSuccess] = useState(false);
   const [inviteError, setInviteError] = useState(false);
-  const [inviteErrorMsg, setInviteErrorMsg] = useState('');
+  const [inviteErrorMsg, setInviteErrorMsg] = useState("");
   const [Domain, setDomain] = useState(domain);
   const [CampainId, setCampainId] = useState(detail.id);
 
-  const val=`<script id="referral-script" src="https://www.referrals.com/extension/widget.js?key=${detail.id}" type="text/javascript"></script>`
-  
+  const val = `<script id="referral-script" src="https://www.referrals.com/extension/widget.js?key=${detail.id}" type="text/javascript"></script>`;
+
   useEffect(() => {
     const validateErrors = () => {
       let dataErrors;
       dataErrors = {
         validate: false, // Include validate property
-        emailError: (data.email ? "" : "Email is required") ||
-        (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
-          ? ""
-          : "Invalid Email"),
-        nameError: data.name ? "" : "Name is required.",
-      }
+        emailError:
+          (data.email ? "" : "Email is required") ||
+          (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)
+            ? ""
+            : "Invalid Email"),
+        nameError: data.name ? "" : "Name is required."
+      };
       setErrors(dataErrors);
     };
     validateErrors();
-  },[data]);
+  }, [data]);
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
   const Invite = async () => {
     const isValid = !Object.values(errors).some((v) => v);
-   
-    if(isValid) {
+
+    if (isValid) {
       setIsLoading(true);
       const res = await fetch("/api/invite/", {
         method: "POST",
         body: JSON.stringify(data)
       });
-      const ret = await res.json()
+      const ret = await res.json();
       setIsLoading(false);
-      if(!ret.success){
+      if (!ret.success) {
         setInviteError(true);
-        setInviteErrorMsg(ret.data.error_message)
-        
-      }else{
+        setInviteErrorMsg(ret.data.error_message);
+      } else {
         setSuccess(true);
-        setData(initialValues)
+        setData(initialValues);
       }
-    }else{
+    } else {
       setErrors({ ...errors, ["validate"]: true });
     }
-  }
-
+  };
 
   return (
     <>
@@ -102,16 +104,43 @@ const WaysToShareComponent = ({ detail, domain }: props) => {
           <TabsContent value="viaEmail">
             <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-y-4 lg:gap-4">
               <div>
-                <Input name="email" onChange={handleChange} value={data.email} placeholder="Enter your email address" />
-                {errors.validate ? <div className="d-block text-danger small mt-2">{errors.emailError}</div> : null}
+                <Input
+                  name="email"
+                  onChange={handleChange}
+                  value={data.email}
+                  placeholder="Enter your email address"
+                />
+                {errors.validate ? (
+                  <div className="d-block text-danger small mt-2">
+                    {errors.emailError}
+                  </div>
+                ) : null}
               </div>
               <div>
-                <Input name="name" onChange={handleChange} value={data.name} placeholder="Enter your Name" />
-                {errors.validate ? <div className="d-block text-danger small mt-2">{errors.nameError}</div> : null}
+                <Input
+                  name="name"
+                  onChange={handleChange}
+                  value={data.name}
+                  placeholder="Enter your Name"
+                />
+                {errors.validate ? (
+                  <div className="d-block text-danger small mt-2">
+                    {errors.nameError}
+                  </div>
+                ) : null}
               </div>
               <div>
-                <Button onClick={() => Invite()} className="flex w-full items-center space-x-2">
-                {isLoading?(<ReloadIcon className="h-4 w-4 mr-1 animate-spin" />):(<span><FaUsers className="h-4 w-4" /></span>) } 
+                <Button
+                  onClick={() => Invite()}
+                  className="flex w-full items-center space-x-2"
+                >
+                  {isLoading ? (
+                    <ReloadIcon className="h-4 w-4 mr-1 animate-spin" />
+                  ) : (
+                    <span>
+                      <FaUsers className="h-4 w-4" />
+                    </span>
+                  )}
                   <span>Invite Friends</span>
                 </Button>
                 {inviteError && <span>{inviteErrorMsg}</span>}
@@ -122,44 +151,64 @@ const WaysToShareComponent = ({ detail, domain }: props) => {
           <TabsContent value="viaSocial">
             <ul className="list-none p-0 m-0 space-x-2">
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+                <a
+                  target="_blank"
+                  href={socialUrls.google_plus}
+                  className={buttonVariants({ variant: "outline" })}
+                >
                   <span className="mr-2">
                     <FaGooglePlusSquare />
                   </span>
                   Sign in with Google
-                </Button>
+                </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+                <a
+                  target="_blank"
+                  href={socialUrls.facebook}
+                  className={buttonVariants({ variant: "outline" })}
+                >
                   <span className="mr-2">
                     <FaFacebookSquare />
                   </span>
                   Facebook
-                </Button>
+                </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+                <a
+                  target="_blank"
+                  href={socialUrls.linkedin}
+                  className={buttonVariants({ variant: "outline" })}
+                >
                   <span className="mr-2">
                     <FaLinkedin />
                   </span>
                   Linkedin
-                </Button>
+                </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+                <a
+                  target="_blank"
+                  href={socialUrls.twitter}
+                  className={buttonVariants({ variant: "outline" })}
+                >
                   <span className="mr-2">
                     <FaTwitterSquare />
                   </span>
                   Twitter
-                </Button>
+                </a>
               </li>
               <li className="list-none inline-flex">
-                <Button variant={"outline"}>
+                <a
+                  target="_blank"
+                  href={socialUrls.facebook}
+                  className={buttonVariants({ variant: "outline" })}
+                >
                   <span className="mr-2">
                     <FaPinterestSquare />
                   </span>
                   Pinterest
-                </Button>
+                </a>
               </li>
             </ul>
           </TabsContent>
@@ -169,9 +218,12 @@ const WaysToShareComponent = ({ detail, domain }: props) => {
               referrals
             </p>
             <div className="w-full mb-4">
-             
-              <Textarea name="w_embed_code_ac" id="w_embed_code_ac" className="form-control m-input">
-              {val}
+              <Textarea
+                name="w_embed_code_ac"
+                id="w_embed_code_ac"
+                className="form-control m-input"
+              >
+                {val}
               </Textarea>
             </div>
             <h4 className="font-bold mb-2">Wordpress Plugin</h4>

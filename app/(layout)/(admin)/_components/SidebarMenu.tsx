@@ -1,20 +1,6 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { imageLoader } from "@/helpers/image-helper";
-import {
-  Bell,
-  Cog,
-  Gift,
-  Home,
-  Layers,
-  LineChart,
-  Package,
-  Package2,
-  ShoppingCart,
-  Star,
-  Users
-} from "lucide-react";
+import { Cog, Gift, Layers, LineChart, Star } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
