@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaCheck } from "react-icons/fa6";
 
-export default function Account() {
+export default function Password() {
   const { data: session } = useSession();
   const [error, setError] = useState("");
   const [updating, setUpdating] = useState(false);

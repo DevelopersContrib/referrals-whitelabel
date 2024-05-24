@@ -15,7 +15,7 @@ export const POST = async (request) => {
 
     const apiUrl = process.env.API_URL + 'user/update?key=' + process.env.API_KEY+'&domain='+getDomain()+'&token='+session?.token+'&wallet_address='+data.wallet_address;  
     const params = new URLSearchParams();
-    params.append('password', data.wallet_address);
+    params.append('wallet_address', data.wallet_address);
 
     const res = await axios.get(apiUrl, data, config);
     const result = res.data;
