@@ -31,15 +31,16 @@ interface HomepageProps {
   campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
 }
 
-const Homepage: React.FC<HomepageProps> = ({ 
-  banner, 
-  campaignData, 
-  brand, 
+const Homepage: React.FC<HomepageProps> = ({
+  banner,
+  campaignData,
+  brand,
   description,
   featCampaignName,
   featCampaigDescription,
   featCampaigImage,
-  featCampaignId }) => {
+  featCampaignId
+}) => {
   return (
     <>
       <Layout>
@@ -47,31 +48,29 @@ const Homepage: React.FC<HomepageProps> = ({
           <section className="pt-20 bg-white text-black">
             <div className="container">
               <div className="row">
-                <div className="col-lg-6 flex flex-col">
+                <div className="col-lg-6 flex flex-col justify-center">
                   <h1 className="text-6xl font-bold mb-4">
-                    Refer {brand} and Earn Rewards! 
+                    Refer {brand} and Earn Rewards!
                   </h1>
-                 {description ? (
-                  <p className="mb-4 text-xl font-medium">
-                      {description}
-                  </p>
+                  {description ? (
+                    <p className="mb-4 text-xl font-medium">{description}</p>
                   ) : (
-                  <>
-                    <p className="mb-4 text-xl font-medium">
-                      Join our exciting referral program and start earning amazing
-                      rewards and prizes! Share the love for {brand} with your
-                      friends and family, and get rewarded for every successful
-                      referral.
-                    </p>
-                    <p className="text-sm">
-                      Start referring {brand} today and enjoy the benefits of
-                      being a brand ambassador!
-                    </p>
-                  </>
-                   )}
+                    <>
+                      <p className="mb-4 text-xl font-medium">
+                        Join our exciting referral program and start earning
+                        amazing rewards and prizes! Share the love for {brand}{" "}
+                        with your friends and family, and get rewarded for every
+                        successful referral.
+                      </p>
+                      <p className="text-sm">
+                        Start referring {brand} today and enjoy the benefits of
+                        being a brand ambassador!
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="col-lg-6">
-                {banner ? (
+                  {banner ? (
                     <Image
                       src={banner}
                       width={0}
@@ -151,44 +150,42 @@ const Homepage: React.FC<HomepageProps> = ({
           </section>
           {featCampaignId ? (
             <section className="py-20 bg-white text-black">
-            <div className="container">
-              <div className="row">
-                <div className="col-lg-6">
+              <div className="container">
+                <div className="row">
+                  <div className="col-lg-6">
                     <Image
-                      src={ featCampaigImage }
+                      src={featCampaigImage}
                       width={0}
                       height={0}
                       alt=""
                       className="img-fluid w-full h-auto object-contain"
                       sizes="100vw"
                     />
-                </div>
-                <div className="col-lg-6 flex justify-center flex-col">
-                  <h1 className="text-6xl font-bold mb-8">
-                    {featCampaignName}
-                  </h1>
-                  <p className="">
-                    {featCampaigDescription}
-                  </p>
+                  </div>
+                  <div className="col-lg-6 flex justify-center flex-col">
+                    <h1 className="text-6xl font-bold mb-8">
+                      {featCampaignName}
+                    </h1>
+                    <p className="">{featCampaigDescription}</p>
+                  </div>
                 </div>
               </div>
-            </div>
             </section>
-           ) : (
+          ) : (
             <section className="py-20 bg-white text-black">
               <div className="container">
                 <div className="row">
                   <div className="col-lg-6">
-                      <Image
-                        src={
-                          "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
-                        }
-                        width={0}
-                        height={0}
-                        alt=""
-                        className="img-fluid w-full h-auto object-contain"
-                        sizes="100vw"
-                      />
+                    <Image
+                      src={
+                        "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                      }
+                      width={0}
+                      height={0}
+                      alt=""
+                      className="img-fluid w-full h-auto object-contain"
+                      sizes="100vw"
+                    />
                   </div>
                   <div className="col-lg-6 flex justify-center flex-col">
                     <h1 className="text-6xl font-bold mb-8">
@@ -196,7 +193,8 @@ const Homepage: React.FC<HomepageProps> = ({
                     </h1>
                     <p className="">
                       FREE Referral Platform for your Business. Get viral, fast
-                      and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN FOR
+                      and free! I WOULD LIKE TO MAKE A FREE REFERRAL CAMPAIGN
+                      FOR
                     </p>
                   </div>
                 </div>
