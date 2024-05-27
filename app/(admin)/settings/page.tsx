@@ -7,7 +7,10 @@ import Password from "@/app/(admin)/settings/components/Password";
 import Wallet from "@/app/(admin)/settings/components/Wallet";
 import Deleteaccount from "@/app/(admin)/settings/components/Deleteaccount";
 
+
 const Settings = async () => {
+  
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="">

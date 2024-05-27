@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import axios from 'axios';
 import { getDomain } from "../../../data/data";
 
-export const POST = async (request) => {
+export const POST = async (request:any) => {
   try {
     const data = await request.json();
     const token = data.token

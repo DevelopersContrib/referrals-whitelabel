@@ -86,6 +86,18 @@ export async function GetCategories() {
   return res.json();
 }
 
+export async function GetUserSettings(user_id = '') {
+  const domain = getDomain();
+  const timestamp = Date.now(); // Get current timestamp
+  const url = process.env.API_URL+`user/details?key=`+process.env.API_KEY+`&domain=${domain}&id=${user_id}&timestamp=${timestamp}`;
+  const res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+
 export const getUser = async () => {
   try {
     const session = await getServerSession(options);

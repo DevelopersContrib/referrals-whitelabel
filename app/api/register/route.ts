@@ -3,7 +3,7 @@ import axios from 'axios';
 import {getDomain} from '../../../data/data';
 
 
-export const POST = async (request) => {
+export const POST = async (request:any) => {
     const data = await request.json();
     
     try {
@@ -33,9 +33,9 @@ export const POST = async (request) => {
             console.error("AxiosError:", error.message);
             return new Response("An error occurred with Axios: " + error.message, { status: 500 });
         } else {
-            // Handle other errors
-            console.error("An error occurred:", error);
-            return new Response("An error occurred: " + error.message, { status: 500 });
+            // For other errors, further narrowing or providing a generic message
+            console.error("An error occurred:", (error as Error).message);
+            return new Response("An error occurred: " + (error as Error).message, { status: 500 });
         }
     }
 };

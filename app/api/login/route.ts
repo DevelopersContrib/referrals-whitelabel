@@ -5,7 +5,7 @@ import {getDomain} from '../../../data/data';
  * @param {Request} request - The request object.
  * @returns {Promise<Response>} A promise resolving to a Response object.
  */
-export const POST = async (request) => {
+export const POST = async (request:any) => {
   try {
     const data = await request.json();
     const apiUrl = process.env.API_URL+`user/login?key=`+process.env.API_KEY;

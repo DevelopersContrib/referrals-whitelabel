@@ -1,7 +1,7 @@
 "use client";
 import Swal from "sweetalert2";
 import React, { useState, useEffect } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -76,6 +76,8 @@ export default function Account() {
   const InputEmail = ({ name, ...props }: any) => {
     return <Input {...props} name={name} type="text" disabled />;
   };
+
+  
 
   if (session) {
     return (

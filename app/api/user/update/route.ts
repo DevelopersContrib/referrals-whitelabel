@@ -4,7 +4,7 @@ import { options } from '@/lib/options';
 import { getDomain } from '../../../../data/data';
 import { getServerSession } from 'next-auth/next';
 
-export const POST = async (request) => {
+export const POST = async (request:any) => {
   try {
     const data = await request.json();
     
@@ -18,7 +18,7 @@ export const POST = async (request) => {
     params.append('name', data.name);
     params.append('email', data.email);
 
-    const res = await axios.get(apiUrl, data, config);
+    const res = await axios.get(apiUrl, config);
     const result = res.data;
     
 
