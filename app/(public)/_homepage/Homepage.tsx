@@ -211,7 +211,17 @@ const Homepage: React.FC<HomepageProps> = ({
                     className="shadow-md inline-flex"
                   >
                     <div className="flex w-full flex-col h-full">
-                      <div>
+                      <div className="relative">
+                        <div className="absolute bottom-2 left-2 z-10 shadow">
+                          <div className="bg-[#FF6067] rounded flex w-full mt-auto text-white items-center px-2 py-1 text-sm">
+                            <div className="mr-1">
+                              <FaGift />
+                            </div>
+                            <div className="capitalize">
+                              Token campaign reward
+                            </div>
+                          </div>
+                        </div>
                         <Image
                           src={campaign.widget_details.background_image}
                           width={0}
@@ -227,7 +237,7 @@ const Homepage: React.FC<HomepageProps> = ({
                             {campaign.name}
                           </h3>
                         </div>
-                        <div className="text-sm">
+                        <div className="text-sm mb-4">
                           <p>{campaign.widget_details.description}</p>
                         </div>
                       </div>
