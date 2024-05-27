@@ -255,7 +255,7 @@ const CampaignDetails = ({ socialUrls,detail,socialClicks,reward,domain }: props
                     </Card>*/}
                   </TabsContent>
                   <TabsContent value="inviteList">
-                    <InviteListComponent />
+                    <InviteListComponent domain={domain} campaign_id={detail.id} />
                   </TabsContent>
                 </div>
               </Tabs>
