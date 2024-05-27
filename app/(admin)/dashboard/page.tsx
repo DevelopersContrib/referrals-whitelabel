@@ -11,14 +11,7 @@ import {
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
 
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow
-} from "@/components/ui/table";
+
 
 import {
   Card,
@@ -29,7 +22,12 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
-const Dashboard = () => {
+import { getDomain } from "@/data/data";
+import CampaignTable from "./components/CampainTable";
+
+const Dashboard = async () => {
+  const domain = getDomain();
+
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
@@ -40,79 +38,7 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-4">
-          <div>
-            <Card className="flex flex-col">
-              <CardHeader className="px-7">
-                <CardTitle>Referral Statistics</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Campaign</TableHead>
-                      <TableHead className="table-cell">
-                        Email <br /> Clicks
-                      </TableHead>
-                      <TableHead className="table-cell">
-                        FB <br />
-                        Clicks
-                      </TableHead>
-                      <TableHead className="table-cell">
-                        Google <br />
-                        Clicks
-                      </TableHead>
-                      <TableHead className="table-cell">
-                        Linkedin <br />
-                        Clicks
-                      </TableHead>
-                      <TableHead className="table-cell">
-                        Twitter <br />
-                        Clicks
-                      </TableHead>
-                      <TableHead className="table-cell">
-                        Pinterest <br />
-                        Clicks
-                      </TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell>
-                        <a
-                          href="#"
-                          className="text-sm text-blue-600 inline-block"
-                        >
-                          Contrib Partner Blog Banner
-                        </a>
-                      </TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell>
-                        <a
-                          href="#"
-                          className="text-sm text-blue-600 inline-block"
-                        >
-                          Contrib Partner Blog Banner
-                        </a>
-                      </TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                      <TableCell>0</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-          </div>
+          <CampaignTable domain={domain} />
           <div>
             <Card className="flex flex-col">
               <CardHeader className="px-7">
