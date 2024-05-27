@@ -16,7 +16,7 @@ export const POST = async (request) => {
 
     const res = await axios.post(apiUrl, params);
     const result = res.data;
-    console.log(params);
+    
     if(result.success){
 
      

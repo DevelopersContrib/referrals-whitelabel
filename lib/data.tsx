@@ -8,6 +8,25 @@ interface Error {
   statusCode: number;
 }
 
+export async function GetUsercampaigns() {
+  try{
+    const session = await getServerSession(options);
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${domain}&token=${session?.token}&timestamp=${timestamp}`;
+   
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
 export async function Getcampaigns(id: string = "") {
   try{
     const domain = getDomain();
