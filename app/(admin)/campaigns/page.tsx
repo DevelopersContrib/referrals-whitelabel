@@ -6,8 +6,8 @@ export default function Page() {
     <>
       {/* Start:: Condition base on user campaign created */}
 
-      {/* <CampaignDefault /> */}
-      <CampaignVoteComponent />
+      <CampaignDefault />
+      {/* <CampaignVoteComponent /> */}
     </>
   );
 }
