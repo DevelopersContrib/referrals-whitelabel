@@ -1,4 +1,5 @@
 import CampaignDefault from "./components/CampaignDefault";
+import CampaignPollVoteComponent from "./components/CampaignPollVoteComponent";
 import CampaignVoteComponent from "./components/CampaignVoteComponent";
 
 export default function Page() {
@@ -8,6 +9,7 @@ export default function Page() {
 
       <CampaignDefault />
       {/* <CampaignVoteComponent /> */}
+      {/* <CampaignPollVoteComponent /> */}
     </>
   );
 }
