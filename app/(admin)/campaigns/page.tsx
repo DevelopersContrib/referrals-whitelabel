@@ -1,4 +1,5 @@
 import CampaignDefault from "./components/CampaignDefault";
+import CampaignPollVoteComponent from "./components/CampaignPollVoteComponent";
 import CampaignVoteComponent from "./components/CampaignVoteComponent";
 
 export default function Page() {
@@ -6,8 +7,9 @@ export default function Page() {
     <>
       {/* Start:: Condition base on user campaign created */}
 
-      <CampaignDefault />
+      {/* <CampaignDefault /> */}
       {/* <CampaignVoteComponent /> */}
+      <CampaignPollVoteComponent />
     </>
   );
 }
