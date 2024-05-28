@@ -9,6 +9,7 @@ import {
   } from "@/components/ui/table";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { ReloadIcon } from "@radix-ui/react-icons";
 import {
     Card,
     CardContent,
@@ -16,7 +17,6 @@ import {
     CardTitle
   } from "@/components/ui/card";
 
-  import { GetUsercampaigns } from "@/lib/data";
   import { userCampaign } from "@/types/userCampaign";
 
 interface props {
@@ -82,7 +82,12 @@ const CampaignTable = ({ domain }: props) => {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                  {tableData&& Array.isArray(tableData) &&
+                  {loading ? (
+                    <>
+                      <ReloadIcon className="h-4 w-4 mr-1 animate-spin" />
+                    </>
+                  ) : (
+                    tableData&& Array.isArray(tableData) &&
                     tableData?.map((item) => (
                       <TableRow key={item.id}>
                         <TableCell>
@@ -96,7 +101,8 @@ const CampaignTable = ({ domain }: props) => {
                         <TableCell>0</TableCell>
                       </TableRow>
                     ))
-                  }
+                  )}
+                  
                   </TableBody>
                 </Table>
               </CardContent>
