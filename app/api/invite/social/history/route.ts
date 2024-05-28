@@ -14,11 +14,10 @@ export const POST = async (req: Request) => {
   const res = await axios.get(apiUrl, config);
   if(res.data.success){
 
-    const url = process.env.API_URL + 'invite/get/?key=' + process.env.API_KEY+'&domain='
+    const url = process.env.API_URL + 'social/history/?key=' + process.env.API_KEY+'&domain='
         +data.domain+'&token='+session?.token!+'&campaign_id='+data.campaign_id+'&campart_id='+res.data.data.campart_id;
-   
+  
     const result = await axios.get(url, config);
-
     return new Response(JSON.stringify(result.data), { status: 200 });
   }
 

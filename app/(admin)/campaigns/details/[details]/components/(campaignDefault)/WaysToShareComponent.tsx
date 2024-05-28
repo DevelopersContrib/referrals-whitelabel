@@ -230,7 +230,7 @@ const WaysToShareComponent = ({ socialUrls, detail, domain }: props) => {
             <div className="p-4 bg-[#f7f8fa]">
               <p>
                 1. Download referral plugin{" "}
-                <a href="#" className="text-blue-600">
+                <a href="https://github.com/DevelopersContrib/Wordpress-Plugins/blob/master/referral_widget/referral_widget.zip" className="text-blue-600">
                   here
                 </a>
                 .
