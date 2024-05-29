@@ -62,7 +62,7 @@ const Homepage: React.FC<HomepageProps> = ({
                         Join our exciting referral program and start earning
                         amazing rewards and prizes! Share the love for {brand.charAt(0).toUpperCase() + brand.slice(1)}{" "}
                         with your friends and family, and get rewarded for every
-                        successful referral. 
+                        successful referral.
                       </p>
                       <p className="text-sm">
                         Start referring {brand.charAt(0).toUpperCase() + brand.slice(1)} today and enjoy the benefits of
