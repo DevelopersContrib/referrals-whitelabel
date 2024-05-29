@@ -96,12 +96,12 @@ const CampaignTable = ({ domain }: props) => {
                   tableData?.map((item) => (
                     <TableRow key={item.id}>
                       <TableCell>
-                        <Link
+                        <a
                           className="text-sm text-blue-600 inline-block"
                           href={"/campaigns/details/" + item.campaign_id}
                         >
                           {item.campaign_name}
-                        </Link>
+                        </a>
                       </TableCell>
                       <TableCell>{item.socialClicks.email}</TableCell>
                       <TableCell>{item.socialClicks.facebook}</TableCell>
