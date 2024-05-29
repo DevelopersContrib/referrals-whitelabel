@@ -30,14 +30,16 @@ const CampaignDefault = async () => {
                     </span>
                   </span>
                   <span className="relative min-h-[220px]">
+                    
                     <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/60 z-[1] flex items-center justify-center flex-col">
+                      
                       <div className="text-center inline-flex items-center justify-center text-white bg-[#d7d1d1d9] px-3 py-2 mb-1">
                         <div className="mr-2">
                           <GiTrophy className="w-8 h-8" />
                         </div>
                         <div className="inline-flex flex-col">
-                          <div className="">Token</div>
-                          <div className="">Campaign Reward</div>
+                          
+                          <div className="">{campaign.reward_type_name}</div>
                         </div>
                       </div>
                       <div className="text-center inline-flex items-center justify-center text-white bg-[#5867dd] px-3 py-2 capitalize">

@@ -8,6 +8,7 @@ interface Campaign {
   id: string;
   name: string;
   description: string;
+  reward_type_name:string;
   imageUrl: string;
   widget_details: {
     id: string;
@@ -29,7 +30,7 @@ interface HomepageProps {
   featCampaigImage: string;
   featCampaignId: string;
   campaignData: Campaign[]; // Ensure campaignData is an array of Campaign objects
-}
+} 
 
 const Homepage: React.FC<HomepageProps> = ({
   banner,
@@ -41,6 +42,7 @@ const Homepage: React.FC<HomepageProps> = ({
   featCampaigImage,
   featCampaignId
 }) => {
+  const decodedDescription = decodeURIComponent(description);
   return (
     <>
       <Layout>
@@ -50,20 +52,20 @@ const Homepage: React.FC<HomepageProps> = ({
               <div className="row">
                 <div className="col-lg-6 flex flex-col justify-center">
                   <h1 className="text-6xl font-bold mb-4">
-                    Refer {brand} and Earn Rewards!
+                    Refer {brand.charAt(0).toUpperCase() + brand.slice(1)} and Earn Rewards!
                   </h1>
                   {description ? (
-                    <p className="mb-4 text-xl font-medium">{description}</p>
+                    <div className="mb-4 text-xl font-medium" dangerouslySetInnerHTML={{ __html: decodedDescription }} />
                   ) : (
                     <>
                       <p className="mb-4 text-xl font-medium">
                         Join our exciting referral program and start earning
-                        amazing rewards and prizes! Share the love for {brand}{" "}
+                        amazing rewards and prizes! Share the love for {brand.charAt(0).toUpperCase() + brand.slice(1)}{" "}
                         with your friends and family, and get rewarded for every
                         successful referral.
                       </p>
                       <p className="text-sm">
-                        Start referring {brand} today and enjoy the benefits of
+                        Start referring {brand.charAt(0).toUpperCase() + brand.slice(1)} today and enjoy the benefits of
                         being a brand ambassador!
                       </p>
                     </>
@@ -218,7 +220,7 @@ const Homepage: React.FC<HomepageProps> = ({
                               <FaGift />
                             </div>
                             <div className="capitalize">
-                              Token campaign reward
+                              {campaign.reward_type_name}
                             </div>
                           </div>
                         </div>
