@@ -75,7 +75,7 @@ export async function GetSocialClick(id: number = 0, campaign_id: string="") {
     const domain = getDomain();
     const timestamp = Date.now(); // Get current timestamp
     const url = process.env.API_URL+`campaigns/getclicks?key=`+process.env.API_KEY+`&social_id=${id}&domain=${domain}&campaign_id=${campaign_id}&userid=${user_id}&timestamp=${timestamp}`;
- 
+
     const res = await fetch(url);
     if (!res.ok) {
       return {'error':true}
