@@ -93,12 +93,12 @@ const CampaignTable = ({ domain }: props) => {
                         <TableCell>
                           <Link className="text-sm text-blue-600 inline-block" href={"/campaigns/details/"+item.campaign_id}>{item.campaign_name}</Link>
                         </TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
-                        <TableCell>0</TableCell>
+                        <TableCell>{item.socialClicks.email}</TableCell>
+                        <TableCell>{item.socialClicks.facebook}</TableCell>
+                        <TableCell>{item.socialClicks.gplus}</TableCell>
+                        <TableCell>{item.socialClicks.linkedin}</TableCell>
+                        <TableCell>{item.socialClicks.twitter}</TableCell>
+                        <TableCell>{item.socialClicks.pinterest}</TableCell>
                       </TableRow>
                     ))
                   )}
