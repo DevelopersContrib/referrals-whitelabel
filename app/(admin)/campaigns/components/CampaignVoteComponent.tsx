@@ -21,7 +21,7 @@ const CampaignVoteComponent = () => {
           </div>
           <div className="w-full">
             <TabsContent value="invite">
-              <CampaignPictureDetails />
+              {/* <CampaignPictureDetails /> */}
             </TabsContent>
             <TabsContent value="inviteList">
               <InviteListComponent />
