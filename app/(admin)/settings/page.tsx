@@ -1,16 +1,38 @@
-import React from "react";
+'use client'; // This directive makes the component a client component
 
+import React, { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
+import { useSession } from "next-auth/react";
 import Account from "@/app/(admin)/settings/components/Account";
 import Password from "@/app/(admin)/settings/components/Password";
 import Wallet from "@/app/(admin)/settings/components/Wallet";
 import Deleteaccount from "@/app/(admin)/settings/components/Deleteaccount";
 
 
-const Settings = async () => {
-  
+const Settings = () => {
+  const { data: session, status } = useSession();
+  const [userData, setUserData] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      if (session) {
+        const get = await fetch("/api/user/get", {
+          method: "POST",
+          body: JSON.stringify({
+            id: session?.id
+          })
+        });
+        const result = await get.json();
+        //console.log(result);
+        setUserData(result.data);
+      } else {
+        console.log("Session is not available");
+      }
+    };
+
+    fetchData();
+  }, [session]);
+  console.log(userData);
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="">
@@ -31,7 +53,7 @@ const Settings = async () => {
               <Password />
             </TabsContent>
             <TabsContent value="walletAddress">
-              <Wallet />
+              <Wallet userData={userData}/>
             </TabsContent>
             <TabsContent value="deleteAccount">
               <Deleteaccount />

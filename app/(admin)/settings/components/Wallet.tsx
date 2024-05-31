@@ -17,7 +17,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { FaCheck } from "react-icons/fa6";
 
-export default function Wallet() {
+export default function Wallet(userData:any) {
   const { data: session } = useSession();
   const [error, setError] = useState("");
   const [updating, setUpdating] = useState(false);
@@ -81,7 +81,7 @@ export default function Wallet() {
         <CardContent>
           <Formik
             initialValues={{
-                wallet_address: ''
+                wallet_address: userData.wallet_address
             }}
             validationSchema={schema}
             onSubmit={(values: any) => {
