@@ -1,5 +1,6 @@
 import React from "react";
 import CampaignDetails from "./components/(campaignDefault)/CampaignDetails";
+import CampaignPictureDetails from "./components/(campaignPicture)/CampaignPictureDetails";
 import {
   Getcampaigns,
   GetSocialClick,
@@ -9,7 +10,7 @@ import {
 import { campaign } from "@/types/campaign";
 import { SocialClicks } from "@/types/socialClicks";
 import { socialUrls } from "@/types/socialUrls";
-import { SOCIAL_TYPES } from "@/lib/constants";
+import { SOCIAL_TYPES,WIDGET_TEMPLATE,CAMPAIGN_TYPE } from "@/lib/constants";
 import { getDomain } from "@/data/data";
 
 const CampaignDetailsPage = async ({
@@ -48,8 +49,17 @@ const CampaignDetailsPage = async ({
   const rewardText = await GetRewardText(parseInt(id));
   const reward = rewardText.data as { reward: string };
 
-  return (
-    <>
+  if(parseInt(campaignDetails.type_id.toString())===CAMPAIGN_TYPE.VOTING && 
+  parseInt(campaignDetails.widget_details.template_id.toString())===WIDGET_TEMPLATE.PHOTO_VOTING){
+    return (
+      <CampaignPictureDetails
+        domain={domain}
+       detail={campaignDetails}
+      />
+    );
+    
+  }else if(parseInt(campaignDetails.type_id.toString())===CAMPAIGN_TYPE.SOCIAL_REWARDS){
+    return (
       <CampaignDetails
         socialUrls={socialUrl}
         domain={domain}
@@ -57,8 +67,10 @@ const CampaignDetailsPage = async ({
         socialClicks={socialClicks}
         detail={campaignDetails}
       />
-    </>
-  );
+    );
+  }else{
+    return null;
+  }
 };
 
 export default CampaignDetailsPage;
