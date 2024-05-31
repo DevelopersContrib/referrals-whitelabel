@@ -10,15 +10,21 @@ import {
   FaTwitterSquare
 } from "react-icons/fa";
 
-const CampaignPictureDetails = () => {
+import { campaign } from "@/types/campaign";
+
+interface props {
+  detail: campaign;
+  domain:string
+}
+
+const CampaignPictureDetails = ({ detail,domain }: props) => {
   return (
     <section className="bg-[#fafafa] p-4 w-full">
       <h3 className="font-semibold text-xl 2xl:text-2xl text-center">
-        Vote for the best picture
+        {detail.widget_details.header_title}
       </h3>
       <p className="text-center mb-4">
-        {`Hello and welcome to linked.com's referral program! We are so excited to
-        have you onboard!`}
+      {detail.widget_details.description}
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:lg:grid-cols-4 2xl:grid-cols-5 gap-y-4 lg:gap-4 mb-8">
