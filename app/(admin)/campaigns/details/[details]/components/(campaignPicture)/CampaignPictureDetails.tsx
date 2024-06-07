@@ -12,11 +12,12 @@ import {
 } from "react-icons/fa";
 
 import { campaign } from "@/types/campaign";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { voteOption } from "@/types/voteOption";
 import { socialUrls } from "@/types/socialUrls";
 import { SocialClicks } from "@/types/socialClicks";
 import InviteFriends from "./../InviteFriends";
+import { number } from "yup";
 
 interface props {
   detail: campaign;
@@ -26,9 +27,40 @@ interface props {
   socialClicks: SocialClicks;
   socialUrls:socialUrls,
   reward:string,
+  voted:number,
 }
 
-const CampaignPictureDetails = ({ socialUrls, detail, socialClicks,reward, domain, voteOptionsData}: props) => {
+const CampaignPictureDetails = ({ voted, campart_id, socialUrls, detail, socialClicks,reward, domain, voteOptionsData}: props) => {
+  const [voteOption, setVoteOption] = useState(voteOptionsData);
+  const [voteId, setVoteId] = useState(0);
+  // const [voted, setVoted] = useState(userVoted);
+
+  useEffect(() => {
+    // for(var x=0;x<voteOption.length;x++){
+    //   voteOption[x].voted = false;
+    //   if(voteOption[x].option_votes){
+    //     for(var i=0;i<voteOption[x].option_votes.length;i++){
+    //       voteOption[x].voted = false;
+    //       if(voteOption[x].option_votes[i].id===voteId){
+    //         voteOption[x].voted = true;
+    //       }
+    //     }
+    //   }
+    // }
+  });
+
+  const vote = async (id: number) => {
+    setVoteId(id);
+    const res = await fetch('/api/vote/add', {
+      method: 'POST',
+      body: JSON.stringify({id:id,campart_id:campart_id, domain: domain,campaign_id:detail.id})
+    });
+    const ret = await res.json()
+    if(ret.success){
+      // setVoted(true);
+    }
+  };
+
   return (
     <section
       className="bg-[#fafafa] p-4 w-full bg-cover bg-center bg-no-repeat"
@@ -45,8 +77,8 @@ const CampaignPictureDetails = ({ socialUrls, detail, socialClicks,reward, domai
         {/* Start:: Loop here */}
         {
 
-          voteOptionsData && Array.isArray(voteOptionsData) &&
-          voteOptionsData?.map((item) => (
+            voteOption && Array.isArray(voteOption) &&
+              voteOption?.map((item) => (
             <div key={item.id} className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
               <div className="mb-4">
                 <Image
@@ -64,11 +96,14 @@ const CampaignPictureDetails = ({ socialUrls, detail, socialClicks,reward, domai
                 <div className="mb-4">
                   Votes: <span className="font-bold">{item.option_votes.length}</span>
                 </div>
-                  {!item.voted?(
-                    <div className="w-full flex-col">
-                      <Button className="w-full">Vote</Button>
-                    </div>
-                  ):null}
+                  {
+                    voted===item.id?(<div className="w-full flex-col">
+                      <Button className="w-full">Voted</Button>
+                    </div>): voted > 0 ? (null):(<div className="w-full flex-col">
+                      <Button onClick={() => vote(item.id)}  className="w-full">Vote</Button>
+                    </div>) 
+                  }
+
               </div>
             </div>
           ))

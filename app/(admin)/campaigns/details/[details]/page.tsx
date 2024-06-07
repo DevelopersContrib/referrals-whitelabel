@@ -60,7 +60,7 @@ const CampaignDetailsPage = async ({
 
     const voteOptions = await GetVoteOptions(id);
     const voteOptionsData = voteOptions.data as voteOption[];
-
+    let voted = 0;
     if(voteOptionsData){
       for(var x=0;x<voteOptionsData.length;x++){
         voteOptionsData[x].voted = false;
@@ -69,6 +69,8 @@ const CampaignDetailsPage = async ({
             voteOptionsData[x].voted = false;
             if(voteOptionsData[x].option_votes[i].participant_id===campart_id){
               voteOptionsData[x].voted = true;
+              voted = voteOptionsData[x].option_votes[i].option_id;
+             
             }
           }
         }
@@ -77,6 +79,7 @@ const CampaignDetailsPage = async ({
     
     return (
       <CampaignPictureDetails
+      voted={voted}
         campart_id={campart_id}
         voteOptionsData={voteOptionsData}
         socialUrls={socialUrl}
