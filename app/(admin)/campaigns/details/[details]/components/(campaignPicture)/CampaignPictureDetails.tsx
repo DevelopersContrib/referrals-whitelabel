@@ -31,23 +31,45 @@ interface props {
 }
 
 const CampaignPictureDetails = ({ voted, campart_id, socialUrls, detail, socialClicks,reward, domain, voteOptionsData}: props) => {
-  const [voteOption, setVoteOption] = useState(voteOptionsData);
+  const [voteOption, setVoteOption] = useState<voteOption[]>(voteOptionsData);
+  const [reload, setReload] = useState(false);
   const [voteId, setVoteId] = useState(0);
-  // const [voted, setVoted] = useState(userVoted);
+  const [loadingOption, setLoadingOption] = useState(false);
+  const [userVoted, setUserVoted] = useState(voted);
 
   useEffect(() => {
-    // for(var x=0;x<voteOption.length;x++){
-    //   voteOption[x].voted = false;
-    //   if(voteOption[x].option_votes){
-    //     for(var i=0;i<voteOption[x].option_votes.length;i++){
-    //       voteOption[x].voted = false;
-    //       if(voteOption[x].option_votes[i].id===voteId){
-    //         voteOption[x].voted = true;
-    //       }
-    //     }
-    //   }
-    // }
-  });
+    const getVoteOptions = async () => {
+      setLoadingOption(true);
+        const res = await fetch('/api/vote/list', {
+          method: 'POST',
+          body: JSON.stringify({ domain: domain,id:detail.id})
+        });
+        const ret = await res.json()
+        if(ret.success){
+            const vote_options = ret.data as voteOption[];
+            
+            if(vote_options){
+              for(var x=0;x<vote_options.length;x++){
+                vote_options[x].voted = false;
+                if(vote_options[x].option_votes){
+                  for(var i=0;i<vote_options[x].option_votes.length;i++){
+                    vote_options[x].voted = false;
+                    if(vote_options[x].option_votes[i].participant_id.toString()===campart_id){
+                      vote_options[x].voted = true;
+                      setUserVoted(vote_options[x].option_votes[i].option_id)
+                    }
+                  }
+                }
+              }
+            }
+           
+            setVoteOption(vote_options);
+        }
+        setLoadingOption(false);
+    };
+    getVoteOptions();
+    // eslint-disable-next-line
+  },[reload]);
 
   const vote = async (id: number) => {
     setVoteId(id);
@@ -57,7 +79,7 @@ const CampaignPictureDetails = ({ voted, campart_id, socialUrls, detail, socialC
     });
     const ret = await res.json()
     if(ret.success){
-      // setVoted(true);
+      setReload(true);
     }
   };
 
@@ -97,9 +119,9 @@ const CampaignPictureDetails = ({ voted, campart_id, socialUrls, detail, socialC
                   Votes: <span className="font-bold">{item.option_votes.length}</span>
                 </div>
                   {
-                    voted===item.id?(<div className="w-full flex-col">
+                    userVoted===item.id?(<div className="w-full flex-col">
                       <Button className="w-full">Voted</Button>
-                    </div>): voted > 0 ? (null):(<div className="w-full flex-col">
+                    </div>): userVoted > 0 ? (null):(<div className="w-full flex-col">
                       <Button onClick={() => vote(item.id)}  className="w-full">Vote</Button>
                     </div>) 
                   }
