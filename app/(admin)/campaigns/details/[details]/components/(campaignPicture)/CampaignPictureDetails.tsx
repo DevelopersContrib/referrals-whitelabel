@@ -12,17 +12,76 @@ import {
 } from "react-icons/fa";
 
 import { campaign } from "@/types/campaign";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { voteOption } from "@/types/voteOption";
+import { socialUrls } from "@/types/socialUrls";
+import { SocialClicks } from "@/types/socialClicks";
+import InviteFriends from "./../InviteFriends";
+import { number } from "yup";
 
 interface props {
   detail: campaign;
   domain: string;
+  voteOptionsData: voteOption[];
+  campart_id: string
+  socialClicks: SocialClicks;
+  socialUrls:socialUrls,
+  reward:string,
+  voted:number,
 }
 
-const CampaignPictureDetails = ({ detail, domain }: props) => {
+const CampaignPictureDetails = ({ voted, campart_id, socialUrls, detail, socialClicks,reward, domain, voteOptionsData}: props) => {
+  const [voteOption, setVoteOption] = useState<voteOption[]>(voteOptionsData);
+  const [reload, setReload] = useState(false);
+  const [voteId, setVoteId] = useState(0);
+  const [loadingOption, setLoadingOption] = useState(false);
+  const [userVoted, setUserVoted] = useState(voted);
+
   useEffect(() => {
-    console.log(detail);
-  }, [detail]);
+    const getVoteOptions = async () => {
+      setLoadingOption(true);
+        const res = await fetch('/api/vote/list', {
+          method: 'POST',
+          body: JSON.stringify({ domain: domain,id:detail.id})
+        });
+        const ret = await res.json()
+        if(ret.success){
+            const vote_options = ret.data as voteOption[];
+            
+            if(vote_options){
+              for(var x=0;x<vote_options.length;x++){
+                vote_options[x].voted = false;
+                if(vote_options[x].option_votes){
+                  for(var i=0;i<vote_options[x].option_votes.length;i++){
+                    vote_options[x].voted = false;
+                    if(vote_options[x].option_votes[i].participant_id.toString()===campart_id){
+                      vote_options[x].voted = true;
+                      setUserVoted(vote_options[x].option_votes[i].option_id)
+                    }
+                  }
+                }
+              }
+            }
+           
+            setVoteOption(vote_options);
+        }
+        setLoadingOption(false);
+    };
+    getVoteOptions();
+    // eslint-disable-next-line
+  },[reload]);
+
+  const vote = async (id: number) => {
+    setVoteId(id);
+    const res = await fetch('/api/vote/add', {
+      method: 'POST',
+      body: JSON.stringify({id:id,campart_id:campart_id, domain: domain,campaign_id:detail.id})
+    });
+    const ret = await res.json()
+    if(ret.success){
+      setReload(true);
+    }
+  };
 
   return (
     <section
@@ -38,258 +97,60 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:lg:grid-cols-4 2xl:grid-cols-5 gap-y-4 lg:gap-4 mb-8">
         {/* Start:: Loop here */}
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
+        {
+
+            voteOption && Array.isArray(voteOption) &&
+              voteOption?.map((item) => (
+            <div key={item.id} className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
+              <div className="mb-4">
+                <Image
+                  src={CarImage}
+                  width={0}
+                  height={0}
+                  alt=""
+                  className="w-full h-[230px] max-w-full object-cover"
+                />
+              </div>
+              <div className="flex flex-col items-center text-center">
+                <div className="mb-1">
+                  <h4 className="font-semibold text-xl capitalize mb-0">{item.option_name}</h4>
+                </div>
+                <div className="mb-4">
+                  Votes: <span className="font-bold">{item.option_votes.length}</span>
+                </div>
+                  {
+                    userVoted===item.id?(<div className="w-full flex-col">
+                      <Button className="w-full">Voted</Button>
+                    </div>): userVoted > 0 ? (null):(<div className="w-full flex-col">
+                      <Button onClick={() => vote(item.id)}  className="w-full">Vote</Button>
+                    </div>) 
+                  }
+
+              </div>
             </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
+          ))
+        }
+
+        
         {/* End:: Loop here */}
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col w-full h-full p-1 rounded bg-white shadow transition-all hover:scale-[1.02] hover:duration-300">
-          <div className="mb-4">
-            <Image
-              src={CarImage}
-              width={0}
-              height={0}
-              alt=""
-              className="w-full h-[230px] max-w-full object-cover"
-            />
-          </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="mb-1">
-              <h4 className="font-semibold text-xl capitalize mb-0">title</h4>
-            </div>
-            <div className="mb-4">
-              Votes: <span className="font-bold">17</span>
-            </div>
-            <div className="w-full flex-col">
-              <Button className="w-full">Vote</Button>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Start:: Success  */}
       <div className="bg-[#dfdfdf] w-full p-4 shadow rounded-sm">
-        <div className="bg-white shadow rounded p-4 text-center mb-14">
+        {/* <div className="bg-white shadow rounded p-4 text-center mb-14">
           Thank you for joining our sample photo voting campaign. But wait, to
           receive more entries, you need to invite 1 friend and he/she needs to
           vote too!
-        </div>
+        </div> */}
         <div className="mb-4">
           <h3 className="font-semibold text-xl 2xl:text-2xl text-center pb-4 border-b border-[#ddd]">
-            {`Hello and welcome to linked.com's referral program! we are so excited
+            {`Hello and welcome to ${domain}'s referral program! we are so excited
           to have you onboard!`}
           </h3>
         </div>
 
         <div className="mb-8 grid grid-cols-1 gap-y-4 lg:gap-y-0 lg:grid-cols-3 lg:gap-x-4 w-1/2 mx-auto">
-          <div>
-            <Input placeholder="Enter your name" />
-          </div>
-          <div>
-            <Input placeholder="Enter your email address" />
-          </div>
-          <div>
-            <Button className="flex w-full items-center space-x-2">
-              <span>
-                <FaUsers className="h-4 w-4" />
-              </span>
-              <span>Invite Friends</span>
-            </Button>
-          </div>
+          <InviteFriends detail={detail} domain={domain} />
         </div>
 
         <div className="mb-4 w-full justify-center items-center text-center">
@@ -297,7 +158,7 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <li className="list-none inline-flex">
               <a
                 target="_blank"
-                href={""}
+                href={socialUrls.google_plus}
                 className={buttonVariants({ variant: "outline" })}
               >
                 <span className="mr-2">
@@ -309,7 +170,7 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <li className="list-none inline-flex">
               <a
                 target="_blank"
-                href={""}
+                href={socialUrls.facebook}
                 className={buttonVariants({ variant: "outline" })}
               >
                 <span className="mr-2">
@@ -321,7 +182,7 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <li className="list-none inline-flex">
               <a
                 target="_blank"
-                href={""}
+                href={socialUrls.linkedin}
                 className={buttonVariants({ variant: "outline" })}
               >
                 <span className="mr-2">
@@ -333,7 +194,7 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <li className="list-none inline-flex">
               <a
                 target="_blank"
-                href={""}
+                href={socialUrls.twitter}
                 className={buttonVariants({ variant: "outline" })}
               >
                 <span className="mr-2">
@@ -345,7 +206,7 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <li className="list-none inline-flex">
               <a
                 target="_blank"
-                href={""}
+                href={socialUrls.pinterest}
                 className={buttonVariants({ variant: "outline" })}
               >
                 <span className="mr-2">
@@ -362,37 +223,37 @@ const CampaignPictureDetails = ({ detail, domain }: props) => {
             <div className="mb-1">
               <FaEnvelope className="h-8 w-8" />
             </div>
-            <div className="font-bold text-2xl">0</div>
+            <div className="font-bold text-2xl">{socialClicks.email}</div>
           </div>
           <div className="flex flex-col w-full items-center text-center justify-center">
             <div className="mb-1">
               <FaFacebookSquare className="h-8 w-8" />
             </div>
-            <div className="font-bold text-2xl">0</div>
+            <div className="font-bold text-2xl">{socialClicks.facebook}</div>
           </div>
           <div className="flex flex-col w-full items-center text-center justify-center">
             <div className="mb-1">
               <FaLinkedin className="h-8 w-8" />
             </div>
-            <div className="font-bold text-2xl">0</div>
+            <div className="font-bold text-2xl">{socialClicks.linkedin}</div>
           </div>
           <div className="flex flex-col w-full items-center text-center justify-center">
             <div className="mb-1">
               <FaTwitterSquare className="h-8 w-8" />
             </div>
-            <div className="font-bold text-2xl">0</div>
+            <div className="font-bold text-2xl">{socialClicks.twitter}</div>
           </div>
           <div className="flex flex-col w-full items-center text-center justify-center">
             <div className="mb-1">
               <FaPinterestSquare className="h-8 w-8" />
             </div>
-            <div className="font-bold text-2xl">0</div>
+            <div className="font-bold text-2xl">{socialClicks.pinterest}</div>
           </div>
           <div className="flex flex-col w-full items-center text-center justify-center">
             <div className="mb-1 text-base font-semibold">
               Rewarded Participants/Value
             </div>
-            <div className="font-bold text-5xl">13 for $0</div>
+            <div className="font-bold text-5xl">{reward}</div>
           </div>
         </div>
       </div>

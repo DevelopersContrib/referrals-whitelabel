@@ -27,6 +27,24 @@ export async function GetUsercampaigns() {
   }  
 }
 
+export async function GetUserCampartId(campaign_id: string = "") {
+  try{
+    const session = await getServerSession(options);
+    const domain = getDomain();
+    const url = process.env.API_URL + 'campaigns/join?key=' + process.env.API_KEY+'&domain='+domain+'&campaign_id='+campaign_id+'&userid='+session?.id;
+   
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
 export async function Getcampaigns(id: string = "") {
   try{
     const domain = getDomain();
@@ -43,6 +61,24 @@ export async function Getcampaigns(id: string = "") {
     //   return {'error':true}
     // }
 
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
+
+export async function GetVoteOptions(id: string = "") {
+  try{
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`vote/options/get?key=`+process.env.API_KEY+`&domain=${domain}&campaign_id=${id}&timestamp=${timestamp}`;
+   
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
     return res.json();
   } catch (err) {
     const error = err as AxiosError<Error>;
