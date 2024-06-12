@@ -195,6 +195,7 @@ export const authorizeUser = async (credentials: User) => {
       params.append('domain', getDomain());
   
       const res = await axios.post(apiUrl, params);
+      console.log(res);
       const result = res.data;
 
       
