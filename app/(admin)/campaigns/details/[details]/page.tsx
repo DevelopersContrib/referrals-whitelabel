@@ -7,10 +7,11 @@ const CampaignDetailsPage = async ({
 }: {
   params: { details: string };
 }) => {
+  const timestamp = Date.now(); // Get current timestamp
   return (
     <>
       <center id="embedwidget"></center>
-      <Script src={"https://www.referrals.com/extension/widget.js?key="+params.details}  />
+      <Script src={"https://www.referrals.com/extension/widget.js?key="+params.details+"&t="+timestamp}  />
     </>
   )
 };
