@@ -40,6 +40,7 @@ const CampaignTable = ({ domain }: Props) => {
   const [rowSelection, setRowSelection] = useState({});
 
   useEffect(() => {
+    
     const getUserCampaigns = async () => {
       setLoading(true);
       const res = await fetch("/api/campaigns/get", {
@@ -53,7 +54,7 @@ const CampaignTable = ({ domain }: Props) => {
       setLoading(false);
     };
     getUserCampaigns();
-  }, [domain]);
+  }, []);
 
   const columns: ColumnDef<userCampaign>[] = [
     {

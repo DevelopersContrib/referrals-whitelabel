@@ -14,7 +14,7 @@ export const POST = async (req: Request) => {
     
     const timestamp = Date.now(); // Get current timestamp
     const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&timestamp=${timestamp}&limit=50`;
-    
+    console.log('apiUrl',apiUrl)
     const res = await axios.get(apiUrl, config);
     
     if(res.data.success){
