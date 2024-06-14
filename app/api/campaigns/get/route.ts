@@ -9,12 +9,12 @@ export const POST = async (req: Request) => {
     const data = await req.json();
     const session = await getServerSession(options);
     const config = {
-        headers: { Authorization: 'Bearer ' + session?.token },
+        headers: { Authorization: 'Bearer ' + session?.token , timeout: 10000 }
     };
     
     const timestamp = Date.now(); // Get current timestamp
-    const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&timestamp=${timestamp}`;
-   
+    const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&timestamp=${timestamp}&limit=50`;
+    
     const res = await axios.get(apiUrl, config);
     
     if(res.data.success){
