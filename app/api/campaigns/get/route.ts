@@ -14,10 +14,10 @@ export const POST = async (req: Request) => {
     
     const timestamp = Date.now(); // Get current timestamp
 
-    if (session?.token){
+    //if (session?.token){
 
-        //const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50`;
-        const apiUrl = "https://api1.contrib.co/wl/user/campaigns/get?key=5c1bde69a9e783c7edc2e603d8b25023&domain=whitelabel.referrals.com&token=2eb4b2515e7db976b503491580127ec3&limit=50";
+        // const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50`;
+        const apiUrl = "https://api1.contrib.co/wl/user/campaigns?key=5c1bde69a9e783c7edc2e603d8b25023&domain=whitelabel.referrals.com&userid=11"
         console.log('apiUrl',apiUrl)
         const res = await axios.get(apiUrl, config);
         
@@ -47,7 +47,7 @@ export const POST = async (req: Request) => {
             }
             return new Response(JSON.stringify(res.data), { status: 200 });
         }
-    }
+    //}
     
-    return new Response(JSON.stringify({ error: 'Error'}), { status: 200 });
+    //return new Response(JSON.stringify({ error: 'Error'}), { status: 200 });
 };
