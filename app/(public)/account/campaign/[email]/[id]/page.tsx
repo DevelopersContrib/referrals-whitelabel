@@ -9,14 +9,18 @@ const RedirectPage = async({
 }: {
   params: { email: string, id:string };
 }) => {
-  // const decodedEmail = atob(params.email);
+   const decodedEmail = atob(params.email);
+   const id = params.id;
+   console.log(id);
+   console.log(decodedEmail);
   // const initialValues = {
   //   userEmail: decodedEmail,
   //   userPassword: "",
   //   domain: ""
   // };
-  // console.log(params.email);
+   //console.log(params.email);
   // console.log(params.id);
+   //console.log(decodedEmail);
  
   // console.log(decodedEmail);
   // const [data, setData] = useState(initialValues);
