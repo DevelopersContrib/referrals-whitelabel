@@ -13,8 +13,9 @@ export const POST = async (req: Request) => {
     };
     
     const timestamp = Date.now(); // Get current timestamp
-    const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&timestamp=${timestamp}&limit=50`;
-    console.log('apiUrl',apiUrl)
+    // const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&timestamp=${timestamp}&limit=50`;
+    // console.log('apiUrl',apiUrl)
+    const apiUrl = "https://api1.contrib.co/wl/user/campaigns/get?key=5c1bde69a9e783c7edc2e603d8b25023&domain=whitelabel.referrals.com&token=ad590fd98b9c9ebbd887cf86199e7d4c&timestamp=1718583056644&limit=50";
     const res = await axios.get(apiUrl, config);
     
     if(res.data.success){
