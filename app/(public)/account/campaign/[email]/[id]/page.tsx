@@ -45,6 +45,7 @@ const RedirectPage = async({
     window.location.href = '/';
   }, []);*/
 
+  
   return (
     <>
       <br></br>  
