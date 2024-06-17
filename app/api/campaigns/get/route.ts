@@ -16,8 +16,9 @@ export const POST = async (req: Request) => {
 
     if (session?.token){
 
-        const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50`;
-    
+        //const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50`;
+        const apiUrl = "https://api1.contrib.co/wl/user/campaigns/get?key=5c1bde69a9e783c7edc2e603d8b25023&domain=whitelabel.referrals.com&token=2eb4b2515e7db976b503491580127ec3&limit=50";
+        console.log('apiUrl',apiUrl)
         const res = await axios.get(apiUrl, config);
         
         if(res.data.success){
