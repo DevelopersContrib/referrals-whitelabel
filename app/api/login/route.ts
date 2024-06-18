@@ -10,6 +10,7 @@ export const POST = async (request:any) => {
     const data = await request.json();
     const apiUrl = process.env.API_URL+`user/login?key=`+process.env.API_KEY;
     const params = new URLSearchParams();
+    params.append('campaign_id', data.campaign_id);
     params.append('email', data.userEmail);
     params.append('password', data.userPassword);
     params.append('domain', getDomain());
