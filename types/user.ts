@@ -5,4 +5,5 @@ export type User = {
   email?: string;
   password?: string;
   domain:string;
+  campaign_id:string;
 };

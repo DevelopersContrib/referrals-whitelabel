@@ -144,22 +144,6 @@ export async function GetRewardText(id: number = 0) {
   }  
 }
 
-export const checkEmail = async (email: string) => {
-  try {
-    const urlCheck =
-      "https://api.dntrademark.com/api/v1/user/check?api_key=6334aed4bdce9855f400653800596920&email=" +
-      email;
-
-    const result = await axios.get(urlCheck, { timeout: 4000 });
-    //console.log(result.data.data.data.id)
-    return result.data.data.data.id
-      ? { isEmailAvailable: false }
-      : { isEmailAvailable: true };
-    // return { isEmailAvailable: false }
-  } catch (error) {
-    console.log("Error", error);
-  }
-};
 
 export const getUser = async () => {
   try {
@@ -224,18 +208,21 @@ export const invite = async () => {
 export const authorizeUser = async (credentials: User) => {
  
     try {
-      const apiUrl = "https://api1.contrib.co/wl/user/login?key=5c1bde69a9e783c7edc2e603d8b25023";
+      const apiUrl = "https://api1.contrib.co/wl/user/login?key="+process.env.API_KEY;
       const params = new URLSearchParams();
       params.append('email', credentials.email  as string);
-      params.append('password', credentials.password  as string);
+     
+      if(credentials.campaign_id!==''){
+        params.append('campaign_id', credentials.campaign_id  as string);
+      }else{
+        params.append('password', credentials.password  as string);
+      }
       params.append('domain', getDomain());
-  
+     
       const res = await axios.post(apiUrl, params);
-      console.log(res);
+     
       const result = res.data;
 
-      
-      
       return {
         id: result.data.userid,
         email: result.data.email,
@@ -246,5 +233,32 @@ export const authorizeUser = async (credentials: User) => {
     } catch (error) {
       console.log("error", error);
     }
+
+};
+
+
+export const testuser = async () => {
+ 
+  try {
+    const apiUrl = "https://api1.contrib.co/wl/user/login?key="+process.env.API_KEY;
+    const params = new URLSearchParams();
+    params.append('email', 'sephjavier@gmail.com');
+    params.append('campaign_id', '77');
+    params.append('domain', getDomain());
+
+    const res = await axios.post(apiUrl, params);
+  
+    const result = res.data;
+    
+    return {
+      id: result.data.userid,
+      email: result.data.email,
+      name: result.data.name,
+      token: result.data.token,
+    };
+
+  } catch (error) {
+    console.log("error", error);
+  }
 
 };
