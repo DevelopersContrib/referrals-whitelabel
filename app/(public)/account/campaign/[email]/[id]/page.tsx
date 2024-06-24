@@ -29,6 +29,7 @@ const RedirectPage = async({
      method: "POST",
      body: JSON.stringify(data)
    });
+   console.log(response);
 
    if (response.ok) {
    

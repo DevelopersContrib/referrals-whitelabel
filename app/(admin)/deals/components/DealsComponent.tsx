@@ -90,9 +90,7 @@ export default function DealsComponent({ dealsData, categoryData }: any) {
                         <div className="">
                           <h3>{deals.title}</h3>
                         </div>
-                        <div className="text-sm text-black/60">
-                          <p>{deals.description}</p>
-                        </div>
+                        <div className="text-sm text-black/60" dangerouslySetInnerHTML={{ __html: decodeURIComponent(deals.description) }} />
                         <div>
                           <div className="rounded-lg py-2 px-4 bg-primary text-white text-center w-full capitalize flex items-center justify-center">
                             <div className="mr-1">
