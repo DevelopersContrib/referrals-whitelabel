@@ -2,6 +2,8 @@ import React from "react";
 import Image from "next/image";
 import { GiTrophy } from "react-icons/gi";
 import { GetcampaignsAll } from "@/data/data";
+import { imageLoader } from "@/helpers/image-helper";
+import ImageCampaignBg from "./ImageCampaignBg";
 
 const CampaignDefault = async () => {
   const campaign = await GetcampaignsAll();
@@ -46,16 +48,11 @@ const CampaignDefault = async () => {
                         <div className="rotate-label">Unlock Reward</div>
                       </div>
                     </div>
-                    <Image
-                      alt=""
-                      src={campaign.widget_details.background_image}
-                      loading="lazy"
-                      fill
-                      width={0}
-                      height={0}
-                      sizes="100vw"
-                      className="w-full max-w-full h-full object-fill"
-                    />
+                    {campaign.widget_details.background_image && (
+                      <ImageCampaignBg
+                        img={campaign.widget_details.background_image}
+                      />
+                    )}
                   </span>
                 </a>
               </div>
