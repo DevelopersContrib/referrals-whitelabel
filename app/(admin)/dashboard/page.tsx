@@ -21,10 +21,13 @@ import {
 } from "@/components/ui/card";
 
 import dynamic from "next/dynamic";
-import { getDomain} from "@/data/data";
-import {GetUserRewards } from "@/lib/data"
+import { getDomain } from "@/data/data";
+import { GetUserRewards } from "@/lib/data";
 import CampaignTable from "./components/CampainTable";
-const DynamicContent = dynamic(() => import('@/components/DynamicContent'), { ssr: false })
+import { IoIosNotifications } from "react-icons/io";
+const DynamicContent = dynamic(() => import("@/components/DynamicContent"), {
+  ssr: false
+});
 
 const Dashboard = async () => {
   const domain = getDomain();
@@ -39,7 +42,7 @@ const Dashboard = async () => {
           </h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-4 lg:gap-4">
+        <div className="grid grid-cols-1 2xl:grid-cols-2 gap-y-4 lg:gap-4">
           <CampaignTable domain={domain} />
           <div>
             <Card className="flex flex-col">
@@ -47,14 +50,22 @@ const Dashboard = async () => {
                 <CardTitle>Rewards</CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="text-gray-500/50 min-h-[25vh] flex items-center justify-center">
-                  
-                  {items.length>0?(<ul>
-                    {items.map(item => (
-                      <li key={item}><DynamicContent html={item} /></li>
-                    ))}
-                  </ul>):(<div>No Reward History To Display Yet </div>)}
-                  
+                <div className="min-h-[25vh] flex items-center justify-center">
+                  {items.length > 0 ? (
+                    <ul className="flex flex-col gap-y-3 max-h-[500px] overflow-y-auto pr-4 w-full">
+                      {items.map((item) => (
+                        <li
+                          key={item}
+                          className="text-black/70 text-sm flex items-center border-b border-gray-300 border-dashed py-2"
+                        >
+                          <IoIosNotifications className="h-8 w-8 mr-2 text-red-400" />
+                          <DynamicContent html={item} />
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <div>No Reward History To Display Yet </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
