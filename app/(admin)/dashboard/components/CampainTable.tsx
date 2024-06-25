@@ -54,6 +54,7 @@ const CampaignTable = ({ domain }: Props) => {
       setLoading(false);
     };
     getUserCampaigns();
+    // eslint-disable-next-line
   }, []);
 
   const columns: ColumnDef<userCampaign>[] = [
