@@ -20,12 +20,16 @@ import {
   CardTitle
 } from "@/components/ui/card";
 
-import { getDomain } from "@/data/data";
+import dynamic from "next/dynamic";
+import { getDomain} from "@/data/data";
+import {GetUserRewards } from "@/lib/data"
 import CampaignTable from "./components/CampainTable";
+const DynamicContent = dynamic(() => import('@/components/DynamicContent'), { ssr: false })
 
 const Dashboard = async () => {
   const domain = getDomain();
-
+  const rewards = await GetUserRewards();
+  const items: any[] = rewards.data as any[];
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
@@ -44,7 +48,13 @@ const Dashboard = async () => {
               </CardHeader>
               <CardContent>
                 <div className="text-gray-500/50 min-h-[25vh] flex items-center justify-center">
-                  No Reward History To Display Yet
+                  
+                  {items.length>0?(<ul>
+                    {items.map(item => (
+                      <li key={item}><DynamicContent html={item} /></li>
+                    ))}
+                  </ul>):(<div>No Reward History To Display Yet </div>)}
+                  
                 </div>
               </CardContent>
             </Card>
