@@ -6,4 +6,7 @@ export type campaign = {
     reward_type_name:string;
     how_to_get_reward: string;
     widget_details: widgetDetails;
+    userjoined:number;
+    underuser:number;
+    participants_rewarded:number;
   }
