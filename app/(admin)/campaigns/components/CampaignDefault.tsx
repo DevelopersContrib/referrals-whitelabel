@@ -26,16 +26,19 @@ const CampaignDefault = async () => {
                   className="flex flex-col border border-solid border-[hsl(0_0%_0%/0.05)!important] rounded-lg bg-white h-full transition-all hover:scale-[1.02] hover:duration-300 hover:shadow-[rgba(149,157,165,0.2)_0px_8px_24px] overflow-hidden"
                 >
                   <span className="px-4 pt-4 pb-3 flex flex-col text-center h-full">
-                    <span className="capitalize mb-2">{campaign.name}</span>
-                    <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
-                      <strong>{campaign.participants_rewarded}</strong>{" "}
-                      participants rewarded
+                    <span className="capitalize mb-2 h-full">
+                      {campaign.name}
                     </span>
-                    <br/>
-                    <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
-                      <strong>{campaign.underuser}</strong>{" "}
-                      Referrals Joined
-                    </span>
+                    <div className="w-full mb-4 space-y-2 flex flex-col">
+                      <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
+                        <strong>{campaign.participants_rewarded}</strong>{" "}
+                        participants rewarded
+                      </span>
+
+                      <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
+                        <strong>{campaign.underuser}</strong> Referrals Joined
+                      </span>
+                    </div>
                   </span>
                   <span className="relative min-h-[220px]">
                     <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/60 z-[1] flex items-center justify-center flex-col">
@@ -47,16 +50,18 @@ const CampaignDefault = async () => {
                           <div className="">{campaign.reward_type_name}</div>
                         </div>
                       </div>
-                      
-                      {
-                        campaign.userjoined ?null:(<> <div className="text-center inline-flex items-center justify-center text-white bg-[#5867dd] px-3 py-2 capitalize">
-                          Join Campaign
-                        </div>
-                        <div className="triangle-unlock">
-                          <div className="rotate-label">Unlock Reward</div>
-                        </div></>)
-                      }
-                      
+
+                      {campaign.userjoined ? null : (
+                        <>
+                          {" "}
+                          <div className="text-center inline-flex items-center justify-center text-white bg-[#5867dd] px-3 py-2 capitalize">
+                            Joined Campaign
+                          </div>
+                          <div className="triangle-unlock">
+                            <div className="rotate-label">Unlock Reward</div>
+                          </div>
+                        </>
+                      )}
                     </div>
                     {campaign.widget_details.background_image && (
                       <ImageCampaignBg
