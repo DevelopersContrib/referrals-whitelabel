@@ -1,6 +1,7 @@
 import axios from "axios";
 import { headers } from "next/headers";
 import { getServerSession } from "next-auth/next";
+import { options } from "@/lib/options";
 
 export function getDomain() {
   let DOMAIN = process.env.NEXT_PUBLIC_VERCEL_URL;
@@ -39,7 +40,10 @@ export async function Getcampaigns() {
 export async function GetcampaignsAll() {
   const domain = getDomain();
   const timestamp = Date.now(); // Get current timestamp
-  const url = process.env.API_URL+`campaigns/get?key=`+process.env.API_KEY+`&domain=${domain}&timestamp=${timestamp}`;
+  const session = await getServerSession(options);
+  
+  const url = process.env.API_URL+`campaigns/get?key=`+process.env.API_KEY+`&userid=${session?.id}&domain=${domain}&timestamp=${timestamp}`;
+  
   const res = await fetch(url);
 
   if (!res.ok) {

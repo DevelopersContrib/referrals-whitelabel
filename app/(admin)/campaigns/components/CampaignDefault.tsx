@@ -4,10 +4,11 @@ import { GiTrophy } from "react-icons/gi";
 import { GetcampaignsAll } from "@/data/data";
 import { imageLoader } from "@/helpers/image-helper";
 import ImageCampaignBg from "./ImageCampaignBg";
+import { campaign } from "@/types/campaign";
 
 const CampaignDefault = async () => {
   const campaign = await GetcampaignsAll();
-  const campaignData = campaign.data;
+  const campaignData = campaign.data as campaign[];
   return (
     <>
       <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 main-campaigns">
@@ -30,6 +31,11 @@ const CampaignDefault = async () => {
                       <strong>{campaign.participants_rewarded}</strong>{" "}
                       participants rewarded
                     </span>
+                    <br/>
+                    <span className="bg-[#bdcf09] text-black rounded-sm py-2 px-4 mt-auto">
+                      <strong>{campaign.underuser}</strong>{" "}
+                      Referrals Joined
+                    </span>
                   </span>
                   <span className="relative min-h-[220px]">
                     <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full bg-black/60 z-[1] flex items-center justify-center flex-col">
@@ -41,12 +47,16 @@ const CampaignDefault = async () => {
                           <div className="">{campaign.reward_type_name}</div>
                         </div>
                       </div>
-                      {/* <div className="text-center inline-flex items-center justify-center text-white bg-[#5867dd] px-3 py-2 capitalize">
-                        Join Campaign
-                      </div> */}
-                      <div className="triangle-unlock">
-                        <div className="rotate-label">Unlock Reward</div>
-                      </div>
+                      
+                      {
+                        campaign.userjoined ?null:(<> <div className="text-center inline-flex items-center justify-center text-white bg-[#5867dd] px-3 py-2 capitalize">
+                          Join Campaign
+                        </div>
+                        <div className="triangle-unlock">
+                          <div className="rotate-label">Unlock Reward</div>
+                        </div></>)
+                      }
+                      
                     </div>
                     {campaign.widget_details.background_image && (
                       <ImageCampaignBg
