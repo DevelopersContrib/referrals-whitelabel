@@ -25,6 +25,24 @@ export async function GetUserRewards() {
     return  {'error':true,'message':error.response?.data.message};
   }  
 }
+export async function GetPendingRewards() {
+  try{
+    const session = await getServerSession(options);
+    const domain = getDomain();
+    const timestamp = Date.now(); // Get current timestamp
+    const url = process.env.API_URL+`user/PendingRewards/?key=`+process.env.API_KEY+`&userid=${session?.id}&domain=${domain}&token=${session?.token}&timestamp=${timestamp}`;
+   
+    const res = await fetch(url);
+    if (!res.ok) {
+      return {'error':true}
+    }
+    
+    return res.json();
+  } catch (err) {
+    const error = err as AxiosError<Error>;
+    return  {'error':true,'message':error.response?.data.message};
+  }  
+}
 export async function GetUsercampaigns() {
   try{
     const session = await getServerSession(options);
