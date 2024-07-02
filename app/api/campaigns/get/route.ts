@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
 
     if (session?.token){
 
-        const apiUrl = process.env.API_URL+`user/campaigns?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50&userid=${session?.id}`;
+        const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=10&userid=${session?.id}`;
         //console.log('apiUrl',apiUrl)
         const res = await axios.get(apiUrl, config);
         
@@ -25,13 +25,14 @@ export const POST = async (req: Request) => {
 
             for (const campaign of campaigns) {
                 const campaign_id = campaign.campaign_id.toString();
-                const emailData = await GetSocialClick(SOCIAL_TYPES.EMAIL, campaign_id);
-                const fbData = await GetSocialClick(SOCIAL_TYPES.FACEBOOK, campaign_id);
-                const gplusData = await GetSocialClick(SOCIAL_TYPES.GPLUS, campaign_id);
-                const linkedinData = await GetSocialClick(SOCIAL_TYPES.LINKEDIN, campaign_id);
-                const twitterData = await GetSocialClick(SOCIAL_TYPES.TWITTER, campaign_id);
-                const pinterestData = await GetSocialClick(SOCIAL_TYPES.PINTEREST, campaign_id);
-                const messengerData = await GetSocialClick(SOCIAL_TYPES.MESSENGER, campaign_id);
+                const emailData = await GetSocialClick(SOCIAL_TYPES.EMAIL, campaign_id, session?.id);
+                const fbData = await GetSocialClick(SOCIAL_TYPES.FACEBOOK, campaign_id, session?.id);
+                const gplusData = await GetSocialClick(SOCIAL_TYPES.GPLUS, campaign_id, session?.id);
+                const linkedinData = await GetSocialClick(SOCIAL_TYPES.LINKEDIN, campaign_id, session?.id);
+                const twitterData = await GetSocialClick(SOCIAL_TYPES.TWITTER, campaign_id, session?.id);
+                const pinterestData = await GetSocialClick(SOCIAL_TYPES.PINTEREST, campaign_id, session?.id);
+                const messengerData = await GetSocialClick(SOCIAL_TYPES.MESSENGER, campaign_id, session?.id);
+                
 
                 const socialClicks: SocialClicks = {
                     email: emailData.data.clicks,

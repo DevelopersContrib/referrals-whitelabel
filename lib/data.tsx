@@ -139,10 +139,8 @@ export async function Getsocialurls(id: string = "") {
   }  
 }
 
-export async function GetSocialClick(id: number = 0, campaign_id: string="") {
+export async function GetSocialClick(id: number = 0, campaign_id: string="", user_id:number=0) {
   try{
-    const session = await getServerSession(options);
-    const user_id = session?.id;
     const domain = getDomain();
     const timestamp = Date.now(); // Get current timestamp
     const url = process.env.API_URL+`campaigns/getclicks?key=`+process.env.API_KEY+`&social_id=${id}&domain=${domain}&campaign_id=${campaign_id}&userid=${user_id}&timestamp=${timestamp}`;
