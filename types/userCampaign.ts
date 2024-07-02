@@ -7,5 +7,12 @@ export type userCampaign = {
     participants_rewarded: number;
     socialClicks: SocialClicks;
     test: number;
+    email: number;
+    facebook: number;
+    gplus: number;
+    linkedin: number;
+    twitter: number;
+    pinterest: number;
+    messenger: number;
     //widget_details: widgetDetails;
   }
