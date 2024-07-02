@@ -16,7 +16,7 @@ export const POST = async (req: Request) => {
 
     if (session?.token){
 
-        const apiUrl = process.env.API_URL+`user/campaigns/get?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50&userid=${session?.id}`;
+        const apiUrl = process.env.API_URL+`user/campaigns?key=`+process.env.API_KEY+`&domain=${data.domain}&token=${session?.token}&limit=50&userid=${session?.id}`;
         //console.log('apiUrl',apiUrl)
         const res = await axios.get(apiUrl, config);
         
