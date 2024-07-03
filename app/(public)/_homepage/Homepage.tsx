@@ -224,14 +224,27 @@ const Homepage: React.FC<HomepageProps> = ({
                             </div>
                           </div>
                         </div>
-                        <Image
-                          src={campaign.widget_details.background_image}
-                          width={0}
-                          height={0}
-                          alt="Referral Campaign Image"
-                          className="img-fluid h-[200px] object-cover w-full"
-                          sizes="100vw"
-                        />
+                        {campaign.widget_details.background_image ? (
+                          <Image
+                            src={campaign.widget_details.background_image}
+                            width={0}
+                            height={0}
+                            alt="Referral Campaign Image"
+                            className="img-fluid h-[200px] object-cover w-full"
+                            sizes="100vw"
+                          />
+                        ) : (
+                          <Image
+                            src={
+                              "https://s3.amazonaws.com/referrals.com/images/referral-network.png"
+                            }
+                            width={0}
+                            height={0}
+                            alt="Referral Campaign Image"
+                            className="img-fluid h-[200px] object-cover w-full"
+                            sizes="100vw"
+                          />
+                        )}
                       </div>
                       <div className="flex w-full flex-col p-4 bg-white h-100">
                         <div>
