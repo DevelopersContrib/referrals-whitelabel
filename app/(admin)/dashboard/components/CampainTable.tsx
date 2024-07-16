@@ -78,18 +78,18 @@ const CampaignTable = ({ domain }: Props) => {
       accessorKey: "socialClicks.facebook",
       header: "FB Clicks"
     },
-    {
-      accessorKey: "socialClicks.gplus",
-      header: "Google Clicks"
-    },
+    // {
+    //   accessorKey: "socialClicks.gplus",
+    //   header: "Google Clicks"
+    // },
     {
       accessorKey: "socialClicks.linkedin",
       header: "LinkedIn Clicks"
     },
-    {
-      accessorKey: "socialClicks.twitter",
-      header: "Twitter Clicks"
-    },
+    // {
+    //   accessorKey: "socialClicks.twitter",
+    //   header: "Twitter Clicks"
+    // },
     {
       accessorKey: "socialClicks.pinterest",
       header: "Pinterest Clicks"
